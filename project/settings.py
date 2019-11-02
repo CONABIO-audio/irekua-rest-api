@@ -32,7 +32,6 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 AUTH_USER_MODEL = 'irekua_database.User'
-DIRS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.postgres',
     'django.contrib.gis',
-    'rest_framework',
     'irekua_database',
     'irekua_rest_api',
+    'rest_framework',
 ]
 
 
