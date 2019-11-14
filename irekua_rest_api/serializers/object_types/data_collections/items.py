@@ -87,3 +87,25 @@ class CreateSerializer(serializers.ModelSerializer):
         collection_type = self.context['collection_type']
         validated_data['collection_type'] = collection_type
         return super().create(validated_data)
+
+
+class SimpleListSerializer(serializers.ModelSerializer):
+    event_types = events.DescriptionSerializer(
+        many=True,
+        read_only=True,
+        source='item_type.event_types')
+    mime_types = mime_types.DescriptionSerializer(
+        many=True,
+        read_only=True,
+        source='item_type.mime_types')
+
+
+    class Meta:
+        model = CollectionItemType
+        fields = (
+            'id',
+            'item_type',
+            'event_types',
+            'mime_types',
+            'metadata_schema',
+        )

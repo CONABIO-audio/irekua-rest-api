@@ -18,6 +18,15 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
+class DescriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MimeType
+        fields = (
+            'mime_type',
+            'media_info_schema'
+        )
+
+
 class ListSerializer(serializers.ModelSerializer):
     class Meta:
         model = MimeType

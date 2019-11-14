@@ -24,6 +24,15 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
+class DescriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventType
+        fields = (
+            'name',
+            'description',
+        )
+
+
 class ListSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventType
