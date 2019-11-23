@@ -5,11 +5,13 @@ from rest_framework import serializers
 
 from irekua_database.models import PhysicalDevice
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.users import users
 from . import devices
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = PhysicalDevice
         fields = (
@@ -18,7 +20,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     type = serializers.CharField(
         read_only=True,
         source='device.device_type.name')
@@ -41,7 +43,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     device = devices.SelectSerializer(many=False, read_only=True)
     owner = users.SelectSerializer(many=False, read_only=True)
 
@@ -59,7 +61,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = PhysicalDevice
         fields = (
@@ -75,7 +77,7 @@ class CreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = PhysicalDevice
         fields = (

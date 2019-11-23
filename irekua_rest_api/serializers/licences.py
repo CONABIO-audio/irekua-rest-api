@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import Licence
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.object_types import licences
 from irekua_rest_api.serializers.users import users
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Licence
         fields = (
@@ -18,7 +18,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Licence
         fields = (
@@ -30,7 +30,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     licence_type = licences.SelectSerializer(many=False, read_only=True)
     signed_by = users.SelectSerializer(many=False, read_only=True)
 
@@ -49,7 +49,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Licence
         fields = (

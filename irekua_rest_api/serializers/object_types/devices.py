@@ -1,36 +1,40 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import DeviceType
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 
-class SelectSerializer(serializers.ModelSerializer):
+
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceType
         fields = (
             'url',
+            'id',
             'name',
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceType
         fields = (
             'url',
+            'id',
             'name',
             'description',
             'icon',
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = DeviceType
         fields = (
             'url',
+            'id',
             'name',
             'description',
             'icon',
@@ -39,17 +43,18 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceType
         fields = (
+            'id',
             'name',
             'description',
             'icon',
         )
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceType
         fields = (

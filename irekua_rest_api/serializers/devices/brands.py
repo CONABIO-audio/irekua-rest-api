@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import DeviceBrand
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 
-class SelectSerializer(serializers.ModelSerializer):
+
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceBrand
         fields = (
@@ -15,7 +16,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceBrand
         fields = (
@@ -25,7 +26,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = DeviceBrand
         fields = (
@@ -38,7 +39,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceBrand
         fields = (

@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import CollectionType
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 
-class SelectSerializer(serializers.ModelSerializer):
+
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionType
         fields = (
@@ -15,7 +16,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionType
         fields = (
@@ -26,7 +27,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionType
         fields = (
@@ -45,7 +46,7 @@ class CreateSerializer(serializers.ModelSerializer):
         )
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionType
         fields = (
@@ -62,7 +63,7 @@ class UpdateSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = CollectionType
         fields = (

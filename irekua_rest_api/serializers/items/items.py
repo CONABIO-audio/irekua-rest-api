@@ -5,6 +5,8 @@ from rest_framework import serializers
 
 from irekua_database.models import Item
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.object_types import items
 from irekua_rest_api.serializers.object_types import events
 from irekua_rest_api.serializers.sampling_events import devices
@@ -12,7 +14,7 @@ from irekua_rest_api.serializers import licences
 from . import tags
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     id = serializers.PrimaryKeyRelatedField(
         many=False,
         read_only=False,
@@ -26,7 +28,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Item
         fields = (
@@ -37,7 +39,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class ListCollectionSerializer(serializers.ModelSerializer):
+class ListCollectionSerializer(IrekuaModelSerializer):
     collection = serializers.CharField(
         source='sampling_event_device.sampling_event.collection',
         read_only=True,
@@ -53,7 +55,7 @@ class ListCollectionSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaModelSerializer):
     item_type = items.SelectSerializer(many=False, read_only=True)
     sampling_event_device = devices.SelectSerializer(many=False, read_only=True)
     licence = licences.SelectSerializer(many=False, read_only=True)
@@ -81,7 +83,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Item
         fields = (
@@ -125,7 +127,7 @@ class CreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Item
         fields = (
@@ -139,7 +141,7 @@ class UpdateSerializer(serializers.ModelSerializer):
         return super().update(validated_data)
 
 
-class DownloadSerializer(serializers.ModelSerializer):
+class DownloadSerializer(IrekuaModelSerializer):
     class Meta:
         model = Item
         fields = (

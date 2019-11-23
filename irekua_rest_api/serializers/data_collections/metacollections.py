@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import MetaCollection
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
 from irekua_rest_api.serializers.users import users
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = MetaCollection
         fields = (
@@ -17,7 +16,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = MetaCollection
         fields = (
@@ -27,7 +26,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.ModelSerializer):
+class DetailSerializer(IrekuaModelSerializer):
     created_by = users.SelectSerializer(
         many=False,
         read_only=True)
@@ -44,7 +43,7 @@ class DetailSerializer(serializers.ModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = MetaCollection
         fields = (
@@ -58,7 +57,7 @@ class CreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = MetaCollection
         fields = (

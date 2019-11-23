@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import SiteType
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 
-class SelectSerializer(serializers.ModelSerializer):
+
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = SiteType
         fields = (
@@ -15,38 +16,38 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SiteType
-        fields = (
-            'url',
-            'name',
-            'description',
-        )
-
-
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = SiteType
         fields = (
             'url',
             'name',
             'description',
-            'metadata_schema'
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = SiteType
         fields = (
+            'url',
             'name',
             'description',
             'metadata_schema'
         )
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
+    class Meta:
+        model = SiteType
+        fields = (
+            'name',
+            'description',
+            'metadata_schema'
+        )
+
+
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SiteType
         fields = (

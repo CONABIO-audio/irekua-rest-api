@@ -6,12 +6,13 @@ from rest_framework import serializers
 from irekua_database.models import Annotation
 from irekua_database.models import AnnotationTool
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
 from irekua_rest_api.serializers.terms.terms import ListSerializer as TermListSerializer
 from irekua_rest_api.serializers.terms.terms import ComplexTermSerializer
 from irekua_rest_api.serializers.users.users import ListSerializer as UserListSerializer
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Annotation
         fields = (
@@ -20,7 +21,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     labels = TermListSerializer(many=True)
     created_by = UserListSerializer()
 
@@ -39,7 +40,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.ModelSerializer):
+class DetailSerializer(IrekuaModelSerializer):
     labels = ComplexTermSerializer(many=True)
 
     class Meta:
@@ -73,7 +74,7 @@ class AnnotationToolSerializer(serializers.Serializer):
     configuration_schema = serializers.JSONField(required=False)
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     annotation_tool = AnnotationToolSerializer()
 
     class Meta:
@@ -118,7 +119,7 @@ class CreateSerializer(serializers.ModelSerializer):
         return annotation
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Annotation
         fields = (

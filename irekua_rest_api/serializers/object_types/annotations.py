@@ -1,36 +1,40 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import AnnotationType
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 
-class SelectSerializer(serializers.ModelSerializer):
+
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = AnnotationType
         fields = (
             'url',
+            'id',
             'name',
             'icon',
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = AnnotationType
         fields = (
             'url',
+            'id',
             'name',
             'description',
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = AnnotationType
         fields = (
             'url',
+            'id',
             'name',
             'description',
             'annotation_schema',
@@ -40,7 +44,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = AnnotationType
         fields = (
@@ -51,7 +55,7 @@ class CreateSerializer(serializers.ModelSerializer):
         )
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = AnnotationType
         fields = (

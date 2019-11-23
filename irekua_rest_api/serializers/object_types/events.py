@@ -5,12 +5,12 @@ from rest_framework import serializers
 
 from irekua_database.models import EventType
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from . import terms
 
 
-class SelectSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(
-        view_name='rest-api:eventtype-detail')
+class SelectSerializer(IrekuaModelSerializer):
     name = serializers.PrimaryKeyRelatedField(
         many=False,
         read_only=False,
@@ -21,10 +21,11 @@ class SelectSerializer(serializers.ModelSerializer):
         fields = (
             'url',
             'name',
+            'id',
         )
 
 
-class DescriptionSerializer(serializers.ModelSerializer):
+class DescriptionSerializer(IrekuaModelSerializer):
     class Meta:
         model = EventType
         fields = (
@@ -33,18 +34,19 @@ class DescriptionSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = EventType
         fields = (
             'url',
+            'id',
             'name',
             'description',
             'icon',
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     term_types = terms.SelectSerializer(
         many=True,
         read_only=True)
@@ -53,6 +55,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         model = EventType
         fields = (
             'url',
+            'id',
             'name',
             'description',
             'icon',
@@ -62,7 +65,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = EventType
         fields = (
@@ -72,7 +75,7 @@ class CreateSerializer(serializers.ModelSerializer):
         )
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = EventType
         fields = (

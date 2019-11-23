@@ -7,12 +7,14 @@ from irekua_database.models import CollectionItemType
 
 from irekua_rest_api.serializers.object_types import items
 
-from . import types
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.object_types import events
 from irekua_rest_api.serializers.object_types import mime_types
+from . import types
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionItemType
         fields = (
@@ -21,9 +23,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(
-        view_name='rest-api:collectionitemtype-detail')
+class ListSerializer(IrekuaModelSerializer):
     event_types = events.SelectSerializer(
         many=True,
         read_only=True,
@@ -46,7 +46,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     item_type = items.SelectSerializer(
         many=False,
         read_only=True)
@@ -75,7 +75,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionItemType
         fields = (
@@ -89,7 +89,7 @@ class CreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-class SimpleListSerializer(serializers.ModelSerializer):
+class SimpleListSerializer(IrekuaModelSerializer):
     event_types = events.DescriptionSerializer(
         many=True,
         read_only=True,

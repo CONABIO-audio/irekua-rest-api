@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import SecondaryItem
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers import object_types
 from . import items
 
 
-class SelectSerializer(serializers.HyperlinkedModelSerializer):
+class SelectSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = SecondaryItem
         fields = (
@@ -18,7 +18,7 @@ class SelectSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = SecondaryItem
         fields = (
@@ -29,7 +29,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     item_type = object_types.items.SelectSerializer(many=False, read_only=True)
     item = items.SelectSerializer(many=False, read_only=True)
 
@@ -47,7 +47,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SecondaryItem
         fields = (
@@ -64,7 +64,7 @@ class CreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-class DownloadSerializer(serializers.ModelSerializer):
+class DownloadSerializer(IrekuaModelSerializer):
     class Meta:
         model = SecondaryItem
         fields = (

@@ -5,10 +5,12 @@ from rest_framework import serializers
 
 from irekua_database.models import CollectionDevice
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.devices import physical_devices
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionDevice
         fields = (
@@ -17,7 +19,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     physical_device = serializers.StringRelatedField(
         many=False,
         read_only=True)
@@ -32,7 +34,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     physical_device = physical_devices.SelectSerializer(many=False, read_only=True)
 
     class Meta:
@@ -47,7 +49,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionDevice
         fields = (

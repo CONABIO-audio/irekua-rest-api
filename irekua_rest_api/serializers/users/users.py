@@ -5,10 +5,12 @@ from rest_framework import serializers
 
 from irekua_database.models import User
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from . import institutions
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = User
         fields = (
@@ -18,7 +20,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     institution = serializers.SlugRelatedField(
         many=False,
         read_only=True,
@@ -34,7 +36,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     institution = institutions.SelectSerializer(many=False, read_only=True)
 
     class Meta:
@@ -49,7 +51,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class FullDetailSerializer(serializers.HyperlinkedModelSerializer):
+class FullDetailSerializer(IrekuaHyperlinkedModelSerializer):
     institution = institutions.DetailSerializer(many=False, read_only=True)
 
     class Meta:
@@ -71,7 +73,7 @@ class FullDetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = User
         fields = (
@@ -84,7 +86,7 @@ class CreateSerializer(serializers.ModelSerializer):
         )
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = User
         fields = (

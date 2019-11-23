@@ -6,6 +6,8 @@ from rest_framework import serializers
 from irekua_database.models import CollectionType
 from irekua_database.models import AnnotationType
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.object_types import annotations
 from . import types
 
@@ -13,7 +15,7 @@ from . import types
 MODEL = CollectionType.annotation_types.through  # pylint: disable=E1101
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     icon = serializers.URLField(source='annotationtype.icon.url')
 
     class Meta:
@@ -21,11 +23,12 @@ class SelectSerializer(serializers.ModelSerializer):
         fields = (
             'url',
             'id',
+            'name',
             'icon',
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     annotation_type = serializers.PrimaryKeyRelatedField(
         many=False,
         read_only=True,
@@ -34,19 +37,24 @@ class ListSerializer(serializers.ModelSerializer):
         source='annotationtype.icon')
     annotation_schema = serializers.JSONField(
         source='annotationtype.annotation_schema')
+    name = serializers.SlugRelatedField(
+        read_only=True,
+        source='annotationtype',
+        slug_field='name')
 
     class Meta:
         model = MODEL
         fields = (
             'url',
             'id',
+            'name',
             'annotation_type',
             'annotation_schema',
             'icon',
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     annotation_type = annotations.SelectSerializer(
         many=False,
         read_only=True,
@@ -61,12 +69,13 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'url',
             'id',
+            'name',
             'collection_type',
             'annotation_type',
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     annotation_type = serializers.PrimaryKeyRelatedField(
         many=False,
         read_only=False,

@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import MimeType
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 
-class SelectSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(
-        view_name='rest-api:mimetype-detail')
+
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = MimeType
         fields = (
@@ -18,7 +17,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class DescriptionSerializer(serializers.ModelSerializer):
+class DescriptionSerializer(IrekuaModelSerializer):
     class Meta:
         model = MimeType
         fields = (
@@ -27,7 +26,7 @@ class DescriptionSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = MimeType
         fields = (
@@ -37,7 +36,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = MimeType
         fields = (
@@ -47,7 +46,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = MimeType
         fields = (
@@ -56,7 +55,7 @@ class CreateSerializer(serializers.ModelSerializer):
         )
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = MimeType
         fields = (

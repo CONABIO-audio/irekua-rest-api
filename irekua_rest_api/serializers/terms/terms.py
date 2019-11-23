@@ -5,10 +5,12 @@ from rest_framework import serializers
 
 from irekua_database.models import Term
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.object_types import terms
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         models = Term
         fields = (
@@ -17,7 +19,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Term
         fields = (
@@ -27,7 +29,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     term_type = terms.SelectSerializer(many=False, read_only=True)
 
     class Meta:
@@ -44,7 +46,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Term
         fields = (
@@ -58,7 +60,7 @@ class CreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Term
         fields = (
@@ -80,7 +82,7 @@ class EntailmentSerializer(serializers.Serializer):
         source='target.scope')
 
 
-class TermSerializer(serializers.ModelSerializer):
+class TermSerializer(IrekuaModelSerializer):
     term_type = serializers.StringRelatedField(many=False)
 
     class Meta:
@@ -94,7 +96,7 @@ class TermSerializer(serializers.ModelSerializer):
         ]
 
 
-class ComplexTermSerializer(serializers.ModelSerializer):
+class ComplexTermSerializer(IrekuaModelSerializer):
     term_type = serializers.StringRelatedField(many=False)
     entailments = EntailmentSerializer(
         many=True,

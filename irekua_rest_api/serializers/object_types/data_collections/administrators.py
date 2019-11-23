@@ -5,6 +5,8 @@ from rest_framework import serializers
 
 from irekua_database.models import CollectionType
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.users import users
 from . import types
 
@@ -12,7 +14,7 @@ from . import types
 MODEL = CollectionType.administrators.through  # pylint: disable=E1101
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = MODEL
         fields = (
@@ -21,7 +23,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     user = serializers.CharField(
         read_only=True,
         source='user.username')
@@ -35,7 +37,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     user = users.SelectSerializer(
         many=False,
         read_only=True)
@@ -54,7 +56,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = MODEL
         fields = (

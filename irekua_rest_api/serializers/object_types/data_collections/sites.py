@@ -6,6 +6,8 @@ from rest_framework import serializers
 from irekua_database.models import CollectionType
 from irekua_database.models import SiteType
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.object_types import sites
 from . import types
 
@@ -13,7 +15,7 @@ from . import types
 MODEL = CollectionType.site_types.through  # pylint: disable=E1101
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = MODEL
         fields = (
@@ -22,7 +24,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     site_type = serializers.PrimaryKeyRelatedField(
         many=False,
         read_only=True,
@@ -37,7 +39,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     site_type = sites.SelectSerializer(
         many=False,
         read_only=True,
@@ -57,7 +59,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     site_type = serializers.PrimaryKeyRelatedField(
         many=False,
         read_only=False,

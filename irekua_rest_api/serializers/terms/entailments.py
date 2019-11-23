@@ -5,10 +5,12 @@ from rest_framework import serializers
 
 from irekua_database.models import Entailment
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from . import terms
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Entailment
         fields = (
@@ -17,7 +19,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.HyperlinkedModelSerializer):
+class ListSerializer(IrekuaHyperlinkedModelSerializer):
     source_type = serializers.CharField(
                 read_only=True,
         source='source.term_type.name')
@@ -44,7 +46,7 @@ class ListSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     source = terms.ListSerializer(many=False, read_only=True)
     target = terms.ListSerializer(many=False, read_only=True)
 
@@ -61,7 +63,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Entailment
         fields = (
@@ -71,7 +73,7 @@ class CreateSerializer(serializers.ModelSerializer):
         )
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Entailment
         fields = (

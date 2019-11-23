@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import Collection
 from irekua_database.models import CollectionUser
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.object_types.data_collections import types
 from irekua_rest_api.serializers.users import institutions
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Collection
         fields = (
@@ -19,7 +19,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Collection
         fields = (
@@ -31,7 +31,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     collection_type = types.SelectSerializer(
         many=False,
         read_only=False)
@@ -55,7 +55,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class UserData(serializers.ModelSerializer):
+class UserData(IrekuaModelSerializer):
     class Meta:
         model = CollectionUser
         fields = (
@@ -64,7 +64,7 @@ class UserData(serializers.ModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     user_data = UserData(many=False, read_only=False)
 
     class Meta:
@@ -98,7 +98,7 @@ class CreateSerializer(serializers.ModelSerializer):
         return collection
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Collection
         fields = (

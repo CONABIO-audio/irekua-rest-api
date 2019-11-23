@@ -5,6 +5,8 @@ from rest_framework import serializers
 
 from irekua_database.models import SamplingEvent
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.data_collections import sites
 from irekua_rest_api.serializers.users import users
 from irekua_rest_api.serializers.object_types.sampling_events import types
@@ -12,7 +14,7 @@ from irekua_rest_api.serializers.data_collections import data_collections
 from irekua_rest_api.serializers import licences
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = SamplingEvent
         fields = (
@@ -21,7 +23,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     collection_site = serializers.CharField(
         read_only=True,
         source='collection_site.site.name')
@@ -42,7 +44,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class UserListSerializer(serializers.ModelSerializer):
+class UserListSerializer(IrekuaModelSerializer):
     collection_site = serializers.CharField(
         read_only=True,
         source='collection_site.site.name')
@@ -64,7 +66,7 @@ class UserListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     created_by = users.SelectSerializer(
         many=False,
         read_only=True)
@@ -104,7 +106,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SamplingEvent
         fields = (
@@ -142,7 +144,7 @@ class CreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SamplingEvent
         fields = (

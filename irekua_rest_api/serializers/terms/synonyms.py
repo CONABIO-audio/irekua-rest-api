@@ -5,10 +5,12 @@ from rest_framework import serializers
 
 from irekua_database.models import Synonym
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from . import terms
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Synonym
         fields = (
@@ -17,7 +19,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     source_type = serializers.CharField(
         read_only=True,
         source='source.term_type.name')
@@ -43,7 +45,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     source = terms.SelectSerializer(many=False, read_only=True)
     target = terms.SelectSerializer(many=False, read_only=True)
 
@@ -59,7 +61,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Synonym
         fields = (
@@ -70,7 +72,7 @@ class CreateSerializer(serializers.ModelSerializer):
 
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Synonym
         fields = (

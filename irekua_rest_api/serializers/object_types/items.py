@@ -1,35 +1,37 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import ItemType
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from . import events
 from . import mime_types
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = ItemType
         fields = (
             'url',
             'name',
+            'id',
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = ItemType
         fields = (
             'url',
             'name',
+            'id',
             'description',
             'icon',
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     event_types = events.DetailSerializer(
         many=True,
         read_only=True)
@@ -42,6 +44,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'url',
             'name',
+            'id',
             'description',
             'mime_types',
             'icon',
@@ -51,7 +54,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = ItemType
         fields = (
@@ -61,7 +64,7 @@ class CreateSerializer(serializers.ModelSerializer):
         )
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = ItemType
         fields = (

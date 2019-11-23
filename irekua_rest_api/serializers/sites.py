@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import serializers
-
 from irekua_database.models import Site
 from irekua_database.models import SamplingEvent
 from irekua_database.models import SamplingEventDevice
 from irekua_database.models import CollectionSite
 from irekua_database.models import Item
 
-from irekua_rest_api.serializers.object_types import sites
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.users import users
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Site
         fields = (
@@ -22,7 +21,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Site
         fields = (
@@ -33,7 +32,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     created_by = users.SelectSerializer(many=False, read_only=True)
 
     class Meta:
@@ -49,7 +48,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class FullDetailSerializer(serializers.HyperlinkedModelSerializer):
+class FullDetailSerializer(IrekuaHyperlinkedModelSerializer):
     created_by = users.SelectSerializer(many=False, read_only=True)
 
     class Meta:
@@ -69,7 +68,7 @@ class FullDetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Site
         fields = (
@@ -86,7 +85,7 @@ class CreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Site
         fields = (
@@ -96,7 +95,7 @@ class UpdateSerializer(serializers.ModelSerializer):
         )
 
 
-class GeometrySerializer(serializers.ModelSerializer):
+class GeometrySerializer(IrekuaModelSerializer):
     class Meta:
         model = Site
         fields = (
@@ -107,7 +106,7 @@ class GeometrySerializer(serializers.ModelSerializer):
         )
 
 
-class SiteLocationSerializer(serializers.ModelSerializer):
+class SiteLocationSerializer(IrekuaModelSerializer):
     geometry = GeometrySerializer(read_only=True, source="*")
 
     class Meta:
@@ -117,7 +116,7 @@ class SiteLocationSerializer(serializers.ModelSerializer):
             'geometry'
         )
 
-class SamplingEventLocationSerializer(serializers.ModelSerializer):
+class SamplingEventLocationSerializer(IrekuaModelSerializer):
     geometry = GeometrySerializer(
         read_only=True,
         source="collection_site.site")
@@ -129,7 +128,7 @@ class SamplingEventLocationSerializer(serializers.ModelSerializer):
             'geometry'
         )
 
-class SamplingEventDeviceLocationSerializer(serializers.ModelSerializer):
+class SamplingEventDeviceLocationSerializer(IrekuaModelSerializer):
     geometry = GeometrySerializer(
         read_only=True,
         source="sampling_event.collection_site.site")
@@ -142,7 +141,7 @@ class SamplingEventDeviceLocationSerializer(serializers.ModelSerializer):
         )
 
 
-class ItemLocationSerializer(serializers.ModelSerializer):
+class ItemLocationSerializer(IrekuaModelSerializer):
     geometry = GeometrySerializer(
         read_only=True,
         source="sampling_event_device.sampling_event.collection_site.site")
@@ -154,7 +153,7 @@ class ItemLocationSerializer(serializers.ModelSerializer):
             'geometry'
         )
 
-class CollectionSiteLocationSerializer(serializers.ModelSerializer):
+class CollectionSiteLocationSerializer(IrekuaModelSerializer):
     geometry = GeometrySerializer(
         read_only=True,
         source="site")

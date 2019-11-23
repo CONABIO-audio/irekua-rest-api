@@ -6,8 +6,11 @@ from rest_framework import serializers
 
 from irekua_database.models import Role
 
+from irekua_rest_api.serializers.base import IrekuaModelSerializer
+from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 
-class SelectPermissionSerializer(serializers.ModelSerializer):
+
+class SelectPermissionSerializer(IrekuaModelSerializer):
     codename = serializers.SlugRelatedField(
         many=False,
         read_only=False,
@@ -21,7 +24,7 @@ class SelectPermissionSerializer(serializers.ModelSerializer):
         )
 
 
-class SelectSerializer(serializers.ModelSerializer):
+class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Role
         fields = (
@@ -30,7 +33,7 @@ class SelectSerializer(serializers.ModelSerializer):
         )
 
 
-class ListSerializer(serializers.ModelSerializer):
+class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Role
         fields = (
@@ -41,7 +44,7 @@ class ListSerializer(serializers.ModelSerializer):
         )
 
 
-class DetailSerializer(serializers.HyperlinkedModelSerializer):
+class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     permissions = serializers.SlugRelatedField(
         many=True,
         read_only=True,
@@ -60,7 +63,7 @@ class DetailSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class CreateSerializer(serializers.ModelSerializer):
+class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Role
         fields = (
@@ -70,7 +73,7 @@ class CreateSerializer(serializers.ModelSerializer):
         )
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Role
         fields = (
