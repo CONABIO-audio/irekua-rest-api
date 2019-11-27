@@ -49,12 +49,13 @@ class DetailSerializer(IrekuaModelSerializer):
             'url',
             'id',
             'annotation_tool',
+            'visualizer',
             'item',
             'event_type',
             'labels',
             'annotation_type',
             'annotation',
-            'annotation_configuration',
+            'visualizer_configuration',
             'certainty',
             'quality',
             'commentaries',
@@ -75,8 +76,6 @@ class AnnotationToolSerializer(serializers.Serializer):
 
 
 class CreateSerializer(IrekuaModelSerializer):
-    annotation_tool = AnnotationToolSerializer()
-
     class Meta:
         model = Annotation
         fields = (
@@ -87,7 +86,8 @@ class CreateSerializer(IrekuaModelSerializer):
             'quality',
             'commentaries',
             'annotation_tool',
-            'annotation_configuration',
+            'visualizer',
+            'visualizer_configuration',
             'annotation_type',
         )
 
@@ -95,28 +95,10 @@ class CreateSerializer(IrekuaModelSerializer):
         item = self.context['item']
         user = self.context['request'].user
 
-        annotation_tool_info = validated_data.pop('annotation_tool')
-
-        name = annotation_tool_info.pop('name')
-        version = annotation_tool_info.pop('version')
-        annotation_tool, _ = AnnotationTool.objects.get_or_create(
-            name=name,
-            version=version,
-            defaults=annotation_tool_info)
-        annotation_tool.save()
-
         validated_data['item'] = item
         validated_data['created_by'] = user
         validated_data['modified_by'] = user
-        validated_data['annotation_tool'] = annotation_tool
-
-        labels = validated_data.pop('labels')
-        annotation = Annotation(**validated_data)
-        annotation.save()
-
-        annotation.labels.set(labels)
-        annotation.save()
-        return annotation
+        return super().create(validated_data)
 
 
 class UpdateSerializer(IrekuaModelSerializer):
@@ -128,7 +110,7 @@ class UpdateSerializer(IrekuaModelSerializer):
             'certainty',
             'quality',
             'commentaries',
-            'annotation_configuration',
+            'visualizer_configuration',
         )
 
     def update(self, instance, validated_data):
