@@ -1,3 +1,8 @@
+IREKUA_REST_FRAMEWORK_APPS = [
+    'irekua_rest_api',
+    'rest_framework',
+]
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'irekua_rest_api.pagination.StandardResultsSetPagination',
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
