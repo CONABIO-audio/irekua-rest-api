@@ -1,4 +1,4 @@
-IREKUA_REST_FRAMEWORK_APPS = [
+IREKUA_REST_API_APPS = [
     'irekua_rest_api',
     'rest_framework',
 ]
