@@ -32,13 +32,17 @@ class ListSerializer(IrekuaModelSerializer):
         many=True,
         read_only=True,
         source='item_type.mime_types')
-
+    name = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='name',
+        source='item_type')
 
     class Meta:
         model = CollectionItemType
         fields = (
             'url',
             'id',
+            'name',
             'item_type',
             'event_types',
             'mime_types',
