@@ -35,6 +35,7 @@ from . import licences
 from . import sampling_event_devices
 from . import secondary_items
 from . import collection_administrators
+from . import manager_collections
 
 from .utils import BaseFilter
 
@@ -78,4 +79,5 @@ __all__ = [
     'sampling_event_devices',
     'secondary_items',
     'collection_administrators',
+    'manager_collections'
 ]
