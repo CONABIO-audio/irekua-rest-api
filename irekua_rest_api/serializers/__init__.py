@@ -8,6 +8,7 @@ from . import items
 from . import devices
 from . import data_collections
 from . import annotations
+from . import models
 
 
 __all__ = [
@@ -21,4 +22,5 @@ __all__ = [
     'devices',
     'data_collections',
     'annotations',
+    'models',
 ]

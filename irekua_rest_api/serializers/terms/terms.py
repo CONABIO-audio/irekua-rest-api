@@ -12,18 +12,19 @@ from irekua_rest_api.serializers.object_types import terms
 
 class SelectSerializer(IrekuaModelSerializer):
     class Meta:
-        models = Term
+        model = Term
         fields = (
-            'url',
             'id',
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
+    term_type = terms.SelectSerializer(many=False, read_only=True)
+
     class Meta:
         model = Term
         fields = (
-            'url',
+            'id',
             'term_type',
             'value',
         )
@@ -35,7 +36,6 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = Term
         fields = (
-            'url',
             'id',
             'term_type',
             'value',

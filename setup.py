@@ -26,6 +26,7 @@ setup(
         'markdown',
         'django-filter',
         'coreapi',
+        'pyyaml',
     ],
     classifiers=[
         'Environment :: Web Environment',

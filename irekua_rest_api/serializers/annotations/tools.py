@@ -22,7 +22,6 @@ class ListSerializer(IrekuaModelSerializer):
             'url',
             'name',
             'version',
-            'description',
             'logo',
         )
 
@@ -35,10 +34,8 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
             'id',
             'name',
             'version',
-            'description',
             'logo',
             'website',
-            'configuration_schema',
             'created_on',
             'modified_on'
         )
@@ -50,8 +47,6 @@ class CreateSerializer(IrekuaModelSerializer):
         fields = (
             'name',
             'version',
-            'description',
             'logo',
             'website',
-            'configuration_schema',
         )

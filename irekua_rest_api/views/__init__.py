@@ -48,7 +48,9 @@ from .terms.terms import TermViewSet
 from .users.institutions import InstitutionViewSet
 from .users.roles import RoleViewSet
 from .users.users import UserViewSet
-
+from .models.model import ModelViewSet
+from .models.model_version import ModelVersionViewSet
+from .models.model_prediction import ModelPredictionViewSet
 
 
 __all__ = [
@@ -101,4 +103,7 @@ __all__ = [
     'CollectionTypeRoleViewSet',
     'CollectionAdministratorViewSet',
     'MimeTypeViewSet',
+    'ModelViewSet',
+    'ModelVersionViewSet',
+    'ModelPredictionViewSet'
 ]

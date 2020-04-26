@@ -69,7 +69,6 @@ class DetailSerializer(IrekuaModelSerializer):
 class AnnotationToolSerializer(serializers.Serializer):
     name = serializers.CharField(required=True)
     version = serializers.CharField(required=True)
-    description = serializers.CharField(required=False)
     logo = serializers.CharField(required=False)
     website = serializers.CharField(required=False)
     configuration_schema = serializers.JSONField(required=False)

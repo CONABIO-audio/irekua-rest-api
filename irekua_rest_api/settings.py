@@ -1,6 +1,7 @@
 IREKUA_REST_API_APPS = [
     'irekua_rest_api',
     'rest_framework',
+    'django_filters',
 ]
 
 REST_FRAMEWORK = {
