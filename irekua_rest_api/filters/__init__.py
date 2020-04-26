@@ -37,6 +37,8 @@ from . import secondary_items
 from . import collection_administrators
 from . import manager_collections
 from . import models
+from . import model_versions
+from . import model_predictions
 
 from .utils import BaseFilter
 
@@ -81,5 +83,7 @@ __all__ = [
     'secondary_items',
     'collection_administrators',
     'manager_collections',
-    'models'
+    'models',
+    'model_versions',
+    'model_predictions',
 ]
