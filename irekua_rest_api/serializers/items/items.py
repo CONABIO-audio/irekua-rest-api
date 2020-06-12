@@ -6,7 +6,6 @@ from rest_framework import serializers
 from irekua_database.models import Item
 
 from irekua_rest_api.serializers.base import IrekuaModelSerializer
-from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 from irekua_rest_api.serializers.object_types import items
 from irekua_rest_api.serializers.object_types import events
 from irekua_rest_api.serializers.sampling_events import devices
@@ -61,6 +60,7 @@ class DetailSerializer(IrekuaModelSerializer):
     licence = licences.SelectSerializer(many=False, read_only=True)
     tags = tags.SelectSerializer(many=True, read_only=True)
     ready_event_types = events.SelectSerializer(many=True, read_only=True)
+    download = serializers.HyperlinkedIdentityField(view_name='item-download')
 
     class Meta:
         model = Item
@@ -80,6 +80,7 @@ class DetailSerializer(IrekuaModelSerializer):
             'modified_on',
             'created_by',
             'modified_by',
+            'download',
         )
 
 
