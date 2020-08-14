@@ -13,6 +13,7 @@ class Filter(BaseFilter):
     class Meta:
         model = Annotation
         fields = (
+            'item',
             'annotation_type__name',
             'annotation_tool__name',
             'event_type__name',
