@@ -10,6 +10,8 @@ from irekua_rest_api.serializers.object_types import items
 from irekua_rest_api.serializers.object_types import events
 from irekua_rest_api.serializers.sampling_events import devices
 from irekua_rest_api.serializers import licences
+from irekua_rest_api.serializers.annotations import (
+    annotations as annotation_serializers)
 from . import tags
 
 
@@ -61,6 +63,10 @@ class DetailSerializer(IrekuaModelSerializer):
     tags = tags.SelectSerializer(many=True, read_only=True)
     ready_event_types = events.SelectSerializer(many=True, read_only=True)
     download = serializers.HyperlinkedIdentityField(view_name='item-download')
+    annotations = annotation_serializers.DetailSerializer(
+        many=True,
+        read_only=True,
+        source='annotation_set')
 
     class Meta:
         model = Item
@@ -80,6 +86,7 @@ class DetailSerializer(IrekuaModelSerializer):
             'modified_on',
             'created_by',
             'modified_by',
+            'annotations',
             'download',
         )
 
