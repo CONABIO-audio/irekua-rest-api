@@ -36,8 +36,10 @@ class AnnotationViewSet(mixins.UpdateModelMixin,
             votes=serializers.annotations.votes.ListSerializer,
             types=serializers.object_types.annotations.ListSerializer,
             add_type=serializers.object_types.annotations.CreateSerializer,
-            tools=serializers.annotations.tools.ListSerializer,
-            add_tool=serializers.annotations.tools.CreateSerializer,
+            # TODO: Remove all tool references whe AnnotationTool migration from
+            # irekua-database to selia-annotator.
+            # tools=serializers.annotations.tools.ListSerializer,
+            # add_tool=serializers.annotations.tools.CreateSerializer,
         ))
 
     permission_mapping = utils.PermissionMapping({
@@ -113,8 +115,8 @@ class AnnotationViewSet(mixins.UpdateModelMixin,
         if self.action == 'types':
             return models.AnnotationType.objects.all()
 
-        if self.action == 'tools':
-            return models.AnnotationTool.objects.all()
+        # if self.action == 'tools':
+        #     return models.AnnotationTool.objects.all()
 
         if self.action == utils.Actions.LIST:
             return self.get_list_queryset()
@@ -145,17 +147,17 @@ class AnnotationViewSet(mixins.UpdateModelMixin,
     def add_type(self, request):
         return self.create_related_object_view()
 
-    @action(
-        detail=False,
-        methods=['GET'],
-        filterset_class=filters.annotation_tools.Filter,
-        search_fields=filters.annotation_tools.search_fields)
-    def tools(self, request):
-        return self.list_related_object_view()
+    # @action(
+    #     detail=False,
+    #     methods=['GET'],
+    #     filterset_class=filters.annotation_tools.Filter,
+    #     search_fields=filters.annotation_tools.search_fields)
+    # def tools(self, request):
+    #     return self.list_related_object_view()
 
-    @tools.mapping.post
-    def add_tool(self, request):
-        return self.create_related_object_view()
+    # @tools.mapping.post
+    # def add_tool(self, request):
+    #     return self.create_related_object_view()
 
     def get_list_queryset(self):
         user = self.request.user

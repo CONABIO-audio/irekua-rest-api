@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from rest_framework import serializers
 
 from irekua_database.models import Annotation
-from irekua_database.models import AnnotationTool
 
 from irekua_rest_api.serializers.base import IrekuaModelSerializer
 from irekua_rest_api.serializers.terms.terms import ListSerializer as TermListSerializer
@@ -81,12 +80,12 @@ class CreateSerializer(IrekuaModelSerializer):
             'event_type',
             'annotation',
             'labels',
-            'certainty',
-            'quality',
-            'commentaries',
-            'annotation_tool',
-            'visualizer',
-            'visualizer_configuration',
+            # 'certainty',
+            # 'quality',
+            # 'commentaries',
+            # 'annotation_tool',
+            # 'visualizer',
+            # 'visualizer_configuration',
             'annotation_type',
         )
 
@@ -106,10 +105,10 @@ class UpdateSerializer(IrekuaModelSerializer):
         fields = (
             'annotation',
             'labels',
-            'certainty',
-            'quality',
-            'commentaries',
-            'visualizer_configuration',
+            # 'certainty',
+            # 'quality',
+            # 'commentaries',
+            # 'visualizer_configuration',
         )
 
     def update(self, instance, validated_data):

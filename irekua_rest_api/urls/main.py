@@ -98,9 +98,11 @@ main_router.register(
 main_router.register(
     r'additional/secondary_items',
     views.SecondaryItemViewSet)
-main_router.register(
-    r'additional/annotation_tools',
-    views.AnnotationToolViewSet)
+# TODO: Remove when AnnotationTool migration from irekua-database to
+# selia-annotator is complete.
+# main_router.register(
+#     r'additional/annotation_tools',
+#     views.AnnotationToolViewSet)
 main_router.register(
     r'additional/collection_devices',
     views.CollectionDeviceViewSet)

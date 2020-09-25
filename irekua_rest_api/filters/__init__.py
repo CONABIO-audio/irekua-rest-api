@@ -1,4 +1,6 @@
-from . import annotation_tools
+# TODO: Remove annotation tool filters when AnnotationTool migration from
+# irekua-database to selia-annotator is complete.
+# from . import annotation_tools
 from . import annotation_votes
 from . import annotation_types
 from . import annotations

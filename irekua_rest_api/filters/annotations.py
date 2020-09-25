@@ -14,10 +14,10 @@ class Filter(BaseFilter):
         model = Annotation
         fields = (
             'item',
-            'annotation_type__name',
-            'annotation_tool__name',
+            # 'annotation_type__name',
+            # 'annotation_tool__name',
             'event_type__name',
-            'quality',
+            # 'quality',
             'created_by__username',
             'modified_by__username',
         )

@@ -1,5 +1,7 @@
 # pylint: disable=C0301
-from .annotations.annotation_tools import AnnotationToolViewSet
+# TODO: Remove Annotation Tool views when AnnotationTool migration from
+# irekua-database to selia-annotator is complete.
+#from .annotations.annotation_tools import AnnotationToolViewSet
 from .annotations.annotation_votes import AnnotationVoteViewSet
 from .annotations.annotations import AnnotationViewSet
 from .data_collections.collection_devices import CollectionDeviceViewSet
