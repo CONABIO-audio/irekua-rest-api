@@ -1,6 +1,6 @@
 import django_filters
 
-from irekua_database.models import TermSuggestion
+from irekua_terms.models import TermSuggestion
 
 
 search_fields = (

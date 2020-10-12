@@ -3,7 +3,7 @@ from random import sample
 
 from rest_framework.test import APITestCase
 
-from irekua_database.models import TermType, Term
+from irekua_terms.models import TermType, Term
 from irekua_database.utils import simple_JSON_schema
 from irekua_rest_api.serializers import synonyms
 from .utils import (

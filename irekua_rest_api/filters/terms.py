@@ -1,4 +1,4 @@
-from irekua_database.models import Term
+from irekua_terms.models import Term
 from .utils import BaseFilter
 
 

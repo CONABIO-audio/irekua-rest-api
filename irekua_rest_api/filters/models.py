@@ -1,7 +1,7 @@
 from django import forms
 import django_filters
 
-from irekua_database.models import Term
+from irekua_terms.models import Term
 from irekua_models.models import Model
 from .utils import BaseFilter
 

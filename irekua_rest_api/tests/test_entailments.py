@@ -3,7 +3,7 @@ from random import choice
 
 from rest_framework.test import APITestCase
 from irekua_database.utils import simple_JSON_schema
-from irekua_database.models import TermType, EntailmentType, Term
+from irekua_terms.models import TermType, EntailmentType, Term
 from irekua_rest_api.serializers import entailments
 from .utils import (
     BaseTestCase,

@@ -1,4 +1,4 @@
-from irekua_database.models import Synonym
+from irekua_terms.models import Synonym
 from .utils import BaseFilter
 
 

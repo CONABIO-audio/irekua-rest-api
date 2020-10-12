@@ -2,7 +2,7 @@ from uuid import uuid4
 
 from rest_framework.test import APITestCase
 
-from irekua_database.models import TermType
+from irekua_terms.models import TermType
 from irekua_database.utils import simple_JSON_schema
 from irekua_rest_api.serializers import event_types
 

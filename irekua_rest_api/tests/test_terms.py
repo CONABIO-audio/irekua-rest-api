@@ -1,7 +1,7 @@
 from uuid import uuid4
 
 from rest_framework.test import APITestCase
-from irekua_database.models import TermType
+from irekua_terms.models import TermType
 from irekua_rest_api.serializers import terms
 from .utils import (
     BaseTestCase,

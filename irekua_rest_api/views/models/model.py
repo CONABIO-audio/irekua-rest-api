@@ -5,7 +5,7 @@ from rest_framework import mixins
 from rest_framework.decorators import action
 from rest_framework.viewsets import GenericViewSet
 
-from irekua_database.models import Term
+from irekua_terms.models import Term
 from irekua_models import models
 from irekua_rest_api import utils
 from irekua_rest_api import filters

@@ -1,4 +1,4 @@
-from irekua_database.models import Entailment
+from irekua_terms.models import Entailment
 from .utils import BaseFilter
 
 

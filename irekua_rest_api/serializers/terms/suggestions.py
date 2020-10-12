@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from irekua_database.models import TermSuggestion
+from irekua_terms.models import TermSuggestion
 
 from irekua_rest_api.serializers.base import IrekuaModelSerializer
 from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer

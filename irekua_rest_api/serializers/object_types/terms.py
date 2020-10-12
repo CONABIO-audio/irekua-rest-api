@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from rest_framework import serializers
 
-from irekua_database.models import TermType
+from irekua_terms.models import TermType
 
 from irekua_rest_api.serializers.base import IrekuaModelSerializer
 from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer

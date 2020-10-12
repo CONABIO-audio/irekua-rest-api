@@ -1,6 +1,6 @@
 import django_filters
 
-from irekua_database.models import SynonymSuggestion
+from irekua_terms.models import SynonymSuggestion
 
 
 search_fields = (

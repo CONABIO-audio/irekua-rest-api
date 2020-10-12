@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from irekua_database.models import EntailmentType
+from irekua_terms.models import EntailmentType
 
 from irekua_rest_api.serializers.base import IrekuaModelSerializer
 from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer

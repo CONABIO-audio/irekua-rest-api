@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 
-from irekua_database import models
+from irekua_terms import models
 from irekua_rest_api import serializers
 from irekua_rest_api import filters
 from irekua_rest_api import utils
@@ -16,7 +16,7 @@ from irekua_rest_api.permissions import IsAuthenticated
 
 
 class TermTypeViewSet(utils.CustomViewSetMixin, ModelViewSet):
-    queryset = models.TermType.objects.all()  # pylint: disable=E1101
+    queryset = models.TermType.objects.all()  # pylint: disable=no-member
     search_fields = filters.term_types.search_fields
     filterset_class = filters.term_types.Filter
 
