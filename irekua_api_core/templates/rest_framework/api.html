@@ -1,0 +1,21 @@
+{% extends "rest_framework/base.html" %}
+{% load static %}
+
+
+{% block title %}Irekua API{% endblock %}
+
+
+{% block branding %}
+    <a class="navbar-brand" rel="nofollow" href="#">
+      Irekua API
+    </a>
+    <a class="navbar-brand" rel="nofollow" href="#">
+      <img src="https://www.biodiversidad.gob.mx/assets/images/logo.png" height="100%">
+    </a>
+{% endblock %}
+
+
+{% block style %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "irekua_api_core/css/default.css" %}"/>
+{% endblock %}

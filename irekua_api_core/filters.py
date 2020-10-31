@@ -1,9 +1,10 @@
 from django import forms
 from django.utils.translation import gettext as _
+from django.contrib.auth import get_user_model
 import django_filters
 
 
-class BaseFilter(django_filters.FilterSet):
+class IrekuaFilter(django_filters.FilterSet):
     created_on__lt = django_filters.DateTimeFilter(
         field_name='created_on',
         lookup_expr='lt',
@@ -27,3 +28,9 @@ class BaseFilter(django_filters.FilterSet):
         lookup_expr='gt',
         label=_('Modified after than'),
         widget=forms.DateTimeInput)
+
+
+class IrekuaUserFilter(IrekuaFilter):
+    created_by = django_filters.ModelChoiceFilter(
+        queryset=get_user_model().objects.all()
+    )
