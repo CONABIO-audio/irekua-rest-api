@@ -8,5 +8,6 @@ urlpatterns = [
     url('api/', include('irekua_api_core.urls')),
     url('api/schemas/', include('irekua_api_schemas.urls')),
     url('api/terms/', include('irekua_api_terms.urls')),
+    url('api/operations/', include('irekua_api_operations.urls')),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

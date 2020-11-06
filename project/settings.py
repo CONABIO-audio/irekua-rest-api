@@ -6,6 +6,7 @@ from irekua_api_core.settings import *
 from irekua_api_schemas.settings import *
 from irekua_api_terms.settings import *
 from irekua_api_items.settings import *
+from irekua_api_operations.settings import *
 
 
 MIGRATE = False
@@ -16,6 +17,7 @@ MIGRATION_MODULES = {
     'irekua_schemas': None,
     'irekua_items': None,
     'irekua_terms': None,
+    'irekua_upload': None,
 }
 
 
@@ -31,5 +33,6 @@ INSTALLED_APPS = list(OrderedDict.fromkeys(
     IREKUA_API_CORE_APPS +
     IREKUA_API_SCHEMAS_APPS +
     IREKUA_API_TERMS_APPS +
-    IREKUA_API_ITEMS_APPS
+    IREKUA_API_ITEMS_APPS +
+    IREKUA_API_OPERATIONS_APPS
 ))
