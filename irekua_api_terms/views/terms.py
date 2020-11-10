@@ -9,7 +9,13 @@ class TermViewSet(IrekuaReadOnlyViewSet):
     queryset = Term.objects.all()
 
     serializer_action_classes = {
-        'retrieve': serializers.TermDetailSerializer
+        'retrieve': serializers.TermComplexSerializer
     }
 
     serializer_class = serializers.TermSerializer
+
+    filterset_class = filters.terms.Filter
+
+    search_fields = filters.terms.search_fields
+
+    ordering_fields = filters.terms.ordering_fields

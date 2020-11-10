@@ -1,13 +1,25 @@
-from django.urls import path
-from django.db.models import Q
 from dal import autocomplete
 
 from irekua_terms.models import Term
 from irekua_terms.models import TermType
-from irekua_terms.models import EntailmentType
-from irekua_terms.models import EntailmentType
+from irekua_api_core.autocomplete import register_autocomplete
 
 
+urlpatterns = []
+
+
+@register_autocomplete(TermType, urlpatterns)
+class TermTypesAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = TermType.objects.all()
+
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q)
+
+        return qs
+
+
+@register_autocomplete(Term, urlpatterns)
 class TermsAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Term.objects.all()
@@ -16,9 +28,3 @@ class TermsAutocomplete(autocomplete.Select2QuerySetView):
             qs = qs.filter(value__istartswith=self.q)
 
         return qs
-
-
-
-urlpatterns = [
-    path('terms/', TermsAutocomplete.as_view(), name='terms_autocomplete')
-]

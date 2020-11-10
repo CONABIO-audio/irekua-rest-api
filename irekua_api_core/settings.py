@@ -6,6 +6,7 @@ IREKUA_API_CORE_APPS = (
         'irekua_api_core',
         'rest_framework',
         'django_filters',
+        'crispy_forms',
         'dal',
         'dal_select2',
     ] +

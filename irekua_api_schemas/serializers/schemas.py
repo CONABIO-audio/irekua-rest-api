@@ -12,14 +12,8 @@ class SchemaSerializer(IrekuaModelSerializer):
             'id',
             'name',
             'description',
-            'created_on',
-        )
 
-        # extra_kwargs = {
-        #     'url': {
-        #         'view_name': 'irekua_api_schemas:schema-detail'
-        #     },
-        # }
+        )
 
 
 class SchemaDetailSerializer(IrekuaModelSerializer):
@@ -27,5 +21,6 @@ class SchemaDetailSerializer(IrekuaModelSerializer):
         fields = (
             *SchemaSerializer.Meta.fields,
             'schema',
+            'created_on',
             'modified_on',
         )

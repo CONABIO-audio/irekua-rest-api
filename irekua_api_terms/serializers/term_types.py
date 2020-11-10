@@ -19,20 +19,25 @@ class TermTypeSerializer(IrekuaModelSerializer):
             'created_on',
         )
 
-        # extra_kwargs = {
-        #     'url': {
-        #         'view_name': 'irekua_api_terms:termtype-detail'
-        #     },
-        # }
-
 
 class TermTypeDetailSerializer(IrekuaModelSerializer):
-    metadata_schema = SchemaDetailSerializer(read_only=True)
-    synonym_metadata_schema = SchemaDetailSerializer(read_only=True)
+    entailments = TermTypeSerializer(
+        many=True,
+        read_only=True,
+    )
+
+    metadata_schema = SchemaDetailSerializer(
+        read_only=True,
+    )
+
+    synonym_metadata_schema = SchemaDetailSerializer(
+        read_only=True,
+    )
 
     class Meta(TermTypeSerializer.Meta):
         fields = (
             *TermTypeSerializer.Meta.fields,
             'metadata_schema',
             'synonym_metadata_schema',
+            'entailments',
         )

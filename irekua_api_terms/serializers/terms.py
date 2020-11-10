@@ -29,7 +29,33 @@ class TermDetailSerializer(IrekuaModelSerializer):
         fields = (
             *TermSerializer.Meta.fields,
             'metadata',
-            'modified_on',
             'scope',
-            'url',
+            'modified_on',
+        )
+
+
+class TermComplexSerializer(IrekuaModelSerializer):
+    entailments = TermSerializer(
+        read_only=True,
+        many=True,
+    )
+
+    synonyms = TermSerializer(
+        read_only=True,
+        many=True,
+    )
+
+    url = serializers.HyperlinkedIdentityField(
+        view_name='term-detail',
+    )
+
+    term_type = TermTypeSerializer(
+        read_only=True,
+    )
+
+    class Meta(TermDetailSerializer.Meta):
+        fields = (
+            *TermDetailSerializer.Meta.fields,
+            'entailments',
+            'synonyms',
         )

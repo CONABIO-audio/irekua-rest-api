@@ -17,6 +17,7 @@ ordering_fields = (
 class Filter(IrekuaFilter):
     class Meta:
         model = TermType
+
         fields = {
             'name': ['exact', 'icontains'],
             'is_categorical': ['exact'],

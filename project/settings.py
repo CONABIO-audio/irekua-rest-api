@@ -9,6 +9,20 @@ from irekua_api_items.settings import *
 from irekua_api_operations.settings import *
 
 
+from irekua_schemas.settings import *
+from irekua_terms.settings import *
+from irekua_geo.settings import *
+from irekua_types.settings import *
+from irekua_items.settings import *
+from irekua_models.settings import *
+from irekua_devices.settings import *
+from irekua_organisms.settings import *
+from irekua_annotators.settings import *
+from irekua_visualizers.settings import *
+from irekua_collections.settings import *
+from irekua_annotations.settings import *
+from irekua_thumbnails.settings import *
+
 MIGRATE = False
 
 
@@ -18,6 +32,15 @@ MIGRATION_MODULES = {
     'irekua_items': None,
     'irekua_terms': None,
     'irekua_upload': None,
+    'irekua_geo': None,
+    'irekua_models': None,
+    'irekua_devices': None,
+    'irekua_organisms': None,
+    'irekua_annotators': None,
+    'irekua_visualizers': None,
+    'irekua_collections': None,
+    'irekua_annotations': None,
+    'irekua_thumbnails': None,
 }
 
 
@@ -34,5 +57,14 @@ INSTALLED_APPS = list(OrderedDict.fromkeys(
     IREKUA_API_SCHEMAS_APPS +
     IREKUA_API_TERMS_APPS +
     IREKUA_API_ITEMS_APPS +
-    IREKUA_API_OPERATIONS_APPS
+    IREKUA_API_OPERATIONS_APPS +
+    IREKUA_DEVICES_APPS +
+    IREKUA_GEO_APPS +
+    IREKUA_COLLECTIONS_APPS +
+    IREKUA_ORGANISMS_APPS +
+    IREKUA_MODELS_APPS +
+    IREKUA_ANNOTATORS_APPS +
+    IREKUA_VISUALIZERS_APPS +
+    IREKUA_ANNOTATIONS_APPS +
+    IREKUA_THUMBNAILS_APPS
 ))
