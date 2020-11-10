@@ -7,6 +7,7 @@ from irekua_api_schemas.settings import *
 from irekua_api_terms.settings import *
 from irekua_api_items.settings import *
 from irekua_api_operations.settings import *
+from irekua_api_geo.settings import *
 
 
 from irekua_schemas.settings import *
@@ -58,6 +59,7 @@ INSTALLED_APPS = list(OrderedDict.fromkeys(
     IREKUA_API_TERMS_APPS +
     IREKUA_API_ITEMS_APPS +
     IREKUA_API_OPERATIONS_APPS +
+    IREKUA_API_GEO_APPS +
     IREKUA_DEVICES_APPS +
     IREKUA_GEO_APPS +
     IREKUA_COLLECTIONS_APPS +

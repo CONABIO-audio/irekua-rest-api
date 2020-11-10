@@ -1,9 +1,11 @@
 from django.db import models
-from django.contrib.admin.widgets import AutocompleteSelect
-import django_filters
+from django_filters import rest_framework as filters
 
 from irekua_terms.models import Entailment
+from irekua_terms.models import Term
+from irekua_terms.models import TermType
 from irekua_api_core.filters import IrekuaFilter
+from irekua_api_core.autocomplete import get_autocomplete_widget
 
 
 search_fields = (
@@ -18,26 +20,34 @@ ordering_fields = (
     'created_on',
 )
 
+
 class Filter(IrekuaFilter):
+    source = filters.ModelChoiceFilter(
+        queryset=Term.objects.all(),
+        widget=get_autocomplete_widget(model=Term),
+    )
+
+    target = filters.ModelChoiceFilter(
+        queryset=Term.objects.all(),
+        widget=get_autocomplete_widget(model=Term),
+    )
+
+    source__term_type = filters.ModelChoiceFilter(
+        queryset=TermType.objects.all(),
+        widget=get_autocomplete_widget(model=TermType),
+    )
+
+    target__term_type = filters.ModelChoiceFilter(
+        queryset=TermType.objects.all(),
+        widget=get_autocomplete_widget(model=TermType),
+    )
+
     class Meta:
         model = Entailment
 
         fields = {
-            'source': ['exact'],
-            'target': ['exact'],
-            'source__term_type': ['exact'],
-            'target__term_type': ['exact'],
             'source__value': ['exact', 'icontains'],
             'target__value': ['exact', 'icontains'],
             'source__term_type__name': ['exact', 'icontains'],
             'target__term_type__name': ['exact', 'icontains'],
         }
-        # 
-        # filter_overrides = {
-        #      models.ForeignKey: {
-        #          'filter_class': django_filters.ModelChoiceFilter,
-        #          'extra': lambda f: {
-        #              'widget': get_widget(f),
-        #          },
-        #      },
-        #  }

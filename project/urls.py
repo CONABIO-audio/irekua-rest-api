@@ -10,5 +10,6 @@ urlpatterns = [
     url('api/terms/', include('irekua_api_terms.urls')),
     url('api/operations/', include('irekua_api_operations.urls')),
     url('api/items/', include('irekua_api_items.urls')),
+    url('api/geo/', include('irekua_api_geo.urls')),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
