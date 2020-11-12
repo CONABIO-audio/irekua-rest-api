@@ -4,7 +4,9 @@ from . import views
 
 
 router = IrekuaAPIRouter()
-router.register(r'locality_types', views.LocalityTypeViewSet)
-router.register(r'localities', views.LocalityViewSet)
-router.register(r'site_descriptor_types', views.SiteDescriptorTypeViewSet)
-router.register(r'site_descriptors', views.SiteDescriptorViewSet)
+router.register(r"locality_types", views.LocalityTypeViewSet)
+router.register(r"localities", views.LocalityViewSet)
+router.register(r"site_descriptor_types", views.SiteDescriptorTypeViewSet)
+router.register(r"site_descriptors", views.SiteDescriptorViewSet)
+router.register(r"site_types", views.SiteTypeViewSet)
+router.register(r"sites", views.SiteViewSet)

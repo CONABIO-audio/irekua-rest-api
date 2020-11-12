@@ -6,21 +6,22 @@ from irekua_items.models import ItemType
 from irekua_items.models import MimeType
 from irekua_items.models import LicenceType
 from irekua_items.models import Tag
+
 from irekua_api_core.filters import IrekuaUserFilter
 from irekua_api_core.autocomplete import get_autocomplete_widget
 
 
 search_fields = (
-    'item_type__name',
-    'hash',
-    'id',
+    "item_type__name",
+    "hash",
+    "id",
 )
 
 
 ordering_fields = (
-    'created_on',
-    'captured_on',
-    'filesize',
+    "created_on",
+    "captured_on",
+    "filesize",
 )
 
 
@@ -38,7 +39,7 @@ class Filter(IrekuaUserFilter):
     licence_type = filters.ModelChoiceFilter(
         queryset=LicenceType.objects.all(),
         widget=get_autocomplete_widget(model=LicenceType),
-        to_field_name='licence__licence_type',
+        to_field_name="licence__licence_type",
     )
 
     tags = filters.ModelChoiceFilter(
@@ -55,17 +56,17 @@ class Filter(IrekuaUserFilter):
         model = Item
 
         fields = {
-            'captured_on': ['exact', 'lt', 'gt', 'lte', 'gte'],
-            'filesize': ['exact', 'lt', 'gt', 'lte', 'gte'],
-            'mime_type__mime_type': ['exact', 'icontains'],
-            'item_type__name': ['exact', 'icontains'],
-            'licence__is_active': ['exact'],
-            'licence__licence_type__name': ['exact', 'icontains'],
-            'captured_on_year': ['exact', 'lt', 'gt', 'lte', 'gte'],
-            'captured_on_month': ['exact', 'lt', 'gt', 'lte', 'gte'],
-            'captured_on_day': ['exact', 'lt', 'gt', 'lte', 'gte'],
-            'captured_on_hour': ['exact', 'lt', 'gt', 'lte', 'gte'],
-            'captured_on_minute': ['exact', 'lt', 'gt', 'lte', 'gte'],
-            'captured_on_second': ['exact', 'lt', 'gt', 'lte', 'gte'],
-            'captured_on_timezone': ['exact', 'icontains'],
+            "captured_on": ["exact", "lt", "gt", "lte", "gte"],
+            "filesize": ["exact", "lt", "gt", "lte", "gte"],
+            "mime_type__mime_type": ["exact", "icontains"],
+            "item_type__name": ["exact", "icontains"],
+            "licence__is_active": ["exact"],
+            "licence__licence_type__name": ["exact", "icontains"],
+            "captured_on_year": ["exact", "lt", "gt", "lte", "gte"],
+            "captured_on_month": ["exact", "lt", "gt", "lte", "gte"],
+            "captured_on_day": ["exact", "lt", "gt", "lte", "gte"],
+            "captured_on_hour": ["exact", "lt", "gt", "lte", "gte"],
+            "captured_on_minute": ["exact", "lt", "gt", "lte", "gte"],
+            "captured_on_second": ["exact", "lt", "gt", "lte", "gte"],
+            "captured_on_timezone": ["exact", "icontains"],
         }
