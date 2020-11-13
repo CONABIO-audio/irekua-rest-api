@@ -33,9 +33,28 @@ class IrekuaViewSet(GenericViewSet):
         except (KeyError, AttributeError):
             return super().get_serializer_class()
 
+    def get_permissions(self):
+        try:
+            permission_classes = self.permission_action_classes[self.action]
+
+        except (KeyError, AttributeError):
+            permission_classes = self.permission_classes
+
+        return [permission() for permission in permission_classes]
+
 
 class IrekuaReadOnlyViewSet(
-        mixins.ListModelMixin,
-        mixins.RetrieveModelMixin,
-        IrekuaViewSet):
+    mixins.ListModelMixin, mixins.RetrieveModelMixin, IrekuaViewSet
+):
+    pass
+
+
+class IrekuaModelViewSet(
+    mixins.ListModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    IrekuaViewSet,
+):
     pass

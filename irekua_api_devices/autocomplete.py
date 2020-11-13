@@ -1,3 +1,4 @@
+from django.db.models import Q
 from dal import autocomplete
 
 from irekua_devices.models import DeviceType
@@ -20,7 +21,7 @@ class DeviceTypesAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 
-@register_autocomplete(DeviceBrand, urlpatterns)
+@register_autocomplete(DeviceBrand, urlpatterns, create_field="name")
 class DeviceBrandAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = DeviceBrand.objects.all()
@@ -30,6 +31,9 @@ class DeviceBrandAutocomplete(autocomplete.Select2QuerySetView):
 
         return qs
 
+    def has_add_permission(self, request):
+        return request.user.is_authenticated
+
 
 @register_autocomplete(Device, urlpatterns)
 class DeviceAutocomplete(autocomplete.Select2QuerySetView):
@@ -37,6 +41,8 @@ class DeviceAutocomplete(autocomplete.Select2QuerySetView):
         qs = Device.objects.all()
 
         if self.q:
-            qs = qs.filter(model__istartswith=self.q)
+            qs = qs.filter(
+                Q(model__istartswith=self.q) | Q(brand__name__istartswith=self.q)
+            )
 
         return qs

@@ -13,10 +13,15 @@ class CustomURLMixin:
         m = super().media
         return forms.Media(
             js=(
-                'admin/js/vendor/jquery/jquery.min.js',
+                "admin/js/vendor/jquery/jquery.min.js",
                 *m._js,
             ),
-            css=m._css
+            css={
+                "screen": [
+                    *m._css["screen"],
+                    "irekua_api_core/css/vendor/select2-bootstrap.min.css",
+                ],
+            },
         )
 
     def _get_url(self):
@@ -25,7 +30,7 @@ class CustomURLMixin:
         if not self.query:
             return url
 
-        return f'{url}?{urlencode(self.query)}'
+        return f"{url}?{urlencode(self.query)}"
 
 
 class SelectMultiple(CustomURLMixin, autocomplete.ModelSelect2Multiple):

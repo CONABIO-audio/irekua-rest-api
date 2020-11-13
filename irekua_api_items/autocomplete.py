@@ -55,7 +55,7 @@ class LicenceTypesAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 
-@register_autocomplete(Tag, urlpatterns)
+@register_autocomplete(Tag, urlpatterns, create_field="name")
 class TagsAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Tag.objects.all()
@@ -64,3 +64,7 @@ class TagsAutocomplete(autocomplete.Select2QuerySetView):
             qs = qs.filter(name__istartswith=self.q)
 
         return qs
+
+    # pylint: disable=no-self-use
+    def has_add_permission(self, request):
+        return request.user.is_authenticated

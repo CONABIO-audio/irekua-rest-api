@@ -14,3 +14,4 @@ from .site_types import SiteTypeSerializer
 from .site_types import SiteTypeDetailSerializer
 
 from .sites import SiteSerializer
+from .sites import SiteCreateSerializer

@@ -1,4 +1,12 @@
 from rest_framework.permissions import BasePermission
+from rest_framework.permissions import IsAuthenticated
+
+
+__all__ = [
+    "IsAuthenticated",
+    "IsSpecial",
+    "IsOwner",
+]
 
 
 class IsSpecial(BasePermission):
@@ -11,7 +19,7 @@ class IsSpecial(BasePermission):
         return user.is_special
 
 
-class IsOwner(BasePermission):
+class IsOwner(IsAuthenticated):
     def has_object_permission(self, request, view, obj):
         user = request.user
 

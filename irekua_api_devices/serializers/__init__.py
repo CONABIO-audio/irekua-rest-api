@@ -6,3 +6,4 @@ from .devices import DeviceDetailSerializer
 
 from .physical_devices import PhysicalDeviceSerializer
 from .physical_devices import PhysicalDeviceDetailSerializer
+from .physical_devices import PhysicalDeviceCreateSerializer

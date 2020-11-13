@@ -1,18 +1,29 @@
 from irekua_geo.models import Site
 from irekua_api_core.permissions import IsSpecial
 from irekua_api_core.permissions import IsOwner
-from irekua_api_core.views import IrekuaReadOnlyViewSet
+from irekua_api_core.permissions import IsAuthenticated
+from irekua_api_core.views import IrekuaModelViewSet
 
 from irekua_api_geo import serializers
 from irekua_api_geo import filters
 
 
-class SiteViewSet(IrekuaReadOnlyViewSet):
+class SiteViewSet(IrekuaModelViewSet):
     permission_classes = [IsSpecial | IsOwner]
+
+    permission_action_classes = {
+        "create": [IsAuthenticated],
+    }
 
     queryset = Site.objects.all()
 
     serializer_class = serializers.SiteSerializer
+
+    serializer_action_classes = {
+        "create": serializers.SiteCreateSerializer,
+        "update": serializers.SiteCreateSerializer,
+        "partial_update": serializers.SiteCreateSerializer,
+    }
 
     filterset_class = filters.sites.Filter
 
