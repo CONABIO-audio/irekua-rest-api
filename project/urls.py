@@ -5,6 +5,14 @@ from django.contrib import admin
 
 
 urlpatterns = [
+    url("autocomplete/irekua/", include("irekua_database.autocomplete")),
+    url("autocomplete/schemas/", include("irekua_schemas.autocomplete")),
+    url("autocomplete/terms/", include("irekua_terms.autocomplete")),
+    url("autocomplete/items/", include("irekua_items.autocomplete")),
+    url("autocomplete/geo/", include("irekua_geo.autocomplete")),
+    url("autocomplete/devices/", include("irekua_devices.autocomplete")),
+    url("autocomplete/annotations/", include("irekua_annotations.autocomplete")),
+    url("autocomplete/collections/", include("irekua_collections.autocomplete")),
     url("api/", include("irekua_api_core.urls")),
     url("api/schemas/", include("irekua_api_schemas.urls")),
     url("api/terms/", include("irekua_api_terms.urls")),

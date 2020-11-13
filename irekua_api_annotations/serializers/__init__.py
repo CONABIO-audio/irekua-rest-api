@@ -3,3 +3,9 @@ from .annotation_types import AnnotationTypeDetailSerializer
 
 from .event_types import EventTypeSerializer
 from .event_types import EventTypeDetailSerializer
+
+from .annotations import AnnotationSerializer
+from .annotations import AnnotationDetailSerializer
+
+from .user_annotations import UserAnnotationSerializer
+from .user_annotations import UserAnnotationDetailSerializer

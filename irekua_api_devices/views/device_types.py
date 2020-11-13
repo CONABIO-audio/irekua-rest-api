@@ -2,7 +2,7 @@ from irekua_devices.models import DeviceType
 from irekua_api_core.views import IrekuaReadOnlyViewSet
 
 from irekua_api_devices import serializers
-from irekua_api_devices import filters
+from irekua_devices import filters
 
 
 class DeviceTypeViewSet(IrekuaReadOnlyViewSet):

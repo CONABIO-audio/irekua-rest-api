@@ -2,7 +2,7 @@ from irekua_items.models import LicenceType
 from irekua_api_core.views import IrekuaReadOnlyViewSet
 
 from irekua_api_items import serializers
-from irekua_api_items import filters
+from irekua_items import filters
 
 
 class LicenceTypeViewSet(IrekuaReadOnlyViewSet):

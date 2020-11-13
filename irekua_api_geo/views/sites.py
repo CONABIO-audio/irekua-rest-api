@@ -5,7 +5,7 @@ from irekua_api_core.permissions import IsAuthenticated
 from irekua_api_core.views import IrekuaModelViewSet
 
 from irekua_api_geo import serializers
-from irekua_api_geo import filters
+from irekua_geo import filters
 
 
 class SiteViewSet(IrekuaModelViewSet):

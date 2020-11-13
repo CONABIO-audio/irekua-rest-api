@@ -2,7 +2,7 @@ from irekua_database.models import Institution
 from irekua_api_core.views import IrekuaReadOnlyViewSet
 
 from irekua_api_core import serializers
-from irekua_api_core.filters import institutions as filters
+from irekua_database.filters import institutions as filters
 
 
 class InstitutionViewSet(IrekuaReadOnlyViewSet):

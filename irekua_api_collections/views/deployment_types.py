@@ -2,7 +2,7 @@ from irekua_collections.models import DeploymentType
 from irekua_api_core.views import IrekuaReadOnlyViewSet
 
 from irekua_api_collections import serializers
-from irekua_api_collections import filters
+from irekua_collections import filters
 
 
 class DeploymentTypeViewSet(IrekuaReadOnlyViewSet):

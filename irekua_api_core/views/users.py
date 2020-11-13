@@ -2,7 +2,7 @@ from irekua_database.models import User
 from irekua_api_core.views import IrekuaReadOnlyViewSet
 
 from irekua_api_core import serializers
-from irekua_api_core.filters import users as filters
+from irekua_database.filters import users as filters
 
 
 class UserViewSet(IrekuaReadOnlyViewSet):

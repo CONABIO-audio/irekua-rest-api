@@ -4,5 +4,4 @@ from .router import router
 
 urlpatterns = [
     url("v1/", include(router.urls)),
-    url("autocomplete/", include("irekua_api_annotations.autocomplete")),
 ]

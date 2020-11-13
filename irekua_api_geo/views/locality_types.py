@@ -2,7 +2,7 @@ from irekua_geo.models import LocalityType
 from irekua_api_core.views import IrekuaReadOnlyViewSet
 
 from irekua_api_geo import serializers
-from irekua_api_geo import filters
+from irekua_geo import filters
 
 
 class LocalityTypeViewSet(IrekuaReadOnlyViewSet):

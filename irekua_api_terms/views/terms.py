@@ -2,7 +2,7 @@ from irekua_terms.models import Term
 from irekua_api_core.views import IrekuaReadOnlyViewSet
 
 from irekua_api_terms import serializers
-from irekua_api_terms import filters
+from irekua_terms import filters
 
 
 class TermViewSet(IrekuaReadOnlyViewSet):
