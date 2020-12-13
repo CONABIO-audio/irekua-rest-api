@@ -22,5 +22,6 @@ urlpatterns = [
     url("api/devices/", include("irekua_api_devices.urls")),
     url("api/annotations/", include("irekua_api_annotations.urls")),
     url("api/collections/", include("irekua_api_collections.urls")),
+    url("api/models/", include("irekua_api_models.urls")),
     url(r"^admin/", admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

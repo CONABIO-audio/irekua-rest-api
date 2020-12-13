@@ -1,2 +1,3 @@
 from .deployment_types import DeploymentTypeViewSet
 from .sampling_event_types import SamplingEventTypeViewSet
+from .deployment_items import DeploymentItemViewSet
