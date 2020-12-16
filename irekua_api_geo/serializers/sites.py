@@ -5,8 +5,6 @@ from rest_framework_gis.serializers import GeometryField
 
 from irekua_geo.models import Site
 from irekua_geo.models import get_site_class
-from irekua_geo.models import Locality
-from irekua_api_core.autocomplete import get_autocomplete_style
 from irekua_api_core.serializers import IrekuaModelSerializer
 from irekua_api_core.serializers import IrekuaUserModelSerializer
 from .localities import LocalitySerializer
@@ -30,7 +28,7 @@ class SiteSerializer(IrekuaModelSerializer):
     def get_geometry(self, obj):
         try:
             return json.loads(obj.geom().geojson)
-        except:
+        except ValueError:
             return None
 
 
@@ -38,22 +36,16 @@ class SiteGeometryField(GeometryField):
     def get_attribute(self, instance):
         try:
             return instance.geom()
-        except:
+        except ValueError:
             return None
 
 
 class SiteCreateSerializer(IrekuaUserModelSerializer):
-    locality = serializers.PrimaryKeyRelatedField(
-        queryset=Locality.objects.all(),
-        style=get_autocomplete_style(name="locality", model=Locality),
-        help_text=_("Locality in which the site is located."),
-        required=False,
-        read_only=False,
-    )
-
     altitude = serializers.FloatField(
         required=False,
-        help_text=_("Altitude of site. (Only valid if site geometry is Point)"),
+        help_text=_(
+            "Altitude of site. (Only valid if site geometry is Point)"
+        ),
     )
 
     geometry = SiteGeometryField(help_text=_("Site geometry"))
@@ -65,7 +57,6 @@ class SiteCreateSerializer(IrekuaUserModelSerializer):
 
     def create(self, validated_data):
         # Get geometry type from posted geometry
-        print(validated_data)
         geometry = validated_data.pop("geometry")
         geometry_type = geometry.geom_type
         validated_data["geometry_type"] = geometry_type

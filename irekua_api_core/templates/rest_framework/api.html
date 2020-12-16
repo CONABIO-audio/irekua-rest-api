@@ -5,6 +5,9 @@
 {% block title %}Irekua API{% endblock %}
 
 
+
+
+
 {% block branding %}
     <a class="navbar-brand" rel="nofollow" href="#">
       Irekua API
@@ -15,6 +18,21 @@
 {% endblock %}
 
 {% block style %}
-  {{ block.super }}
-  <link rel="stylesheet" type="text/css" href="{% static "irekua_api_core/css/default.css" %}"/>
+{{ block.super }}
+<link rel="stylesheet" media="screen" type="text/css" href="{% static '/vendor/select2/dist/css/select2.min.css' %}" />
+<link rel="stylesheet" media="screen" type="text/css" href="{% static '/admin/css/autocomplete.css' %}" />
+<link rel="stylesheet" media="screen" type="text/css" href="{% static '/autocomplete_light/select2.css' %}" />
+<link rel="stylesheet" media="screen" type="text/css" type="text/css" href="{% static '/irekua_api_core/css/default.css' %}"/>
+<link rel="stylesheet" media="screen" type="text/css" type="text/css" href="{% static '/irekua_database/css/vendor/select2-bootstrap.min.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<script src="{% static 'admin/js/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static '/autocomplete_light/jquery.init.js' %}"></script>
+<script src="{% static '/vendor/select2/dist/js/select2.full.min.js' %}"></script>
+<script src="{% static '/autocomplete_light/autocomplete.init.js' %}"></script>
+<script src="{% static '/autocomplete_light/forward.js' %}"></script>
+<script src="{% static '/autocomplete_light/select2.js' %}"></script>
+<script src="{% static '/autocomplete_light/jquery.post-setup.js' %}"></script>
+{{ block.super }}
 {% endblock %}

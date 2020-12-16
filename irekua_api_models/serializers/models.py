@@ -1,10 +1,8 @@
-from rest_framework import serializers
-
 from irekua_models.models import Model
-from irekua_api_core.serializers import IrekuaModelSerializer
+from irekua_api_core.serializers import IrekuaUserModelSerializer
 
 
-class ModelDetailSerializer(IrekuaModelSerializer):
+class ModelDetailSerializer(IrekuaUserModelSerializer):
     class Meta:
         model = Model
 
@@ -21,7 +19,7 @@ class ModelDetailSerializer(IrekuaModelSerializer):
         )
 
 
-class ModelCreateSerializer(IrekuaModelSerializer):
+class ModelCreateSerializer(IrekuaUserModelSerializer):
     class Meta:
         model = Model
 

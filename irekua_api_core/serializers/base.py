@@ -1,14 +1,5 @@
 from rest_framework import serializers
-
-
-class hashabledict(dict):
-    def __hash__(self):
-        return hash(tuple(sorted(self.items())))
-
-
-class SelectField(serializers.HyperlinkedRelatedField):
-    def to_representation(self, value):
-        return hashabledict(id=value.pk, url=super().to_representation(value))
+from irekua_api_core.fields import SelectField
 
 
 class IrekuaModelSerializer(serializers.ModelSerializer):

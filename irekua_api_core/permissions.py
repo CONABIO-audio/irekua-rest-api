@@ -19,6 +19,26 @@ class IsSpecial(BasePermission):
         return user.is_special
 
 
+class IsDeveloper(BasePermission):
+    def has_permission(self, request, view):
+        user = request.user
+
+        if not user.is_authenticated:
+            return False
+
+        return user.is_developer
+
+
+class IsSuperuser(BasePermission):
+    def has_permission(self, request, view):
+        user = request.user
+
+        if not user.is_authenticated:
+            return False
+
+        return user.is_superuser
+
+
 class IsOwner(IsAuthenticated):
     def has_object_permission(self, request, view, obj):
         user = request.user

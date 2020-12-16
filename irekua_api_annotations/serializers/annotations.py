@@ -1,20 +1,9 @@
 from irekua_annotations.models import Annotation
 from irekua_api_core.serializers import IrekuaModelSerializer
-from irekua_api_terms.serializers import TermSerializer
-from irekua_api_items.serializers import ItemSerializer
-from .annotation_types import AnnotationTypeSerializer
-from .event_types import EventTypeSerializer
+from irekua_api_core.serializers import IrekuaUserModelSerializer
 
 
 class AnnotationSerializer(IrekuaModelSerializer):
-    item = ItemSerializer(read_only=True)
-
-    annotation_type = AnnotationTypeSerializer(read_only=True)
-
-    event_type = EventTypeSerializer(read_only=True)
-
-    labels = TermSerializer(read_only=True, many=True)
-
     class Meta:
         model = Annotation
 
@@ -39,4 +28,19 @@ class AnnotationDetailSerializer(AnnotationSerializer):
             "event_metadata",
             "modified_on",
             "modified_by",
+        )
+
+
+class AnnotationCreateSerializer(IrekuaUserModelSerializer):
+    class Meta:
+        model = Annotation
+
+        fields = (
+            "item",
+            "annotation_type",
+            "event_type",
+            "annotation",
+            "labels",
+            "annotation_metadata",
+            "event_metadata",
         )
