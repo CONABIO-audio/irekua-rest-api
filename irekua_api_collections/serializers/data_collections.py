@@ -11,5 +11,6 @@ class CollectionSerializer(IrekuaUserModelSerializer):
             "url",
             "name",
             "description",
+            "institutions",
             "created_on",
         )
