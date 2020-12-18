@@ -69,3 +69,5 @@ INSTALLED_APPS = list(
         + IREKUA_THUMBNAILS_APPS
     )
 )
+
+ROOT_URLCONF = "irekua_api_project.urls"

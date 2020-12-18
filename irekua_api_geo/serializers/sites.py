@@ -12,7 +12,7 @@ from .localities import LocalitySerializer
 
 class SiteSerializer(IrekuaModelSerializer):
     geometry = serializers.SerializerMethodField("get_geometry")
-    locality = LocalitySerializer(read_only=True)
+    localities = LocalitySerializer(read_only=True, many=True)
 
     class Meta:
         model = Site
@@ -21,7 +21,7 @@ class SiteSerializer(IrekuaModelSerializer):
             "url",
             "id",
             "name",
-            "locality",
+            "localities",
             "geometry",
         )
 
@@ -53,7 +53,12 @@ class SiteCreateSerializer(IrekuaUserModelSerializer):
     class Meta:
         model = Site
 
-        fields = ("name", "locality", "geometry", "altitude")
+        fields = (
+            "name",
+            "localities",
+            "geometry",
+            "altitude",
+        )
 
     def create(self, validated_data):
         # Get geometry type from posted geometry
