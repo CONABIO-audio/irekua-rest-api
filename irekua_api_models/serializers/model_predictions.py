@@ -10,6 +10,7 @@ class ModelPredictionDetailSerializer(AnnotationDetailSerializer):
         fields = (
             *AnnotationDetailSerializer.Meta.fields,
             "model_version",
+            "model_run",
             "certainty",
         )
 
@@ -21,5 +22,6 @@ class ModelPredictionCreateSerializer(AnnotationCreateSerializer):
         fields = (
             *AnnotationCreateSerializer.Meta.fields,
             "model_version",
+            "model_run",
             "certainty",
         )
