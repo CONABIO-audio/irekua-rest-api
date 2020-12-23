@@ -1,3 +1,4 @@
+from rest_framework.decorators import action
 from irekua_models.models import Model
 from irekua_api_core.views import IrekuaModelViewSet
 
@@ -12,17 +13,15 @@ class ModelViewSet(IrekuaModelViewSet):
     permission_classes = [IsAuthenticated]
 
     permission_action_classes = {
-        "create": [IsSuperuser, IsDeveloper],
-        "update": [IsSuperuser, IsDeveloper],
-        "partial_update": [IsSuperuser, IsDeveloper],
-        "destroy": [IsSuperuser, IsDeveloper],
+        "create": [IsSuperuser | IsDeveloper],
+        "update": [IsSuperuser | IsDeveloper],
+        "partial_update": [IsSuperuser | IsDeveloper],
+        "destroy": [IsSuperuser | IsDeveloper],
     }
 
     queryset = Model.objects.all()
 
     serializer_class = serializers.ModelDetailSerializer
-
-    serializer_action_classes = {"create": serializers.ModelCreateSerializer}
 
     filterset_class = filters.models.Filter
 

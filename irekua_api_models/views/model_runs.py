@@ -12,10 +12,10 @@ class ModelRunViewSet(IrekuaModelViewSet):
     permission_classes = [IsAuthenticated]
 
     permission_action_classes = {
-        "create": [IsSuperuser, IsDeveloper],
-        "update": [IsSuperuser, IsDeveloper],
-        "partial_update": [IsSuperuser, IsDeveloper],
-        "destroy": [IsSuperuser, IsDeveloper],
+        "create": [IsSuperuser | IsDeveloper],
+        "update": [IsSuperuser | IsDeveloper],
+        "partial_update": [IsSuperuser | IsDeveloper],
+        "destroy": [IsSuperuser | IsDeveloper],
     }
 
     queryset = ModelRun.objects.all()
