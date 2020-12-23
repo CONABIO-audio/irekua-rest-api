@@ -3,6 +3,7 @@ from .deployment_types import DeploymentTypeDetailSerializer
 from .sampling_event_types import SamplingEventTypeSerializer
 from .sampling_event_types import SamplingEventTypeDetailSerializer
 from .collection_items import CollectionItemSerializer
+from .collection_items import CollectionItemValidationSerializer
 from .collection_sites import CollectionSiteSerializer
 from .collection_devices import CollectionDeviceSerializer
 from .data_collections import CollectionSerializer
@@ -17,6 +18,7 @@ __all__ = [
     "SamplingEventTypeSerializer",
     "SamplingEventTypeDetailSerializer",
     "CollectionItemSerializer",
+    "CollectionItemValidationSerializer",
     "CollectionSiteSerializer",
     "CollectionDeviceSerializer",
     "CollectionSerializer",
