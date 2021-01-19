@@ -12,13 +12,12 @@ from irekua_api_devices.settings import *
 from irekua_api_annotations.settings import *
 from irekua_api_collections.settings import *
 from irekua_api_models.settings import *
-
-
 from irekua_types.settings import *
 from irekua_organisms.settings import *
 from irekua_annotators.settings import *
 from irekua_visualizers.settings import *
 from irekua_thumbnails.settings import *
+
 
 MIGRATE = False
 
@@ -49,6 +48,15 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, "locale"),
 ]
 
+MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    *MIDDLEWARE,
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost",
+    "http://127.0.0.1",
+]
 
 INSTALLED_APPS = list(
     OrderedDict.fromkeys(

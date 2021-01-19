@@ -8,6 +8,7 @@ IREKUA_API_CORE_APPS = [
     "crispy_forms",
     "dal",
     "dal_select2",
+    "corsheaders",
 ] + IREKUA_DATABASE_APPS
 
 
