@@ -48,16 +48,6 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, "locale"),
 ]
 
-MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
-    *MIDDLEWARE,
-]
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost",
-    "http://127.0.0.1",
-]
-
 INSTALLED_APPS = list(
     OrderedDict.fromkeys(
         IREKUA_BASE_APPS
@@ -75,7 +65,19 @@ INSTALLED_APPS = list(
         + IREKUA_ANNOTATORS_APPS
         + IREKUA_VISUALIZERS_APPS
         + IREKUA_THUMBNAILS_APPS
+        + [
+            "corsheaders",
+        ]
     )
 )
+
+MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    *MIDDLEWARE,
+]
+
+
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 ROOT_URLCONF = "irekua_api_project.urls"
