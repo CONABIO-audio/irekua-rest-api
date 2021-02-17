@@ -1,5 +1,6 @@
 import os
 from collections import OrderedDict
+from corsheaders.defaults import default_headers
 
 from irekua_dev_settings.settings import *
 from irekua_api_core.settings import *
@@ -77,7 +78,17 @@ MIDDLEWARE = [
 ]
 
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False 
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'x-csrftoken',
+    'x-requested-with'
+]
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:7000"
+]
 
 
 ROOT_URLCONF = "irekua_api_project.urls"
