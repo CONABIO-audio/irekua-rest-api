@@ -17,6 +17,12 @@ class CollectionItemSerializer(ItemSerializer):
             "collection_metadata",
         )
 
+    def validate(self, data):
+        data = super().validate(data)
+        item = CollectionItem(**data)
+        item.clean()
+        return data
+
 
 class CollectionItemValidationSerializer(CollectionItemSerializer):
     serializer_related_field = serializers.PrimaryKeyRelatedField
