@@ -10,3 +10,4 @@ from .licences import LicenceDetailSerializer
 
 from .items import ItemSerializer
 from .items import ItemDetailSerializer
+from .items import ItemUpdateSerializer

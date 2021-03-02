@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from irekua_collections.models import CollectionItem
+
 from irekua_api_items.serializers import ItemSerializer
+from irekua_api_items.serializers import ItemUpdateSerializer
 
 
 class CollectionItemSerializer(ItemSerializer):
@@ -10,17 +12,47 @@ class CollectionItemSerializer(ItemSerializer):
         fields = (
             *ItemSerializer.Meta.fields,
             "collection",
-            "sampling_event",
             "collection_device",
+            "collection_metadata",
             "collection_site",
             "deployment",
-            "collection_metadata",
+            "sampling_event",
         )
 
     def validate(self, data):
         data = super().validate(data)
         item = CollectionItem(**data)
         item.clean()
+        return data
+
+
+class CollectionItemUpdateSerializer(ItemUpdateSerializer):
+    class Meta(ItemUpdateSerializer.Meta):
+        model = CollectionItem
+
+        fields = (
+            *ItemUpdateSerializer.Meta.fields,
+            "collection_metadata",
+        )
+
+    def validate(self, data):
+        if getattr(self, "instance", None) is None:
+            return
+
+        data = super().validate(data)
+        current_state = self.instance.__dict__.copy()
+
+        try:
+            self.instance.__dict__.update(data)
+            self.instance.clean()
+
+        except Exception as error:
+            self.instance.__dict__.update(current_state)
+            raise error
+
+        finally:
+            self.instance.__dict__.update(current_state)
+
         return data
 
 

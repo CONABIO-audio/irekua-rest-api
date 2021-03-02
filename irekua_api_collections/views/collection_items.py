@@ -21,7 +21,9 @@ class CollectionItemViewSet(IrekuaModelViewSet):
     serializer_class = serializers.CollectionItemSerializer
 
     serializer_action_classes = {
-        "validate": serializers.CollectionItemValidationSerializer
+        "validate": serializers.CollectionItemValidationSerializer,
+        "update": serializers.CollectionItemUpdateSerializer,
+        "partial_update": serializers.CollectionItemUpdateSerializer,
     }
 
     permission_action_classes = {

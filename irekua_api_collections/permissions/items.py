@@ -1,9 +1,11 @@
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
+
 
 from irekua_collections.models import Collection
 
 
-class CanCreateItem(BasePermission):
+class CanCreateItem(IsAuthenticated):
     def has_permission(self, request, view):
         collection_pk = request.GET.get("collection", None)
 
@@ -14,16 +16,16 @@ class CanCreateItem(BasePermission):
         return collection.can_add_items(request.user)
 
 
-class CanViewItem(BasePermission):
+class CanViewItem(AllowAny):
     def has_object_permission(self, request, view, obj):
         return obj.can_view(request.user)
 
 
-class CanUpdateItem(BasePermission):
+class CanUpdateItem(AllowAny):
     def has_object_permission(self, request, view, obj):
-        return obj.can_update(request.user)
+        return obj.can_change(request.user)
 
 
-class CanDeleteItem(BasePermission):
+class CanDeleteItem(AllowAny):
     def has_object_permission(self, request, view, obj):
         return obj.can_delete(request.user)
