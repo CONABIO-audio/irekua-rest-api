@@ -25,6 +25,12 @@ class CollectionItemSerializer(ItemSerializer):
         item.clean()
         return data
 
+    def create(self, validated_data):
+        item = CollectionItem(**validated_data)
+        item.clean()
+        item.save()
+        return item
+
 
 class CollectionItemUpdateSerializer(ItemUpdateSerializer):
     class Meta(ItemUpdateSerializer.Meta):
@@ -34,6 +40,12 @@ class CollectionItemUpdateSerializer(ItemUpdateSerializer):
             *ItemUpdateSerializer.Meta.fields,
             "collection_metadata",
         )
+
+    def update(self, instance, validated_data):
+        instance.__dict__.update(validated_data)
+        instance.clean()
+        instance.save()
+        return instance
 
     def validate(self, data):
         if getattr(self, "instance", None) is None:

@@ -7,13 +7,17 @@ from irekua_collections.models import Collection
 
 class CanCreateItem(IsAuthenticated):
     def has_permission(self, request, view):
-        collection_pk = request.GET.get("collection", None)
+        collection_pk = request.POST.get("collection", None)
 
         if collection_pk is None:
             return False
 
-        collection = Collection.objects.get(pk=collection_pk)
-        return collection.can_add_items(request.user)
+        try:
+            collection = Collection.objects.get(pk=collection_pk)
+            return collection.can_add_items(request.user)
+
+        except Collection.DoesNotExist:
+            return False
 
 
 class CanViewItem(AllowAny):
