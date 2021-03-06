@@ -4,6 +4,7 @@ from irekua_database.settings import *
 IREKUA_API_CORE_APPS = [
     "irekua_api_core",
     "rest_framework",
+    "rest_framework.authtoken",
     "django_filters",
     "crispy_forms",
     "dal",
@@ -22,6 +23,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
