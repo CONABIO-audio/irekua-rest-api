@@ -29,6 +29,7 @@ router.register(
 router.register(
     r"collections",
     views.CollectionViewSet,
+    basename="collection",
 )
 router.register(
     r"collection_licences",
