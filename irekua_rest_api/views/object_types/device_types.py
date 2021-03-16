@@ -9,14 +9,17 @@ from irekua_rest_api import serializers
 from irekua_rest_api import utils
 
 
-class DeviceTypeViewSet(mixins.RetrieveModelMixin,
-                        mixins.DestroyModelMixin,
-                        mixins.UpdateModelMixin,
-                        utils.CustomViewSetMixin,
-                        GenericViewSet):
+class DeviceTypeViewSet(
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.UpdateModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.DeviceType.objects.all()  # pylint: disable=E1101
 
     permission_mapping = utils.PermissionMapping()
-    
+
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.object_types.devices)
+        serializers.object_types.devices
+    )

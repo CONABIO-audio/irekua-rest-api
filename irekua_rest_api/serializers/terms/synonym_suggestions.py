@@ -14,27 +14,20 @@ from . import terms
 class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = SynonymSuggestion
-        fields = (
-            'url',
-            'id'
-        )
+        fields = ("url", "id")
 
 
 class ListSerializer(IrekuaModelSerializer):
-    source_type = serializers.CharField(
-        read_only=True,
-        source='source.term_type.name')
-    source_value = serializers.CharField(
-        read_only=True,
-        source='source.value')
+    source_type = serializers.CharField(read_only=True, source="source.term_type.name")
+    source_value = serializers.CharField(read_only=True, source="source.value")
 
     class Meta:
         model = SynonymSuggestion
         fields = (
-            'url',
-            'source_type',
-            'source_value',
-            'synonym',
+            "url",
+            "source_type",
+            "source_value",
+            "synonym",
         )
 
 
@@ -45,14 +38,14 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = SynonymSuggestion
         fields = (
-            'url',
-            'id',
-            'source',
-            'synonym',
-            'description',
-            'metadata',
-            'suggested_by',
-            'suggested_on',
+            "url",
+            "id",
+            "source",
+            "synonym",
+            "description",
+            "metadata",
+            "suggested_by",
+            "suggested_on",
         )
 
 
@@ -60,24 +53,22 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SynonymSuggestion
         fields = (
-            'source',
-            'synonym',
-            'description',
-            'metadata',
+            "source",
+            "synonym",
+            "description",
+            "metadata",
         )
 
     def create(self, validated_data):
-        user = self.context['request'].user
-        validated_data['suggested_by'] = user
+        user = self.context["request"].user
+        validated_data["suggested_by"] = user
         return super().create(validated_data)
-
-
 
 
 class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SynonymSuggestion
         fields = (
-            'description',
-            'metadata',
+            "description",
+            "metadata",
         )

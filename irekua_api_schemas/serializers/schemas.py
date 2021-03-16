@@ -8,11 +8,10 @@ class SchemaSerializer(IrekuaModelSerializer):
         model = Schema
 
         fields = (
-            'url',
-            'id',
-            'name',
-            'description',
-
+            "url",
+            "id",
+            "name",
+            "description",
         )
 
 
@@ -20,7 +19,7 @@ class SchemaDetailSerializer(IrekuaModelSerializer):
     class Meta(SchemaSerializer.Meta):
         fields = (
             *SchemaSerializer.Meta.fields,
-            'schema',
-            'created_on',
-            'modified_on',
+            "schema",
+            "created_on",
+            "modified_on",
         )

@@ -14,23 +14,21 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionDevice
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
-    physical_device = serializers.StringRelatedField(
-        many=False,
-        read_only=True)
+    physical_device = serializers.StringRelatedField(many=False, read_only=True)
 
     class Meta:
         model = CollectionDevice
         fields = (
-            'url',
-            'id',
-            'physical_device',
-            'internal_id',
+            "url",
+            "id",
+            "physical_device",
+            "internal_id",
         )
 
 
@@ -40,12 +38,12 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = CollectionDevice
         fields = (
-            'url',
-            'physical_device',
-            'internal_id',
-            'metadata',
-            'created_on',
-            'modified_on',
+            "url",
+            "physical_device",
+            "internal_id",
+            "metadata",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -53,12 +51,12 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionDevice
         fields = (
-            'physical_device',
-            'metadata',
-            'internal_id',
+            "physical_device",
+            "metadata",
+            "internal_id",
         )
 
     def create(self, validated_data):
-        collection = self.context['collection']
-        validated_data['collection'] = collection
+        collection = self.context["collection"]
+        validated_data["collection"] = collection
         return super().create(validated_data)

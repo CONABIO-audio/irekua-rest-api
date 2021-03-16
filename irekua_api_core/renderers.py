@@ -44,9 +44,7 @@ class IrekuaFormRenderer(HTMLFormRenderer):
             template_name = style["template"]
         else:
             template_name = (
-                style["template_pack"].strip("/")
-                + "/"
-                + style["base_template"]
+                style["template_pack"].strip("/") + "/" + style["base_template"]
             )
 
         if isinstance(field._field, ManyRelatedField):

@@ -13,29 +13,21 @@ from irekua_rest_api.permissions import IsAdmin
 from irekua_rest_api.permissions import licences as permissions
 
 
-class LicenceViewSet(mixins.UpdateModelMixin,
-                     mixins.RetrieveModelMixin,
-                     mixins.DestroyModelMixin,
-                     utils.CustomViewSetMixin,
-                     GenericViewSet):
+class LicenceViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.Licence.objects.all()  # pylint: disable=E1101
 
     serializer_mapping = utils.SerializerMapping.from_module(serializers.licences)
 
-    permission_mapping = utils.PermissionMapping({
-        utils.Actions.UPDATE: [
-            IsAuthenticated,
-            (
-                permissions.IsSigner |
-                IsAdmin
-            )
-        ],
-        utils.Actions.RETRIEVE: IsAuthenticated,
-        utils.Actions.DESTROY: [
-            IsAuthenticated,
-            (
-                permissions.IsSigner |
-                IsAdmin
-            )
-        ],
-    })
+    permission_mapping = utils.PermissionMapping(
+        {
+            utils.Actions.UPDATE: [IsAuthenticated, (permissions.IsSigner | IsAdmin)],
+            utils.Actions.RETRIEVE: IsAuthenticated,
+            utils.Actions.DESTROY: [IsAuthenticated, (permissions.IsSigner | IsAdmin)],
+        }
+    )

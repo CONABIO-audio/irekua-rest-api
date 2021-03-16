@@ -4,7 +4,7 @@ from . import physical_devices
 
 
 __all__ = [
-    'brands',
-    'devices',
-    'physical_devices',
+    "brands",
+    "devices",
+    "physical_devices",
 ]

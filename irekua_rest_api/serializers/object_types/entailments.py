@@ -17,10 +17,10 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = EntailmentType
         fields = (
-            'url',
-            'id',
-            'source_type',
-            'target_type',
+            "url",
+            "id",
+            "source_type",
+            "target_type",
         )
 
 
@@ -31,13 +31,13 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = EntailmentType
         fields = (
-            'url',
-            'id',
-            'source_type',
-            'target_type',
-            'metadata_schema',
-            'created_on',
-            'modified_on',
+            "url",
+            "id",
+            "source_type",
+            "target_type",
+            "metadata_schema",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -45,15 +45,13 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = EntailmentType
         fields = (
-            'source_type',
-            'target_type',
-            'metadata_schema',
+            "source_type",
+            "target_type",
+            "metadata_schema",
         )
 
 
 class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = EntailmentType
-        fields = (
-            'metadata_schema',
-        )
+        fields = ("metadata_schema",)

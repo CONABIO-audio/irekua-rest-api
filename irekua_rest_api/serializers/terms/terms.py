@@ -13,9 +13,7 @@ from irekua_rest_api.serializers.object_types import terms
 class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Term
-        fields = (
-            'id',
-        )
+        fields = ("id",)
 
 
 class ListSerializer(IrekuaModelSerializer):
@@ -24,9 +22,9 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Term
         fields = (
-            'id',
-            'term_type',
-            'value',
+            "id",
+            "term_type",
+            "value",
         )
 
 
@@ -36,50 +34,38 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = Term
         fields = (
-            'id',
-            'term_type',
-            'value',
-            'description',
-            'metadata',
-            'created_on',
-            'modified_on',
+            "id",
+            "term_type",
+            "value",
+            "description",
+            "metadata",
+            "created_on",
+            "modified_on",
         )
 
 
 class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Term
-        fields = (
-            'value',
-            'description',
-            'metadata'
-        )
+        fields = ("value", "description", "metadata")
 
     def create(self, validated_data):
-        validated_data['term_type'] = self.context['term_type']
+        validated_data["term_type"] = self.context["term_type"]
         return super().create(validated_data)
 
 
 class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Term
-        fields = (
-            'description',
-            'metadata'
-        )
+        fields = ("description", "metadata")
 
 
 class EntailmentSerializer(serializers.Serializer):
-    term_type = serializers.CharField(
-        source='target.term_type')
-    description = serializers.CharField(
-        source='target.description')
-    value = serializers.CharField(
-        source='target.value')
-    id = serializers.IntegerField(
-        source='target.id')
-    scope = serializers.CharField(
-        source='target.scope')
+    term_type = serializers.CharField(source="target.term_type")
+    description = serializers.CharField(source="target.description")
+    value = serializers.CharField(source="target.value")
+    id = serializers.IntegerField(source="target.id")
+    scope = serializers.CharField(source="target.scope")
 
 
 class TermSerializer(IrekuaModelSerializer):
@@ -88,28 +74,27 @@ class TermSerializer(IrekuaModelSerializer):
     class Meta:
         model = Term
         fields = [
-            'id',
-            'scope',
-            'term_type',
-            'value',
-            'description',
+            "id",
+            "scope",
+            "term_type",
+            "value",
+            "description",
         ]
 
 
 class ComplexTermSerializer(IrekuaModelSerializer):
     term_type = serializers.StringRelatedField(many=False)
     entailments = EntailmentSerializer(
-        many=True,
-        read_only=True,
-        source='entailment_source')
+        many=True, read_only=True, source="entailment_source"
+    )
 
     class Meta:
         model = Term
         fields = [
-            'id',
-            'scope',
-            'term_type',
-            'value',
-            'description',
-            'entailments',
+            "id",
+            "scope",
+            "term_type",
+            "value",
+            "description",
+            "entailments",
         ]

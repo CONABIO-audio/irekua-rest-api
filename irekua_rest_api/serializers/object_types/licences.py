@@ -11,8 +11,8 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = LicenceType
         fields = (
-            'url',
-            'name',
+            "url",
+            "name",
         )
 
 
@@ -20,10 +20,10 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = LicenceType
         fields = (
-            'url',
-            'name',
-            'description',
-            'icon',
+            "url",
+            "name",
+            "description",
+            "icon",
         )
 
 
@@ -31,18 +31,18 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = LicenceType
         fields = (
-            'url',
-            'name',
-            'description',
-            'metadata_schema',
-            'document_template',
-            'years_valid_for',
-            'icon',
-            'can_view',
-            'can_download',
-            'can_view_annotations',
-            'can_annotate',
-            'can_vote_annotations',
+            "url",
+            "name",
+            "description",
+            "metadata_schema",
+            "document_template",
+            "years_valid_for",
+            "icon",
+            "can_view",
+            "can_download",
+            "can_view_annotations",
+            "can_annotate",
+            "can_vote_annotations",
         )
 
 
@@ -50,17 +50,17 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = LicenceType
         fields = (
-            'name',
-            'description',
-            'metadata_schema',
-            'document_template',
-            'years_valid_for',
-            'icon',
-            'can_view',
-            'can_download',
-            'can_view_annotations',
-            'can_annotate',
-            'can_vote_annotations',
+            "name",
+            "description",
+            "metadata_schema",
+            "document_template",
+            "years_valid_for",
+            "icon",
+            "can_view",
+            "can_download",
+            "can_view_annotations",
+            "can_annotate",
+            "can_vote_annotations",
         )
 
 
@@ -68,6 +68,6 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = LicenceType
         fields = (
-            'description',
-            'icon',
+            "description",
+            "icon",
         )

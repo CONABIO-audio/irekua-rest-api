@@ -18,64 +18,55 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionItemType
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
     event_types = events.SelectSerializer(
-        many=True,
-        read_only=True,
-        source='item_type.event_types')
+        many=True, read_only=True, source="item_type.event_types"
+    )
     mime_types = mime_types.SelectSerializer(
-        many=True,
-        read_only=True,
-        source='item_type.mime_types')
+        many=True, read_only=True, source="item_type.mime_types"
+    )
     name = serializers.SlugRelatedField(
-        read_only=True,
-        slug_field='name',
-        source='item_type')
+        read_only=True, slug_field="name", source="item_type"
+    )
 
     class Meta:
         model = CollectionItemType
         fields = (
-            'url',
-            'id',
-            'name',
-            'item_type',
-            'event_types',
-            'mime_types',
-            'metadata_schema',
+            "url",
+            "id",
+            "name",
+            "item_type",
+            "event_types",
+            "mime_types",
+            "metadata_schema",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
-    item_type = items.SelectSerializer(
-        many=False,
-        read_only=True)
-    collection_type = types.SelectSerializer(
-        many=False,
-        read_only=True)
+    item_type = items.SelectSerializer(many=False, read_only=True)
+    collection_type = types.SelectSerializer(many=False, read_only=True)
     event_types = events.SelectSerializer(
-        many=True,
-        read_only=True,
-        source='item_type.event_types')
+        many=True, read_only=True, source="item_type.event_types"
+    )
     mime_types = mime_types.SelectSerializer(
-        many=True,
-        read_only=True,
-        source='item_type.mime_types')
+        many=True, read_only=True, source="item_type.mime_types"
+    )
 
     class Meta:
         model = CollectionItemType
         fields = (
-            'url',
-            'id',
-            'collection_type',
-            'item_type',
-            'metadata_schema',
-            'event_types',
-            'mime_types',
+            "url",
+            "id",
+            "collection_type",
+            "item_type",
+            "metadata_schema",
+            "event_types",
+            "mime_types",
         )
 
 
@@ -83,33 +74,30 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionItemType
         fields = (
-            'item_type',
-            'metadata_schema',
+            "item_type",
+            "metadata_schema",
         )
 
     def create(self, validated_data):
-        collection_type = self.context['collection_type']
-        validated_data['collection_type'] = collection_type
+        collection_type = self.context["collection_type"]
+        validated_data["collection_type"] = collection_type
         return super().create(validated_data)
 
 
 class SimpleListSerializer(IrekuaModelSerializer):
     event_types = events.DescriptionSerializer(
-        many=True,
-        read_only=True,
-        source='item_type.event_types')
+        many=True, read_only=True, source="item_type.event_types"
+    )
     mime_types = mime_types.DescriptionSerializer(
-        many=True,
-        read_only=True,
-        source='item_type.mime_types')
-
+        many=True, read_only=True, source="item_type.mime_types"
+    )
 
     class Meta:
         model = CollectionItemType
         fields = (
-            'id',
-            'item_type',
-            'event_types',
-            'mime_types',
-            'metadata_schema',
+            "id",
+            "item_type",
+            "event_types",
+            "mime_types",
+            "metadata_schema",
         )

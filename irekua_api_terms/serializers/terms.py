@@ -6,31 +6,31 @@ from .term_types import TermTypeSerializer
 
 
 class TermSerializer(IrekuaModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='term-detail')
+    url = serializers.HyperlinkedIdentityField(view_name="term-detail")
 
     class Meta:
         model = Term
 
         fields = (
-            'url',
-            'id',
-            'term_type',
-            'value',
-            'description',
-            'created_on',
+            "url",
+            "id",
+            "term_type",
+            "value",
+            "description",
+            "created_on",
         )
 
 
 class TermDetailSerializer(IrekuaModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='term-detail')
+    url = serializers.HyperlinkedIdentityField(view_name="term-detail")
     term_type = TermTypeSerializer(read_only=True)
 
     class Meta(TermSerializer.Meta):
         fields = (
             *TermSerializer.Meta.fields,
-            'metadata',
-            'scope',
-            'modified_on',
+            "metadata",
+            "scope",
+            "modified_on",
         )
 
 
@@ -46,7 +46,7 @@ class TermComplexSerializer(IrekuaModelSerializer):
     )
 
     url = serializers.HyperlinkedIdentityField(
-        view_name='term-detail',
+        view_name="term-detail",
     )
 
     term_type = TermTypeSerializer(
@@ -56,6 +56,6 @@ class TermComplexSerializer(IrekuaModelSerializer):
     class Meta(TermDetailSerializer.Meta):
         fields = (
             *TermDetailSerializer.Meta.fields,
-            'entailments',
-            'synonyms',
+            "entailments",
+            "synonyms",
         )

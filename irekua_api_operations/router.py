@@ -4,4 +4,4 @@ from . import views
 
 
 router = IrekuaAPIRouter()
-router.register(r'operations', views.OperationViewSet)
+router.register(r"operations", views.OperationViewSet)

@@ -14,22 +14,21 @@ class SelectPermissionSerializer(IrekuaModelSerializer):
     codename = serializers.SlugRelatedField(
         many=False,
         read_only=False,
-        slug_field='codename',
-        queryset=Permission.objects.filter(content_type__model='collection'))
+        slug_field="codename",
+        queryset=Permission.objects.filter(content_type__model="collection"),
+    )
 
     class Meta:
         model = Permission
-        fields = (
-            'codename',
-        )
+        fields = ("codename",)
 
 
 class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Role
         fields = (
-            'url',
-            'name',
+            "url",
+            "name",
         )
 
 
@@ -37,29 +36,28 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Role
         fields = (
-            'url',
-            'name',
-            'description',
-            'icon',
+            "url",
+            "name",
+            "description",
+            "icon",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     permissions = serializers.SlugRelatedField(
-        many=True,
-        read_only=True,
-        slug_field='codename')
+        many=True, read_only=True, slug_field="codename"
+    )
 
     class Meta:
         model = Role
         fields = (
-            'url',
-            'name',
-            'description',
-            'permissions',
-            'icon',
-            'modified_on',
-            'created_on',
+            "url",
+            "name",
+            "description",
+            "permissions",
+            "icon",
+            "modified_on",
+            "created_on",
         )
 
 
@@ -67,9 +65,9 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Role
         fields = (
-            'name',
-            'description',
-            'icon',
+            "name",
+            "description",
+            "icon",
         )
 
 
@@ -77,6 +75,6 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Role
         fields = (
-            'description',
-            'icon',
+            "description",
+            "icon",
         )

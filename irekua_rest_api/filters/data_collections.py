@@ -3,8 +3,8 @@ from .utils import BaseFilter
 
 
 search_fields = (
-    'name',
-    'collection_type__name',
+    "name",
+    "collection_type__name",
 )
 
 
@@ -12,9 +12,9 @@ class Filter(BaseFilter):
     class Meta:
         model = Collection
         fields = (
-            'name',
-            'collection_type__name',
-            'institution__institution_code',
-            'institution__institution_name',
-            'institution__country',
+            "name",
+            "collection_type__name",
+            "institution__institution_code",
+            "institution__institution_name",
+            "institution__country",
         )

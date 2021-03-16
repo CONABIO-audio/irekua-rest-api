@@ -13,14 +13,18 @@ from irekua_rest_api.permissions import IsAdmin
 from irekua_rest_api.permissions import ReadOnly
 
 
-class AnnotationToolViewSet(mixins.UpdateModelMixin,
-                            mixins.RetrieveModelMixin,
-                            mixins.DestroyModelMixin,
-                            utils.CustomViewSetMixin,
-                            GenericViewSet):
+class AnnotationToolViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.AnnotationTool.objects.all()  # pylint: disable=E1101
 
     permission_mapping = utils.PermissionMapping(
-        default=IsAdmin | IsDeveloper | ReadOnly)
+        default=IsAdmin | IsDeveloper | ReadOnly
+    )
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.annotations.tools)
+        serializers.annotations.tools
+    )

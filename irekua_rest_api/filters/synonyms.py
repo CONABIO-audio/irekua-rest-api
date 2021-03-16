@@ -3,15 +3,12 @@ from .utils import BaseFilter
 
 
 search_fields = (
-    'source__value',
-    'target__value',
+    "source__value",
+    "target__value",
 )
 
 
 class Filter(BaseFilter):
     class Meta:
         model = Synonym
-        fields = (
-            'source__value',
-            'target__value'
-        )
+        fields = ("source__value", "target__value")

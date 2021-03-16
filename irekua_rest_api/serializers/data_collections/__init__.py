@@ -7,10 +7,10 @@ from . import administrators
 
 
 __all__ = [
-    'devices',
-    'sites',
-    'users',
-    'data_collections',
-    'metacollections',
-    'administrators',
+    "devices",
+    "sites",
+    "users",
+    "data_collections",
+    "metacollections",
+    "administrators",
 ]

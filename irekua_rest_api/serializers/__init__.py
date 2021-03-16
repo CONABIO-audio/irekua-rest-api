@@ -12,15 +12,15 @@ from . import models
 
 
 __all__ = [
-    'licences',
-    'sites',
-    'users',
-    'terms',
-    'sampling_events',
-    'object_types',
-    'items',
-    'devices',
-    'data_collections',
-    'annotations',
-    'models',
+    "licences",
+    "sites",
+    "users",
+    "terms",
+    "sampling_events",
+    "object_types",
+    "items",
+    "devices",
+    "data_collections",
+    "annotations",
+    "models",
 ]

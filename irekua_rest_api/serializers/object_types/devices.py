@@ -11,9 +11,9 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceType
         fields = (
-            'url',
-            'id',
-            'name',
+            "url",
+            "id",
+            "name",
         )
 
 
@@ -21,11 +21,11 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceType
         fields = (
-            'url',
-            'id',
-            'name',
-            'description',
-            'icon',
+            "url",
+            "id",
+            "name",
+            "description",
+            "icon",
         )
 
 
@@ -33,13 +33,13 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = DeviceType
         fields = (
-            'url',
-            'id',
-            'name',
-            'description',
-            'icon',
-            'created_on',
-            'modified_on',
+            "url",
+            "id",
+            "name",
+            "description",
+            "icon",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -47,10 +47,10 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceType
         fields = (
-            'id',
-            'name',
-            'description',
-            'icon',
+            "id",
+            "name",
+            "description",
+            "icon",
         )
 
 
@@ -58,6 +58,6 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = DeviceType
         fields = (
-            'description',
-            'icon',
+            "description",
+            "icon",
         )

@@ -13,23 +13,28 @@ from irekua_rest_api.permissions import IsAdmin
 from irekua_rest_api.permissions import IsAuthenticated
 
 
-class AnnotationTypeViewSet(mixins.RetrieveModelMixin,
-                            mixins.DestroyModelMixin,
-                            mixins.UpdateModelMixin,
-                            utils.CustomViewSetMixin,
-                            GenericViewSet):
+class AnnotationTypeViewSet(
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.UpdateModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.AnnotationType.objects.all()  # pylint: disable=E1101
 
-    permission_mapping = utils.PermissionMapping({
-        utils.Actions.UPDATE: [
-            IsAuthenticated,
-            IsDeveloper | IsAdmin,
-        ],
-        utils.Actions.DESTROY: [
-            IsAuthenticated,
-            IsAdmin,
-        ],
-    })
+    permission_mapping = utils.PermissionMapping(
+        {
+            utils.Actions.UPDATE: [
+                IsAuthenticated,
+                IsDeveloper | IsAdmin,
+            ],
+            utils.Actions.DESTROY: [
+                IsAuthenticated,
+                IsAdmin,
+            ],
+        }
+    )
 
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.object_types.annotations)
+        serializers.object_types.annotations
+    )

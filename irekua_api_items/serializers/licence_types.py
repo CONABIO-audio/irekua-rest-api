@@ -7,16 +7,16 @@ class LicenceTypeSerializer(IrekuaModelSerializer):
         model = LicenceType
 
         fields = (
-            'url',
-            'id',
-            'name',
-            'description',
-            'icon',
-            'document_template',
-            'years_valid_for',
-            'can_view',
-            'can_download',
-            'can_view_annotations',
-            'can_annotate',
-            'can_vote_annotations',
+            "url",
+            "id",
+            "name",
+            "description",
+            "icon",
+            "document_template",
+            "years_valid_for",
+            "can_view",
+            "can_download",
+            "can_view_annotations",
+            "can_annotate",
+            "can_vote_annotations",
         )

@@ -15,8 +15,8 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Annotation
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
@@ -27,15 +27,15 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Annotation
         fields = (
-            'url',
-            'id',
-            'item',
-            'event_type',
-            'annotation',
-            'annotation_type',
-            'created_on',
-            'created_by',
-            'labels'
+            "url",
+            "id",
+            "item",
+            "event_type",
+            "annotation",
+            "annotation_type",
+            "created_on",
+            "created_by",
+            "labels",
         )
 
 
@@ -45,23 +45,23 @@ class DetailSerializer(IrekuaModelSerializer):
     class Meta:
         model = Annotation
         fields = (
-            'url',
-            'id',
-            'annotation_tool',
-            'visualizer',
-            'item',
-            'event_type',
-            'labels',
-            'annotation_type',
-            'annotation',
-            'visualizer_configuration',
-            'certainty',
-            'quality',
-            'commentaries',
-            'created_on',
-            'modified_on',
-            'created_by',
-            'modified_by',
+            "url",
+            "id",
+            "annotation_tool",
+            "visualizer",
+            "item",
+            "event_type",
+            "labels",
+            "annotation_type",
+            "annotation",
+            "visualizer_configuration",
+            "certainty",
+            "quality",
+            "commentaries",
+            "created_on",
+            "modified_on",
+            "created_by",
+            "modified_by",
         )
 
 
@@ -77,25 +77,25 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Annotation
         fields = (
-            'event_type',
-            'annotation',
-            'labels',
+            "event_type",
+            "annotation",
+            "labels",
             # 'certainty',
             # 'quality',
             # 'commentaries',
             # 'annotation_tool',
             # 'visualizer',
             # 'visualizer_configuration',
-            'annotation_type',
+            "annotation_type",
         )
 
     def create(self, validated_data):
-        item = self.context['item']
-        user = self.context['request'].user
+        item = self.context["item"]
+        user = self.context["request"].user
 
-        validated_data['item'] = item
-        validated_data['created_by'] = user
-        validated_data['modified_by'] = user
+        validated_data["item"] = item
+        validated_data["created_by"] = user
+        validated_data["modified_by"] = user
         return super().create(validated_data)
 
 
@@ -103,8 +103,8 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Annotation
         fields = (
-            'annotation',
-            'labels',
+            "annotation",
+            "labels",
             # 'certainty',
             # 'quality',
             # 'commentaries',
@@ -112,7 +112,7 @@ class UpdateSerializer(IrekuaModelSerializer):
         )
 
     def update(self, instance, validated_data):
-        user = self.context['request'].user
+        user = self.context["request"].user
 
-        validated_data['modified_by'] = user
+        validated_data["modified_by"] = user
         return super().update(instance, validated_data)

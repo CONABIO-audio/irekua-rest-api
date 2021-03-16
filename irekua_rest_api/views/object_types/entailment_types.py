@@ -13,15 +13,19 @@ from irekua_rest_api.permissions import IsDeveloper
 from irekua_rest_api.permissions import ReadOnly
 
 
-class EntailmentTypeViewSet(mixins.RetrieveModelMixin,
-                            mixins.DestroyModelMixin,
-                            mixins.UpdateModelMixin,
-                            utils.CustomViewSetMixin,
-                            GenericViewSet):
+class EntailmentTypeViewSet(
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.UpdateModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.EntailmentType.objects.all()  # pylint: disable=E1101
 
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.object_types.entailments)
+        serializers.object_types.entailments
+    )
 
     permission_mapping = utils.PermissionMapping(
-        default=IsDeveloper | IsAdmin | ReadOnly)
+        default=IsDeveloper | IsAdmin | ReadOnly
+    )

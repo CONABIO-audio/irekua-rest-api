@@ -38,8 +38,7 @@ class HasUpdatePermission(BasePermission):
         sampling_event = item.sampling_event_device.sampling_event
         collection = sampling_event.collection
 
-        return collection.has_permission(
-            user, 'change_collection_annotations')
+        return collection.has_permission(user, "change_collection_annotations")
 
 
 class HasViewPermission(BasePermission):
@@ -50,8 +49,7 @@ class HasViewPermission(BasePermission):
         sampling_event = item.sampling_event_device.sampling_event
         collection = sampling_event.collection
 
-        return collection.has_permission(
-            user, 'view_collection_annotations')
+        return collection.has_permission(user, "view_collection_annotations")
 
 
 class HasVotePermission(BasePermission):
@@ -62,5 +60,4 @@ class HasVotePermission(BasePermission):
         sampling_event = item.sampling_event_device.sampling_event
         collection = sampling_event.collection
 
-        return collection.has_permission(
-            user, 'add_collection_annotation_vote')
+        return collection.has_permission(user, "add_collection_annotation_vote")

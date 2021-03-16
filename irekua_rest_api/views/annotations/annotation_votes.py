@@ -14,32 +14,37 @@ from irekua_rest_api.permissions import IsAuthenticated
 from irekua_rest_api.permissions import annotation_votes as permissions
 
 
-class AnnotationVoteViewSet(mixins.UpdateModelMixin,
-                            mixins.RetrieveModelMixin,
-                            mixins.DestroyModelMixin,
-                            utils.CustomViewSetMixin,
-                            GenericViewSet):
+class AnnotationVoteViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.AnnotationVote.objects.all()  # pylint: disable=E1101
 
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.annotations.votes)
+        serializers.annotations.votes
+    )
 
-    permission_mapping = utils.PermissionMapping({
-        utils.Actions.UPDATE: [
-            IsAuthenticated,
-            permissions.IsCreator | IsAdmin,
-        ],
-        utils.Actions.RETRIEVE: [
-            IsAuthenticated,
-            (
-                permissions.HasViewPermission |
-                permissions.IsCreator |
-                permissions.IsOpen |
-                IsSpecialUser
-            ),
-        ],
-        utils.Actions.DESTROY: [
-            IsAuthenticated,
-            permissions.IsCreator | IsAdmin,
-        ],
-    })
+    permission_mapping = utils.PermissionMapping(
+        {
+            utils.Actions.UPDATE: [
+                IsAuthenticated,
+                permissions.IsCreator | IsAdmin,
+            ],
+            utils.Actions.RETRIEVE: [
+                IsAuthenticated,
+                (
+                    permissions.HasViewPermission
+                    | permissions.IsCreator
+                    | permissions.IsOpen
+                    | IsSpecialUser
+                ),
+            ],
+            utils.Actions.DESTROY: [
+                IsAuthenticated,
+                permissions.IsCreator | IsAdmin,
+            ],
+        }
+    )

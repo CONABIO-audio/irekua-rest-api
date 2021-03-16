@@ -13,26 +13,26 @@ from irekua_rest_api.permissions import IsAdmin
 from irekua_rest_api.permissions import institutions as permissions
 
 
-class InstitutionViewSet(mixins.UpdateModelMixin,
-                         mixins.RetrieveModelMixin,
-                         mixins.DestroyModelMixin,
-                         utils.CustomViewSetMixin,
-                         GenericViewSet):
+class InstitutionViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.Institution.objects.all()  # pylint: disable=E1101
 
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.users.institutions)
+        serializers.users.institutions
+    )
 
-    permission_mapping = utils.PermissionMapping({
-        utils.Actions.UPDATE: [
-            IsAuthenticated,
-            (
-                permissions.IsFromInstitution |
-                IsAdmin
-            )
-        ],
-        utils.Actions.DESTROY: [
-            IsAuthenticated,
-            IsAdmin
-        ],
-    }, default=IsAuthenticated)
+    permission_mapping = utils.PermissionMapping(
+        {
+            utils.Actions.UPDATE: [
+                IsAuthenticated,
+                (permissions.IsFromInstitution | IsAdmin),
+            ],
+            utils.Actions.DESTROY: [IsAuthenticated, IsAdmin],
+        },
+        default=IsAuthenticated,
+    )

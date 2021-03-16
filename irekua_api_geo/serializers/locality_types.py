@@ -7,9 +7,9 @@ class LocalityTypeSerializer(IrekuaModelSerializer):
         model = LocalityType
 
         fields = (
-            'url',
-            'id',
-            'name',
+            "url",
+            "id",
+            "name",
         )
 
 
@@ -17,10 +17,10 @@ class LocalityTypeDetailSerializer(IrekuaModelSerializer):
     class Meta(LocalityTypeSerializer.Meta):
         fields = (
             *LocalityTypeSerializer.Meta.fields,
-            'description',
-            'source',
-            'original_datum',
-            'publication_date',
-            'created_on',
-            'modified_on',
+            "description",
+            "source",
+            "original_datum",
+            "publication_date",
+            "created_on",
+            "modified_on",
         )

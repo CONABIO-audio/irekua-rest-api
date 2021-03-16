@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from irekua_rest_api.serializers.base import IrekuaModelSerializer
 from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 
-# TODO: Remove annotation tool serializers and views from API when
+#  TODO: Remove annotation tool serializers and views from API when
 # AnnotationTool model migration irekua-database -> selia-annotator is
 # complete
 # from selia_annotator.models import AnnotationTool
@@ -17,7 +17,7 @@ from irekua_rest_api.serializers.base import IrekuaHyperlinkedModelSerializer
 #             'url',
 #             'name',
 #         )
-# 
+#
 #
 # class ListSerializer(IrekuaModelSerializer):
 #     class Meta:

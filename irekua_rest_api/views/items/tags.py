@@ -12,14 +12,15 @@ from irekua_rest_api.permissions import IsAdmin
 from irekua_rest_api.permissions import ReadOnly
 
 
-class TagViewSet(mixins.UpdateModelMixin,
-                 mixins.RetrieveModelMixin,
-                 mixins.DestroyModelMixin,
-                 utils.CustomViewSetMixin,
-                 GenericViewSet):
+class TagViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.Tag.objects.all()  # pylint: disable=E1101
 
-    serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.items.tags)
+    serializer_mapping = utils.SerializerMapping.from_module(serializers.items.tags)
 
     permission_mapping = utils.PermissionMapping(default=IsAdmin | ReadOnly)

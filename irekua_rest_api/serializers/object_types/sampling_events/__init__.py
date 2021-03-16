@@ -4,7 +4,7 @@ from . import types
 
 
 __all__ = [
-    'devices',
-    'sites',
-    'types',
+    "devices",
+    "sites",
+    "types",
 ]

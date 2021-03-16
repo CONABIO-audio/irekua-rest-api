@@ -11,14 +11,14 @@ from . import types
 
 
 __all__ = [
-    'administrators',
-    'annotations',
-    'devices',
-    'events',
-    'items',
-    'licences',
-    'roles',
-    'sampling_events',
-    'sites',
-    'types',
+    "administrators",
+    "annotations",
+    "devices",
+    "events",
+    "items",
+    "licences",
+    "roles",
+    "sampling_events",
+    "sites",
+    "types",
 ]

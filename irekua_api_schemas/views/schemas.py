@@ -7,8 +7,6 @@ from irekua_api_schemas import serializers
 class SchemaViewSet(IrekuaReadOnlyViewSet):
     queryset = Schema.objects.all()
 
-    serializer_action_classes = {
-        'retrieve': serializers.SchemaDetailSerializer
-    }
+    serializer_action_classes = {"retrieve": serializers.SchemaDetailSerializer}
 
     serializer_class = serializers.SchemaSerializer

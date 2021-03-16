@@ -16,8 +16,7 @@ class HasUpdatePermission(BasePermission):
         user = request.user
         collection = obj.collection
 
-        return collection.has_permission(
-            user, 'change_collection_sites')
+        return collection.has_permission(user, "change_collection_sites")
 
 
 class HasViewPermission(BasePermission):
@@ -25,8 +24,7 @@ class HasViewPermission(BasePermission):
         user = request.user
         collection = obj.collection
 
-        return collection.has_permission(
-            user, 'view_collection_sites')
+        return collection.has_permission(user, "view_collection_sites")
 
 
 class IsCollectionAdmin(BasePermission):

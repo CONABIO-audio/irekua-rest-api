@@ -13,15 +13,15 @@ from irekua_rest_api.permissions import IsCurator
 from irekua_rest_api.permissions import ReadOnly
 
 
-class SynonymViewSet(mixins.UpdateModelMixin,
-                     mixins.RetrieveModelMixin,
-                     mixins.DestroyModelMixin,
-                     utils.CustomViewSetMixin,
-                     GenericViewSet):
+class SynonymViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.Synonym.objects.all()  # pylint: disable=E1101
 
-    serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.terms.synonyms)
+    serializer_mapping = utils.SerializerMapping.from_module(serializers.terms.synonyms)
 
-    permission_mapping = utils.PermissionMapping(
-        default=IsAdmin | IsCurator | ReadOnly)
+    permission_mapping = utils.PermissionMapping(default=IsAdmin | IsCurator | ReadOnly)

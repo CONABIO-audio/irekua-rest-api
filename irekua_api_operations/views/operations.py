@@ -16,24 +16,24 @@ from irekua_api_core.views import IrekuaReadOnlyViewSet
 from irekua_api_operations import serializers
 
 
-TEMPLATE_NAME = 'irekua_api_operations/result.html'
+TEMPLATE_NAME = "irekua_api_operations/result.html"
 
 
 class OperationRenderer(BrowsableAPIRenderer):
     def get_post_form(self, renderer_context):
-        view = renderer_context['view']
-        request = renderer_context['request']
+        view = renderer_context["view"]
+        request = renderer_context["request"]
         operation = view.get_object().get_operation()
         form = operation.get_form(request)
         return render_crispy_form(form, context=renderer_context)
 
     def get_context(self, data, accepted_media_type, renderer_context):
         context = super().get_context(data, accepted_media_type, renderer_context)
-        context['post_form'] = self.get_post_form(renderer_context)
+        context["post_form"] = self.get_post_form(renderer_context)
 
-        content = json.loads(context['content'])
-        if 'result' in content:
-            context['content'] = json.dumps(content['result'], indent=4)
+        content = json.loads(context["content"])
+        if "result" in content:
+            context["content"] = json.dumps(content["result"], indent=4)
 
         return context
 
@@ -41,15 +41,13 @@ class OperationRenderer(BrowsableAPIRenderer):
 class OperationViewSet(IrekuaReadOnlyViewSet):
     queryset = Operation.objects.all()
 
-    serializer_action_classes = {
-        'retrieve': serializers.OperationDetailSerializer
-    }
+    serializer_action_classes = {"retrieve": serializers.OperationDetailSerializer}
 
     serializer_class = serializers.OperationSerializer
 
     @action(
         detail=True,
-        methods=['post'],
+        methods=["post"],
         renderer_classes=[JSONRenderer, OperationRenderer],
     )
     def run(self, request, pk=None):
@@ -69,7 +67,7 @@ class OperationViewSet(IrekuaReadOnlyViewSet):
         except DjangoValidationError as error:
             raise ValidationError(error.message_dict) from error
 
-        if data['stderr']:
+        if data["stderr"]:
             st = status.HTTP_500_INTERNAL_SERVER_ERROR
         else:
             st = status.HTTP_200_OK

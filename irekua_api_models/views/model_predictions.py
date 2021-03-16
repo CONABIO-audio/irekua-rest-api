@@ -23,9 +23,7 @@ class ModelPredictionViewSet(IrekuaModelViewSet):
 
     serializer_class = serializers.ModelPredictionDetailSerializer
 
-    serializer_action_classes = {
-        "create": serializers.ModelPredictionCreateSerializer
-    }
+    serializer_action_classes = {"create": serializers.ModelPredictionCreateSerializer}
 
     filterset_class = filters.model_predictions.Filter
 

@@ -14,26 +14,20 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = User
         fields = (
-            'url',
-            'id',
-            'username',
+            "url",
+            "id",
+            "username",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
     institution = serializers.SlugRelatedField(
-        many=False,
-        read_only=True,
-        slug_field='institution_name')
+        many=False, read_only=True, slug_field="institution_name"
+    )
 
     class Meta:
         model = User
-        fields = (
-            'url',
-            'id',
-            'username',
-            'institution'
-        )
+        fields = ("url", "id", "username", "institution")
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
@@ -42,12 +36,12 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = (
-            'url',
-            'id',
-            'username',
-            'first_name',
-            'last_name',
-            'institution',
+            "url",
+            "id",
+            "username",
+            "first_name",
+            "last_name",
+            "institution",
         )
 
 
@@ -57,19 +51,19 @@ class FullDetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = (
-            'url',
-            'id',
-            'username',
-            'email',
-            'first_name',
-            'last_name',
-            'institution',
-            'last_login',
-            'date_joined',
-            'is_superuser',
-            'is_curator',
-            'is_developer',
-            'is_model',
+            "url",
+            "id",
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "institution",
+            "last_login",
+            "date_joined",
+            "is_superuser",
+            "is_curator",
+            "is_developer",
+            "is_model",
         )
 
 
@@ -77,12 +71,12 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = User
         fields = (
-            'username',
-            'email',
-            'password',
-            'first_name',
-            'last_name',
-            'institution',
+            "username",
+            "email",
+            "password",
+            "first_name",
+            "last_name",
+            "institution",
         )
 
 
@@ -90,9 +84,9 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = User
         fields = (
-            'username',
-            'email',
-            'first_name',
-            'last_name',
-            'institution',
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "institution",
         )

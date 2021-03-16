@@ -37,5 +37,6 @@ class HasViewPermission(BasePermission):
 
         role = collectionuser.role
         has_permission = role.permissions.filter(
-            codename='view_collection_annotation_vote').exists()
+            codename="view_collection_annotation_vote"
+        ).exists()
         return has_permission

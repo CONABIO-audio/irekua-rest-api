@@ -16,8 +16,8 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Site
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
@@ -25,10 +25,10 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Site
         fields = (
-            'url',
-            'id',
-            'name',
-            'locality',
+            "url",
+            "id",
+            "name",
+            "locality",
         )
 
 
@@ -38,13 +38,13 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = Site
         fields = (
-            'url',
-            'id',
-            'name',
-            'locality',
-            'created_by',
-            'created_on',
-            'modified_on',
+            "url",
+            "id",
+            "name",
+            "locality",
+            "created_by",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -54,17 +54,17 @@ class FullDetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = Site
         fields = (
-            'url',
-            'id',
-            'name',
-            'locality',
-            'latitude',
-            'longitude',
-            'geo_ref',
-            'altitude',
-            'created_by',
-            'created_on',
-            'modified_on',
+            "url",
+            "id",
+            "name",
+            "locality",
+            "latitude",
+            "longitude",
+            "geo_ref",
+            "altitude",
+            "created_by",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -72,16 +72,16 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Site
         fields = (
-            'name',
-            'locality',
-            'latitude',
-            'longitude',
-            'altitude',
+            "name",
+            "locality",
+            "latitude",
+            "longitude",
+            "altitude",
         )
 
     def create(self, validated_data):
-        user = self.context['request'].user
-        validated_data['created_by'] = user
+        user = self.context["request"].user
+        validated_data["created_by"] = user
         return super().create(validated_data)
 
 
@@ -89,9 +89,9 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Site
         fields = (
-            'name',
-            'locality',
-            'altitude',
+            "name",
+            "locality",
+            "altitude",
         )
 
 
@@ -99,10 +99,10 @@ class GeometrySerializer(IrekuaModelSerializer):
     class Meta:
         model = Site
         fields = (
-            'latitude',
-            'longitude',
-            'altitude',
-            'geo_ref',
+            "latitude",
+            "longitude",
+            "altitude",
+            "geo_ref",
         )
 
 
@@ -111,56 +111,41 @@ class SiteLocationSerializer(IrekuaModelSerializer):
 
     class Meta:
         model = Site
-        fields = (
-            'id',
-            'geometry'
-        )
+        fields = ("id", "geometry")
+
 
 class SamplingEventLocationSerializer(IrekuaModelSerializer):
-    geometry = GeometrySerializer(
-        read_only=True,
-        source="collection_site.site")
+    geometry = GeometrySerializer(read_only=True, source="collection_site.site")
 
     class Meta:
         model = SamplingEvent
-        fields = (
-            'id',
-            'geometry'
-        )
+        fields = ("id", "geometry")
+
 
 class SamplingEventDeviceLocationSerializer(IrekuaModelSerializer):
     geometry = GeometrySerializer(
-        read_only=True,
-        source="sampling_event.collection_site.site")
+        read_only=True, source="sampling_event.collection_site.site"
+    )
 
     class Meta:
         model = SamplingEventDevice
-        fields = (
-            'id',
-            'geometry'
-        )
+        fields = ("id", "geometry")
 
 
 class ItemLocationSerializer(IrekuaModelSerializer):
     geometry = GeometrySerializer(
         read_only=True,
-        source="sampling_event_device.sampling_event.collection_site.site")
+        source="sampling_event_device.sampling_event.collection_site.site",
+    )
 
     class Meta:
         model = Item
-        fields = (
-            'id',
-            'geometry'
-        )
+        fields = ("id", "geometry")
+
 
 class CollectionSiteLocationSerializer(IrekuaModelSerializer):
-    geometry = GeometrySerializer(
-        read_only=True,
-        source="site")
+    geometry = GeometrySerializer(read_only=True, source="site")
 
     class Meta:
         model = CollectionSite
-        fields = (
-            'id',
-            'geometry'
-        )
+        fields = ("id", "geometry")

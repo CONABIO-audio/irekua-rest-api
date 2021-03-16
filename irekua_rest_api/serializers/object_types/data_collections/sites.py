@@ -19,43 +19,38 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
     site_type = serializers.PrimaryKeyRelatedField(
-        many=False,
-        read_only=True,
-        source='sitetype')
+        many=False, read_only=True, source="sitetype"
+    )
 
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
-            'site_type',
+            "url",
+            "id",
+            "site_type",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
-    site_type = sites.SelectSerializer(
-        many=False,
-        read_only=True,
-        source='sitetype')
+    site_type = sites.SelectSerializer(many=False, read_only=True, source="sitetype")
     collection_type = types.SelectSerializer(
-        many=False,
-        read_only=True,
-        source='collectiontype')
+        many=False, read_only=True, source="collectiontype"
+    )
 
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
-            'collection_type',
-            'site_type',
+            "url",
+            "id",
+            "collection_type",
+            "site_type",
         )
 
 
@@ -64,15 +59,14 @@ class CreateSerializer(IrekuaModelSerializer):
         many=False,
         read_only=False,
         queryset=SiteType.objects.all(),  # pylint: disable=E1101
-        source='sitetype')
+        source="sitetype",
+    )
 
     class Meta:
         model = MODEL
-        fields = (
-            'site_type',
-        )
+        fields = ("site_type",)
 
     def create(self, validated_data):
-        collection_type = self.context['collection_type']
-        validated_data['collectiontype'] = collection_type
+        collection_type = self.context["collection_type"]
+        validated_data["collectiontype"] = collection_type
         return super().create(validated_data)

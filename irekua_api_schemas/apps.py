@@ -5,4 +5,4 @@ from django.apps import AppConfig
 
 
 class IrekuaAPISchemasConfig(AppConfig):
-    name = 'irekua_api_schemas'
+    name = "irekua_api_schemas"

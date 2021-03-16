@@ -14,15 +14,19 @@ from irekua_rest_api.permissions import ReadOnly
 from irekua_rest_api.permissions import term_suggestions as permissions
 
 
-class TermSuggestionViewSet(mixins.UpdateModelMixin,
-                            mixins.RetrieveModelMixin,
-                            mixins.DestroyModelMixin,
-                            utils.CustomViewSetMixin,
-                            GenericViewSet):
+class TermSuggestionViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.TermSuggestion.objects.all()  # pylint: disable=E1101
 
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.terms.suggestions)
+        serializers.terms.suggestions
+    )
 
     permission_mapping = utils.PermissionMapping(
-        default=permissions.IsOwnSuggestion | IsAdmin | ReadOnly)
+        default=permissions.IsOwnSuggestion | IsAdmin | ReadOnly
+    )

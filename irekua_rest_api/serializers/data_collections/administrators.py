@@ -18,51 +18,43 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
-    user = serializers.CharField(
-        read_only=True,
-        source='user.username')
+    user = serializers.CharField(read_only=True, source="user.username")
 
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
-            'user',
+            "url",
+            "id",
+            "user",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
-    user = users.SelectSerializer(
-        many=False,
-        read_only=True)
-    collection = data_collections.SelectSerializer(
-        many=False,
-        read_only=True)
+    user = users.SelectSerializer(many=False, read_only=True)
+    collection = data_collections.SelectSerializer(many=False, read_only=True)
 
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
-            'collection',
-            'user',
+            "url",
+            "id",
+            "collection",
+            "user",
         )
 
 
 class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = MODEL
-        fields = (
-            'user',
-        )
+        fields = ("user",)
 
     def create(self, validated_data):
-        collection = self.context['collection']
-        validated_data['collection'] = collection
+        collection = self.context["collection"]
+        validated_data["collection"] = collection
         return super().create(validated_data)

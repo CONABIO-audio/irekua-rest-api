@@ -11,8 +11,8 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = SiteType
         fields = (
-            'url',
-            'name',
+            "url",
+            "name",
         )
 
 
@@ -20,36 +20,25 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = SiteType
         fields = (
-            'url',
-            'name',
-            'description',
+            "url",
+            "name",
+            "description",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = SiteType
-        fields = (
-            'url',
-            'name',
-            'description',
-            'metadata_schema'
-        )
+        fields = ("url", "name", "description", "metadata_schema")
 
 
 class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SiteType
-        fields = (
-            'name',
-            'description',
-            'metadata_schema'
-        )
+        fields = ("name", "description", "metadata_schema")
 
 
 class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SiteType
-        fields = (
-            'description',
-        )
+        fields = ("description",)

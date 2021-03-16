@@ -14,8 +14,8 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Collection
         fields = (
-            'url',
-            'name',
+            "url",
+            "name",
         )
 
 
@@ -23,45 +23,38 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Collection
         fields = (
-            'url',
-            'name',
-            'logo',
-            'collection_type',
-            'description',
+            "url",
+            "name",
+            "logo",
+            "collection_type",
+            "description",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
-    collection_type = types.SelectSerializer(
-        many=False,
-        read_only=False)
-    institution = institutions.SelectSerializer(
-        many=False,
-        read_only=True)
+    collection_type = types.SelectSerializer(many=False, read_only=False)
+    institution = institutions.SelectSerializer(many=False, read_only=True)
 
     class Meta:
         model = Collection
         fields = (
-            'url',
-            'name',
-            'collection_type',
-            'description',
-            'logo',
-            'metadata',
-            'institution',
-            'logo',
-            'created_on',
-            'modified_on',
+            "url",
+            "name",
+            "collection_type",
+            "description",
+            "logo",
+            "metadata",
+            "institution",
+            "logo",
+            "created_on",
+            "modified_on",
         )
 
 
 class UserData(IrekuaModelSerializer):
     class Meta:
         model = CollectionUser
-        fields = (
-            'role',
-            'metadata'
-        )
+        fields = ("role", "metadata")
 
 
 class CreateSerializer(IrekuaModelSerializer):
@@ -70,29 +63,31 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Collection
         fields = (
-            'name',
-            'collection_type',
-            'description',
-            'logo',
-            'metadata',
-            'institution',
-            'user_data',
+            "name",
+            "collection_type",
+            "description",
+            "logo",
+            "metadata",
+            "institution",
+            "user_data",
         )
 
     def create(self, validated_data):
-        user = self.context['request'].user
+        user = self.context["request"].user
 
-        user_data = validated_data.pop('user_data')
-        collection = Collection.objects.create(**validated_data)  # pylint: disable=E1101
+        user_data = validated_data.pop("user_data")
+        collection = Collection.objects.create(
+            **validated_data
+        )  # pylint: disable=E1101
 
-        user_data['user'] = user
-        user_data['collection'] = collection
+        user_data["user"] = user
+        user_data["collection"] = collection
         CollectionUser.objects.create(**user_data)  # pylint: disable=E1101
 
         collection.add_administrator(user)
 
         # Strange loading condition requires this line to be called
-        # in order to correctly return parsed data in HTTP response
+        #  in order to correctly return parsed data in HTTP response
         self.data
 
         return collection
@@ -102,8 +97,8 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Collection
         fields = (
-            'description',
-            'logo',
-            'metadata',
-            'institution',
+            "description",
+            "logo",
+            "metadata",
+            "institution",
         )

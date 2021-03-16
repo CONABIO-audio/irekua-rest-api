@@ -43,9 +43,7 @@ class SiteGeometryField(GeometryField):
 class SiteCreateSerializer(IrekuaUserModelSerializer):
     altitude = serializers.FloatField(
         required=False,
-        help_text=_(
-            "Altitude of site. (Only valid if site geometry is Point)"
-        ),
+        help_text=_("Altitude of site. (Only valid if site geometry is Point)"),
     )
 
     geometry = SiteGeometryField(help_text=_("Site geometry"))

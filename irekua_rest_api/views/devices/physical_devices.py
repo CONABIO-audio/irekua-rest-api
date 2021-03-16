@@ -13,15 +13,19 @@ from irekua_rest_api.permissions import physical_devices as permissions
 from irekua_rest_api.permissions import ReadOnly
 
 
-class PhysicalDeviceViewSet(mixins.UpdateModelMixin,
-                            mixins.RetrieveModelMixin,
-                            mixins.DestroyModelMixin,
-                            utils.CustomViewSetMixin,
-                            GenericViewSet):
+class PhysicalDeviceViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
 
     queryset = models.PhysicalDevice.objects.all()  # pylint: disable=E1101
 
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.devices.physical_devices)
+        serializers.devices.physical_devices
+    )
     permission_mapping = utils.PermissionMapping(
-        default=permissions.IsOwner | IsAdmin | ReadOnly)
+        default=permissions.IsOwner | IsAdmin | ReadOnly
+    )

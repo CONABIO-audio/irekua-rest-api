@@ -15,29 +15,25 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionUser
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
     user = serializers.SlugRelatedField(
-        many=False,
-        read_only=True,
-        slug_field='username')
-    role = serializers.SlugRelatedField(
-        many=False,
-        read_only=True,
-        slug_field='name')
+        many=False, read_only=True, slug_field="username"
+    )
+    role = serializers.SlugRelatedField(many=False, read_only=True, slug_field="name")
 
     class Meta:
         model = CollectionUser
         fields = (
-            'url',
-            'id',
-            'user',
-            'role',
-            'metadata',
+            "url",
+            "id",
+            "user",
+            "role",
+            "metadata",
         )
 
 
@@ -48,12 +44,12 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = CollectionUser
         fields = (
-            'url',
-            'user',
-            'role',
-            'metadata',
-            'created_on',
-            'modified_on',
+            "url",
+            "user",
+            "role",
+            "metadata",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -61,28 +57,24 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionUser
         fields = (
-            'user',
-            'role',
-            'metadata',
+            "user",
+            "role",
+            "metadata",
         )
 
     def create(self, validated_data):
-        collection = self.context['collection']
-        validated_data['collection'] = collection
+        collection = self.context["collection"]
+        validated_data["collection"] = collection
         return super().create(validated_data)
 
 
 class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionUser
-        fields = (
-            'metadata',
-        )
+        fields = ("metadata",)
 
 
 class RoleSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionUser
-        fields = (
-            'role',
-        )
+        fields = ("role",)

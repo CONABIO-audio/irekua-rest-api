@@ -13,8 +13,7 @@ class HasUpdatePermission(BasePermission):
         user = request.user
         collection = obj.collection
 
-        return collection.has_permission(
-            user, 'change_collection_users')
+        return collection.has_permission(user, "change_collection_users")
 
 
 class IsCollectionAdmin(BasePermission):

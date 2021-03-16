@@ -11,49 +11,30 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Tag
         fields = (
-            'url',
-            'name',
+            "url",
+            "name",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Tag
-        fields = (
-            'url',
-            'name',
-            'description',
-            'icon'
-        )
+        fields = ("url", "name", "description", "icon")
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = Tag
-        fields = (
-            'url',
-            'name',
-            'description',
-            'icon',
-            'created_on',
-            'modified_on'
-        )
+        fields = ("url", "name", "description", "icon", "created_on", "modified_on")
 
 
 class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Tag
-        fields = (
-            'name',
-            'description',
-            'icon'
-        )
+        fields = ("name", "description", "icon")
 
 
 class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Tag
-        fields = (
-            'description',
-            'icon'
-        )
+        fields = ("description", "icon")

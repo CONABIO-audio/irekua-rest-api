@@ -4,7 +4,7 @@ from . import users
 
 
 __all__ = [
-    'institutions',
-    'roles',
-    'users',
+    "institutions",
+    "roles",
+    "users",
 ]

@@ -10,12 +10,12 @@ class LicenceSerializer(IrekuaModelSerializer):
         model = Licence
 
         fields = (
-            'url',
-            'id',
-            'licence_type',
-            'document',
-            'created_on',
-            'created_by',
+            "url",
+            "id",
+            "licence_type",
+            "document",
+            "created_on",
+            "created_by",
         )
 
 

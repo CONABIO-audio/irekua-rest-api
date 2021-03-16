@@ -13,9 +13,9 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = ItemType
         fields = (
-            'url',
-            'name',
-            'id',
+            "url",
+            "name",
+            "id",
         )
 
 
@@ -23,34 +23,30 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = ItemType
         fields = (
-            'url',
-            'name',
-            'id',
-            'description',
-            'icon',
+            "url",
+            "name",
+            "id",
+            "description",
+            "icon",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
-    event_types = events.DetailSerializer(
-        many=True,
-        read_only=True)
-    mime_types = mime_types.SelectSerializer(
-        many=True,
-        read_only=True)
+    event_types = events.DetailSerializer(many=True, read_only=True)
+    mime_types = mime_types.SelectSerializer(many=True, read_only=True)
 
     class Meta:
         model = ItemType
         fields = (
-            'url',
-            'name',
-            'id',
-            'description',
-            'mime_types',
-            'icon',
-            'event_types',
-            'created_on',
-            'modified_on',
+            "url",
+            "name",
+            "id",
+            "description",
+            "mime_types",
+            "icon",
+            "event_types",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -58,9 +54,9 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = ItemType
         fields = (
-            'name',
-            'description',
-            'icon',
+            "name",
+            "description",
+            "icon",
         )
 
 
@@ -68,6 +64,6 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = ItemType
         fields = (
-            'description',
-            'icon',
+            "description",
+            "icon",
         )

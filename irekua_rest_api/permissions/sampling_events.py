@@ -12,16 +12,14 @@ class HasChangePermissions(BasePermission):
     def has_object_permission(self, request, view, obj):
         user = request.user
         collection = obj.collection
-        return collection.has_permission(
-            user, 'change_collection_sampling_events')
+        return collection.has_permission(user, "change_collection_sampling_events")
 
 
 class HasViewPermissions(BasePermission):
     def has_object_permission(self, request, view, obj):
         user = request.user
         collection = obj.collection
-        return collection.has_permission(
-            user, 'view_collection_sampling_events')
+        return collection.has_permission(user, "view_collection_sampling_events")
 
 
 class IsCollectionAdmin(BasePermission):
@@ -43,5 +41,4 @@ class HasViewItemsPermissions(BasePermission):
     def has_object_permission(self, request, view, obj):
         user = request.user
         collection = obj.collection
-        return collection.has_permission(
-            user, 'view_collection_item')
+        return collection.has_permission(user, "view_collection_item")

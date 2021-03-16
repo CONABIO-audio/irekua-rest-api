@@ -4,7 +4,7 @@ from . import tags
 
 
 __all__ = [
-    'items',
-    'secondary_items',
-    'tags',
+    "items",
+    "secondary_items",
+    "tags",
 ]

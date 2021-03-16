@@ -19,31 +19,19 @@ class SiteViewSet(utils.CustomViewSetMixin, ModelViewSet):
     filterset_class = filters.sites.Filter
     search_fields = filters.sites.search_fields
 
-    serializer_mapping = (
-        utils.SerializerMapping
-        .from_module(serializers.sites)
-        .extend(
-            types=serializers.object_types.sites.ListSerializer,
-            add_type=serializers.object_types.sites.CreateSerializer,
-        ))
+    serializer_mapping = utils.SerializerMapping.from_module(serializers.sites).extend(
+        types=serializers.object_types.sites.ListSerializer,
+        add_type=serializers.object_types.sites.CreateSerializer,
+    )
 
-    permission_mapping = utils.PermissionMapping({
-        utils.Actions.UPDATE: [
-            IsAuthenticated,
-            (
-                permissions.IsCreator |
-                IsAdmin
-            )
-        ],
-        utils.Actions.DESTROY: [
-            IsAuthenticated,
-            (
-                permissions.IsCreator |
-                IsAdmin
-            )
-        ],
-        'add_type': [IsAuthenticated, IsAdmin]
-    }, default=IsAuthenticated)
+    permission_mapping = utils.PermissionMapping(
+        {
+            utils.Actions.UPDATE: [IsAuthenticated, (permissions.IsCreator | IsAdmin)],
+            utils.Actions.DESTROY: [IsAuthenticated, (permissions.IsCreator | IsAdmin)],
+            "add_type": [IsAuthenticated, IsAdmin],
+        },
+        default=IsAuthenticated,
+    )
 
     def get_serializer_class(self):
         if self.action == utils.Actions.RETRIEVE:
@@ -57,16 +45,17 @@ class SiteViewSet(utils.CustomViewSetMixin, ModelViewSet):
         return super().get_serializer_class()
 
     def get_queryset(self):
-        if self.action == 'types':
+        if self.action == "types":
             return models.SiteType.objects.all()  # pylint: disable=E1101
 
         return super().get_queryset()
 
     @action(
         detail=False,
-        methods=['GET'],
+        methods=["GET"],
         filterset_class=filters.site_types.Filter,
-        search_fields=filters.site_types.search_fields)
+        search_fields=filters.site_types.search_fields,
+    )
     def types(self, request):
         return self.list_related_object_view()
 

@@ -13,13 +13,14 @@ from irekua_rest_api.permissions import IsAuthenticated
 
 
 class ModelPredictionViewSet(
-        mixins.ListModelMixin,
-        mixins.CreateModelMixin,
-        mixins.UpdateModelMixin,
-        mixins.RetrieveModelMixin,
-        mixins.DestroyModelMixin,
-        utils.CustomViewSetMixin,
-        GenericViewSet):
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     # pylint: disable=no-member
     queryset = models.ModelPrediction.objects.all()
     filterset_class = filters.model_predictions.Filter
@@ -27,4 +28,5 @@ class ModelPredictionViewSet(
 
     permission_mapping = utils.PermissionMapping(default=IsAuthenticated)
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.models.model_prediction)
+        serializers.models.model_prediction
+    )

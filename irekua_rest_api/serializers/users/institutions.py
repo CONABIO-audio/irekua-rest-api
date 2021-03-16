@@ -11,8 +11,8 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Institution
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
@@ -20,12 +20,12 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Institution
         fields = (
-            'url',
-            'id',
-            'institution_name',
-            'institution_code',
-            'subdependency',
-            'logo',
+            "url",
+            "id",
+            "institution_name",
+            "institution_code",
+            "subdependency",
+            "logo",
         )
 
 
@@ -33,18 +33,18 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = Institution
         fields = (
-            'url',
-            'id',
-            'institution_name',
-            'institution_code',
-            'subdependency',
-            'country',
-            'postal_code',
-            'address',
-            'website',
-            'logo',
-            'created_on',
-            'modified_on',
+            "url",
+            "id",
+            "institution_name",
+            "institution_code",
+            "subdependency",
+            "country",
+            "postal_code",
+            "address",
+            "website",
+            "logo",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -52,12 +52,12 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Institution
         fields = (
-            'institution_name',
-            'institution_code',
-            'subdependency',
-            'country',
-            'postal_code',
-            'address',
-            'website',
-            'logo',
+            "institution_name",
+            "institution_code",
+            "subdependency",
+            "country",
+            "postal_code",
+            "address",
+            "website",
+            "logo",
         )

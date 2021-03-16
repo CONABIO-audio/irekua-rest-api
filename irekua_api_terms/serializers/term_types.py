@@ -8,15 +8,15 @@ class TermTypeSerializer(IrekuaModelSerializer):
         model = TermType
 
         fields = (
-            'url',
-            'id',
-            'name',
-            'description',
-            'is_categorical',
-            'is_numerical',
-            'is_boolean',
-            'is_integer',
-            'created_on',
+            "url",
+            "id",
+            "name",
+            "description",
+            "is_categorical",
+            "is_numerical",
+            "is_boolean",
+            "is_integer",
+            "created_on",
         )
 
 
@@ -37,7 +37,7 @@ class TermTypeDetailSerializer(IrekuaModelSerializer):
     class Meta(TermTypeSerializer.Meta):
         fields = (
             *TermTypeSerializer.Meta.fields,
-            'metadata_schema',
-            'synonym_metadata_schema',
-            'entailments',
+            "metadata_schema",
+            "synonym_metadata_schema",
+            "entailments",
         )

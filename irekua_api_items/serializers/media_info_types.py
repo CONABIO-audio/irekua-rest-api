@@ -10,7 +10,7 @@ class MediaInfoTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = MediaInfoType
         fields = (
-            'name',
-            'description',
-            'media_info_schema',
+            "name",
+            "description",
+            "media_info_schema",
         )

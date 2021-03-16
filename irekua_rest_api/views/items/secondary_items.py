@@ -11,13 +11,18 @@ from irekua_rest_api import serializers
 from irekua_rest_api.permissions import IsAuthenticated
 
 
-class SecondaryItemViewSet(mixins.UpdateModelMixin,
-                           mixins.RetrieveModelMixin,
-                           mixins.DestroyModelMixin,
-                           utils.CustomViewSetMixin,
-                           GenericViewSet):
+class SecondaryItemViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.SecondaryItem.objects.all()  # pylint: disable=E1101
 
-    permission_mapping = utils.PermissionMapping(default=IsAuthenticated) # TODO: Fix permissions
+    permission_mapping = utils.PermissionMapping(
+        default=IsAuthenticated
+    )  # TODO: Fix permissions
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.items.secondary_items)
+        serializers.items.secondary_items
+    )

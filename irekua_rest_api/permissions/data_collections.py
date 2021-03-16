@@ -9,7 +9,7 @@ class HasUpdatePermission(BasePermission):
             return True
 
         user = request.user
-        return obj.has_permission(user, 'change_collection')
+        return obj.has_permission(user, "change_collection")
 
 
 class IsCollectionAdmin(BasePermission):
@@ -30,6 +30,7 @@ class IsCollectionTypeAdmin(BasePermission):
         collection_type = obj.collection_type
         return collection_type.is_admin(user)
 
+
 class IsCollectionUser(BasePermission):
     def has_object_permission(self, request, view, obj):
         if not isinstance(obj, Collection):
@@ -45,7 +46,7 @@ class HasAddLicencePermission(BasePermission):
             return True
 
         user = request.user
-        return obj.has_permission(user, 'add_collection_licence')
+        return obj.has_permission(user, "add_collection_licence")
 
 
 class HasAddDevicePermission(BasePermission):
@@ -54,7 +55,7 @@ class HasAddDevicePermission(BasePermission):
             return True
 
         user = request.user
-        return obj.has_permission(user, 'add_collection_device')
+        return obj.has_permission(user, "add_collection_device")
 
 
 class HasAddSitePermission(BasePermission):
@@ -63,7 +64,7 @@ class HasAddSitePermission(BasePermission):
             return True
 
         user = request.user
-        return obj.has_permission(user, 'add_collection_site')
+        return obj.has_permission(user, "add_collection_site")
 
 
 class HasAddUserPermission(BasePermission):
@@ -72,7 +73,7 @@ class HasAddUserPermission(BasePermission):
             return True
 
         user = request.user
-        return obj.has_permission(user, 'add_collection_user')
+        return obj.has_permission(user, "add_collection_user")
 
 
 class HasAddItemPermission(BasePermission):
@@ -81,4 +82,4 @@ class HasAddItemPermission(BasePermission):
             return True
 
         user = request.user
-        return obj.has_permission(user, 'add_collection_item')
+        return obj.has_permission(user, "add_collection_item")

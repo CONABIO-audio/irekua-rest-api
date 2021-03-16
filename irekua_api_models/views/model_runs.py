@@ -22,9 +22,7 @@ class ModelRunViewSet(IrekuaModelViewSet):
 
     serializer_class = serializers.ModelRunDetailSerializer
 
-    serializer_action_classes = {
-        "create": serializers.ModelRunCreateSerializer
-    }
+    serializer_action_classes = {"create": serializers.ModelRunCreateSerializer}
 
     filterset_class = filters.model_runs.Filter
 

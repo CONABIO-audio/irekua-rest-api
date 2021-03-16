@@ -6,6 +6,4 @@ class EntailmentTypeSerializer(IrekuaModelSerializer):
     class Meta:
         model = EntailmentType
 
-        fields = (
-            'id',
-        )
+        fields = ("id",)

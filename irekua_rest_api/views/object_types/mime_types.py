@@ -13,18 +13,23 @@ from irekua_rest_api.permissions import IsDeveloper
 from irekua_rest_api.permissions import IsAuthenticated
 
 
-class MimeTypeViewSet(mixins.RetrieveModelMixin,
-                      mixins.DestroyModelMixin,
-                      mixins.UpdateModelMixin,
-                      utils.CustomViewSetMixin,
-                      GenericViewSet):
+class MimeTypeViewSet(
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.UpdateModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.MimeType.objects.all()  # pylint: disable=E1101
 
-    serializer_mapping = (
-        utils.SerializerMapping
-        .from_module(serializers.object_types.mime_types))
+    serializer_mapping = utils.SerializerMapping.from_module(
+        serializers.object_types.mime_types
+    )
 
-    permission_mapping = utils.PermissionMapping({
-        utils.Actions.RETRIEVE: IsAuthenticated,
-        utils.Actions.DESTROY: IsAdmin,
-    }, default=IsDeveloper | IsAdmin)
+    permission_mapping = utils.PermissionMapping(
+        {
+            utils.Actions.RETRIEVE: IsAuthenticated,
+            utils.Actions.DESTROY: IsAdmin,
+        },
+        default=IsDeveloper | IsAdmin,
+    )

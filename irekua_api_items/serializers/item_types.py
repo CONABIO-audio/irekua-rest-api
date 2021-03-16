@@ -13,9 +13,9 @@ class ItemTypeSerializer(IrekuaModelSerializer):
         model = ItemType
 
         fields = (
-            'url',
-            'id',
-            'name',
-            'media_info_type',
-            'mime_types',
+            "url",
+            "id",
+            "name",
+            "media_info_type",
+            "mime_types",
         )

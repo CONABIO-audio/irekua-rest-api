@@ -8,9 +8,7 @@ from irekua_terms import filters
 class TermTypeViewSet(IrekuaReadOnlyViewSet):
     queryset = TermType.objects.all()
 
-    serializer_action_classes = {
-        'retrieve': serializers.TermTypeDetailSerializer
-    }
+    serializer_action_classes = {"retrieve": serializers.TermTypeDetailSerializer}
 
     serializer_class = serializers.TermTypeSerializer
 

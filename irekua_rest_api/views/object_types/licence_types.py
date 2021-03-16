@@ -9,14 +9,17 @@ from irekua_rest_api import serializers
 from irekua_rest_api import utils
 
 
-class LicenceTypeViewSet(mixins.RetrieveModelMixin,
-                         mixins.DestroyModelMixin,
-                         mixins.UpdateModelMixin,
-                         utils.CustomViewSetMixin,
-                         GenericViewSet):
+class LicenceTypeViewSet(
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.UpdateModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.LicenceType.objects.all()  # pylint: disable=E1101
 
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.object_types.licences)
+        serializers.object_types.licences
+    )
 
     permission_mapping = utils.PermissionMapping()

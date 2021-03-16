@@ -15,48 +15,42 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionSite
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
     locality = serializers.SlugRelatedField(
-        many=False,
-        read_only=True,
-        source='site',
-        slug_field='locality')
+        many=False, read_only=True, source="site", slug_field="locality"
+    )
 
     class Meta:
         model = CollectionSite
         fields = (
-            'url',
-            'id',
-            'site',
-            'site_type',
-            'locality',
-            'internal_id',
+            "url",
+            "id",
+            "site",
+            "site_type",
+            "locality",
+            "internal_id",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
-    site = sites.SelectSerializer(
-        many=False,
-        read_only=True)
-    collection = data_collections.SelectSerializer(
-        many=False,
-        read_only=True)
+    site = sites.SelectSerializer(many=False, read_only=True)
+    collection = data_collections.SelectSerializer(many=False, read_only=True)
 
     class Meta:
         model = CollectionSite
         fields = (
-            'url',
-            'id',
-            'collection',
-            'site',
-            'internal_id',
-            'created_on',
-            'modified_on',
+            "url",
+            "id",
+            "collection",
+            "site",
+            "internal_id",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -64,11 +58,11 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = CollectionSite
         fields = (
-            'site',
-            'internal_id',
+            "site",
+            "internal_id",
         )
 
     def create(self, validated_data):
-        collection = self.context['collection']
-        validated_data['collection'] = collection
+        collection = self.context["collection"]
+        validated_data["collection"] = collection
         return super().create(validated_data)

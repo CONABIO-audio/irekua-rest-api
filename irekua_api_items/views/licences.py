@@ -10,9 +10,7 @@ class LicenceViewSet(IrekuaReadOnlyViewSet):
 
     serializer_class = serializers.LicenceSerializer
 
-    serializer_action_classes = {
-        'retrieve': serializers.LicenceDetailSerializer
-    }
+    serializer_action_classes = {"retrieve": serializers.LicenceDetailSerializer}
 
     filterset_class = filters.licences.Filter
 

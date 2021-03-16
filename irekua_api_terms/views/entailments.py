@@ -8,9 +8,7 @@ from irekua_terms import filters
 class EntailmentViewSet(IrekuaReadOnlyViewSet):
     queryset = Entailment.objects.all()
 
-    serializer_action_classes = {
-        'retrieve': serializers.EntailmentDetailSerializer
-    }
+    serializer_action_classes = {"retrieve": serializers.EntailmentDetailSerializer}
 
     serializer_class = serializers.EntailmentSerializer
 

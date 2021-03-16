@@ -13,8 +13,8 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Licence
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
@@ -22,11 +22,11 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Licence
         fields = (
-            'url',
-            'id',
-            'licence_type',
-            'created_on',
-            'is_active',
+            "url",
+            "id",
+            "licence_type",
+            "created_on",
+            "is_active",
         )
 
 
@@ -37,15 +37,15 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = Licence
         fields = (
-            'url',
-            'id',
-            'licence_type',
-            'created_on',
-            'document',
-            'metadata',
-            'signed_by',
-            'is_active',
-            'collection'
+            "url",
+            "id",
+            "licence_type",
+            "created_on",
+            "document",
+            "metadata",
+            "signed_by",
+            "is_active",
+            "collection",
         )
 
 
@@ -53,32 +53,33 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Licence
         fields = (
-            'licence_type',
-            'document',
-            'metadata',
+            "licence_type",
+            "document",
+            "metadata",
         )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         try:
-            collection = self.context['collection']
+            collection = self.context["collection"]
         except KeyError:
             collection = None
 
         self.collection = collection
 
         try:
-            self.fields['licence_type'].queryset = (
-                self.collection.collection_type.licence_types)
+            self.fields[
+                "licence_type"
+            ].queryset = self.collection.collection_type.licence_types
         except (KeyError, AttributeError):
             pass
 
     def create(self, validated_data):
-        user = self.context['request'].user
-        collection = self.context['collection']
+        user = self.context["request"].user
+        collection = self.context["collection"]
 
-        validated_data['signed_by'] = user
-        validated_data['collection'] = collection
+        validated_data["signed_by"] = user
+        validated_data["collection"] = collection
 
         return super().create(validated_data)

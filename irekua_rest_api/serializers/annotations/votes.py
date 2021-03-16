@@ -14,8 +14,8 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = AnnotationVote
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
@@ -23,30 +23,26 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = AnnotationVote
         fields = (
-            'url',
-            'id',
-            'label',
+            "url",
+            "id",
+            "label",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
-    annotation = annotations.SelectSerializer(
-        many=False,
-        read_only=True)
-    created_by = users.SelectSerializer(
-        many=False,
-        read_only=True)
+    annotation = annotations.SelectSerializer(many=False, read_only=True)
+    created_by = users.SelectSerializer(many=False, read_only=True)
 
     class Meta:
         model = AnnotationVote
         fields = (
-            'url',
-            'id',
-            'annotation',
-            'label',
-            'created_by',
-            'created_on',
-            'modified_on',
+            "url",
+            "id",
+            "annotation",
+            "label",
+            "created_by",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -57,23 +53,21 @@ class CreateSerializer(IrekuaModelSerializer):
         super().__init__(*args, **kwargs)
 
         try:
-            annotation = self.context['annotation']
+            annotation = self.context["annotation"]
             previous_label = annotation.label
 
-            self.fields['label'].initial = previous_label
+            self.fields["label"].initial = previous_label
         except (KeyError, AttributeError):
             pass
 
     class Meta:
         model = AnnotationVote
-        fields = (
-            'label',
-        )
+        fields = ("label",)
 
     def create(self, validated_data):
-        annotation = self.context['annotation']
-        user = self.context['request'].user
+        annotation = self.context["annotation"]
+        user = self.context["request"].user
 
-        validated_data['annotation'] = annotation
-        validated_data['created_by'] = user
+        validated_data["annotation"] = annotation
+        validated_data["created_by"] = user
         return super().create(validated_data)

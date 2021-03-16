@@ -12,39 +12,32 @@ from . import types
 class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = SamplingEventTypeDeviceType
-        fields = (
-            'url',
-            'id'
-        )
+        fields = ("url", "id")
 
 
 class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = SamplingEventTypeDeviceType
         fields = (
-            'url',
-            'id',
-            'sampling_event_type',
-            'device_type',
+            "url",
+            "id",
+            "sampling_event_type",
+            "device_type",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
-    device_type = devices.SelectSerializer(
-        many=False,
-        read_only=True)
-    sampling_event_type = types.SelectSerializer(
-        many=False,
-        read_only=True)
+    device_type = devices.SelectSerializer(many=False, read_only=True)
+    sampling_event_type = types.SelectSerializer(many=False, read_only=True)
 
     class Meta:
         model = SamplingEventTypeDeviceType
         fields = (
-            'url',
-            'id',
-            'sampling_event_type',
-            'device_type',
-            'metadata_schema',
+            "url",
+            "id",
+            "sampling_event_type",
+            "device_type",
+            "metadata_schema",
         )
 
 
@@ -52,19 +45,17 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SamplingEventTypeDeviceType
         fields = (
-            'device_type',
-            'metadata_schema',
+            "device_type",
+            "metadata_schema",
         )
 
     def create(self, validated_data):
-        sampling_event_type = self.context['sampling_event_type']
-        validated_data['sampling_event_type'] = sampling_event_type
+        sampling_event_type = self.context["sampling_event_type"]
+        validated_data["sampling_event_type"] = sampling_event_type
         return super().create(validated_data)
 
 
 class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SamplingEventTypeDeviceType
-        fields = (
-            'metadata_schema',
-        )
+        fields = ("metadata_schema",)

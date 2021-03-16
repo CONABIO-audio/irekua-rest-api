@@ -15,7 +15,7 @@ class SelectSerializer(IrekuaModelSerializer):
 
     class Meta:
         model = ModelPrediction
-        fields = ('url', 'id', 'item', 'model_version')
+        fields = ("url", "id", "item", "model_version")
 
 
 class ListSerializer(IrekuaModelSerializer):
@@ -25,14 +25,7 @@ class ListSerializer(IrekuaModelSerializer):
 
     class Meta:
         model = ModelPrediction
-        fields = (
-            'url',
-            'id',
-            'item',
-            'model_version',
-            'event_type',
-            'certainty'
-        )
+        fields = ("url", "id", "item", "model_version", "event_type", "certainty")
 
 
 class DetailSerializer(IrekuaModelSerializer):
@@ -46,22 +39,22 @@ class DetailSerializer(IrekuaModelSerializer):
     class Meta:
         model = ModelPrediction
         fields = (
-            'url',
-            'id',
-            'item',
-            'model_version',
-            'event_type',
-            'certainty',
-            'labels',
-            'annotation',
-            'created_by',
-            'modified_by',
-            'created_on',
-            'modified_on'
+            "url",
+            "id",
+            "item",
+            "model_version",
+            "event_type",
+            "certainty",
+            "labels",
+            "annotation",
+            "created_by",
+            "modified_by",
+            "created_on",
+            "modified_on",
         )
 
         extra_kwargs = {
-            'labels': {'style': {'base_template': 'input.html'}},
+            "labels": {"style": {"base_template": "input.html"}},
         }
 
 
@@ -69,23 +62,23 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = ModelPrediction
         fields = (
-            'item',
-            'model_version',
-            'event_type',
-            'certainty',
-            'labels',
-            'annotation',
+            "item",
+            "model_version",
+            "event_type",
+            "certainty",
+            "labels",
+            "annotation",
         )
 
         extra_kwargs = {
-            'item': {'style': {'base_template': 'input.html'}},
-            'labels': {'style': {'base_template': 'input.html'}},
+            "item": {"style": {"base_template": "input.html"}},
+            "labels": {"style": {"base_template": "input.html"}},
         }
 
     def create(self, validated_data):
-        user = self.context['request'].user
-        validated_data['created_by'] = user
-        validated_data['modified_by'] = user
+        user = self.context["request"].user
+        validated_data["created_by"] = user
+        validated_data["modified_by"] = user
         return super().create(validated_data)
 
 
@@ -93,16 +86,16 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = ModelPrediction
         fields = (
-            'certainty',
-            'labels',
-            'annotation',
+            "certainty",
+            "labels",
+            "annotation",
         )
 
         extra_kwargs = {
-            'labels': {'style': {'base_template': 'input.html'}},
+            "labels": {"style": {"base_template": "input.html"}},
         }
 
     def update(self, validated_data):
-        user = self.context['request'].user
-        validated_data['modified_by'] = user
+        user = self.context["request"].user
+        validated_data["modified_by"] = user
         return super().create(validated_data)

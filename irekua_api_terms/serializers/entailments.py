@@ -13,11 +13,11 @@ class EntailmentSerializer(IrekuaModelSerializer):
         model = Entailment
 
         fields = (
-            'id',
-            'url',
-            'source',
-            'target',
-            'metadata',
+            "id",
+            "url",
+            "source",
+            "target",
+            "metadata",
         )
 
 
@@ -30,8 +30,8 @@ class EntailmentDetailSerializer(IrekuaModelSerializer):
         model = Entailment
 
         fields = (
-            'id',
-            'source',
-            'target',
-            'metadata',
+            "id",
+            "source",
+            "target",
+            "metadata",
         )

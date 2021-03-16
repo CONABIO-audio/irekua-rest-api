@@ -1,6 +1,5 @@
 from rest_framework.permissions import BasePermission
-from irekua_permissions.annotations import (
-    annotations as annotation_permissions)
+from irekua_permissions.annotations import annotations as annotation_permissions
 
 
 class CanAnnotate(BasePermission):
@@ -24,7 +23,7 @@ class HasUpdatePermission(BasePermission):
         sampling_event = obj.sampling_event_device.sampling_event
         collection = sampling_event.collection
 
-        return collection.has_permission(user, 'change_collection_item')
+        return collection.has_permission(user, "change_collection_item")
 
 
 class HasViewPermission(BasePermission):
@@ -34,7 +33,7 @@ class HasViewPermission(BasePermission):
         sampling_event = obj.sampling_event_device.sampling_event
         collection = sampling_event.collection
 
-        return collection.has_permission(user, 'view_collection_item')
+        return collection.has_permission(user, "view_collection_item")
 
 
 class HasViewAnnotationsPermission(BasePermission):
@@ -44,7 +43,8 @@ class HasViewAnnotationsPermission(BasePermission):
         sampling_event = obj.sampling_event_device.sampling_event
         collection = sampling_event.collection
 
-        return collection.has_permission(user, 'view_collection_annotations')
+        return collection.has_permission(user, "view_collection_annotations")
+
 
 class HasDownloadPermission(BasePermission):
     def has_object_permission(self, request, view, obj):
@@ -53,7 +53,7 @@ class HasDownloadPermission(BasePermission):
         sampling_event = obj.sampling_event_device.sampling_event
         collection = sampling_event.collection
 
-        return collection.has_permission(user, 'download_collection_items')
+        return collection.has_permission(user, "download_collection_items")
 
 
 class HasAddAnnotationPermission(BasePermission):
@@ -63,7 +63,7 @@ class HasAddAnnotationPermission(BasePermission):
         sampling_event = obj.sampling_event_device.sampling_event
         collection = sampling_event.collection
 
-        return collection.has_permission(user, 'add_collection_annotation')
+        return collection.has_permission(user, "add_collection_annotation")
 
 
 class IsCollectionAdmin(BasePermission):

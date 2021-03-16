@@ -19,43 +19,38 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
     site_type = serializers.PrimaryKeyRelatedField(
-        many=False,
-        read_only=True,
-        source='sitetype')
+        many=False, read_only=True, source="sitetype"
+    )
 
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
-            'site_type',
+            "url",
+            "id",
+            "site_type",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
-    site_type = sites.SelectSerializer(
-        many=False,
-        read_only=True,
-        source='sitetype')
+    site_type = sites.SelectSerializer(many=False, read_only=True, source="sitetype")
     sampling_event_type = types.SelectSerializer(
-        many=False,
-        read_only=True,
-        source='samplingeventtype')
+        many=False, read_only=True, source="samplingeventtype"
+    )
 
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
-            'sampling_event_type',
-            'site_type',
+            "url",
+            "id",
+            "sampling_event_type",
+            "site_type",
         )
 
 
@@ -64,15 +59,14 @@ class CreateSerializer(IrekuaModelSerializer):
         many=False,
         read_only=False,
         queryset=SiteType.objects.all(),  # pylint: disable=E1101
-        source='sitetype')
+        source="sitetype",
+    )
 
     class Meta:
         model = MODEL
-        fields = (
-            'site_type',
-        )
+        fields = ("site_type",)
 
     def create(self, validated_data):
-        sampling_event_type = self.context['sampling_event_type']
-        validated_data['samplingeventtype'] = sampling_event_type
+        sampling_event_type = self.context["sampling_event_type"]
+        validated_data["samplingeventtype"] = sampling_event_type
         return super().create(validated_data)

@@ -13,20 +13,15 @@ class SelectSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = SecondaryItem
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = SecondaryItem
-        fields = (
-            'url',
-            'id',
-            'item',
-            'item_type'
-        )
+        fields = ("url", "id", "item", "item_type")
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
@@ -36,14 +31,14 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = SecondaryItem
         fields = (
-            'url',
-            'id',
-            'hash',
-            'item_type',
-            'item',
-            'media_info',
-            'created_on',
-            'modified_on',
+            "url",
+            "id",
+            "hash",
+            "item_type",
+            "item",
+            "media_info",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -51,22 +46,20 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = SecondaryItem
         fields = (
-            'hash',
-            'item_file',
-            'item_type',
-            'item',
-            'media_info',
+            "hash",
+            "item_file",
+            "item_type",
+            "item",
+            "media_info",
         )
 
     def create(self, validated_data):
-        item = self.context['item']
-        validated_data['item'] = item
+        item = self.context["item"]
+        validated_data["item"] = item
         return super().create(validated_data)
 
 
 class DownloadSerializer(IrekuaModelSerializer):
     class Meta:
         model = SecondaryItem
-        fields = (
-            'item_file',
-        )
+        fields = ("item_file",)

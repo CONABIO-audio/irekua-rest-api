@@ -8,7 +8,7 @@ from irekua_rest_api.serializers.models import model
 class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = ModelVersion
-        fields = ('url', 'id', 'model', 'version')
+        fields = ("url", "id", "model", "version")
 
 
 class ListSerializer(IrekuaModelSerializer):
@@ -17,10 +17,10 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = ModelVersion
         fields = (
-            'url',
-            'id',
-            'model',
-            'version',
+            "url",
+            "id",
+            "model",
+            "version",
         )
 
 
@@ -30,31 +30,31 @@ class DetailSerializer(IrekuaModelSerializer):
     class Meta:
         model = ModelVersion
         fields = (
-            'url',
-            'id',
-            'model',
-            'version',
+            "url",
+            "id",
+            "model",
+            "version",
         )
 
 
 class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = ModelVersion
-        fields = ('model', 'version')
+        fields = ("model", "version")
 
     def create(self, validated_data):
-        user = self.context['request'].user
-        validated_data['created_by'] = user
-        validated_data['modified_by'] = user
+        user = self.context["request"].user
+        validated_data["created_by"] = user
+        validated_data["modified_by"] = user
         return super().create(validated_data)
 
 
 class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = ModelVersion
-        fields = ('version',)
+        fields = ("version",)
 
     def update(self, validated_data):
-        user = self.context['request'].user
-        validated_data['modified_by'] = user
+        user = self.context["request"].user
+        validated_data["modified_by"] = user
         return super().create(validated_data)

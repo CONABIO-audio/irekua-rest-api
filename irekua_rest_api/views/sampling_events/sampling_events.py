@@ -18,71 +18,62 @@ from irekua_rest_api.permissions import IsSpecialUser
 import irekua_rest_api.permissions.sampling_events as permissions
 
 
-class SamplingEventViewSet(mixins.UpdateModelMixin,
-                           mixins.RetrieveModelMixin,
-                           mixins.DestroyModelMixin,
-                           mixins.ListModelMixin,
-                           utils.CustomViewSetMixin,
-                           GenericViewSet):
+class SamplingEventViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.SamplingEvent.objects.all()  # pylint: disable=E1101
     search_fields = filters.sampling_events.search_fields
     filterset_class = filters.sampling_events.Filter
 
-    serializer_mapping = (
-        utils.SerializerMapping
-        .from_module(serializers.sampling_events.sampling_events)
-        .extend(
-            items=serializers.items.items.ListSerializer,
-            devices=serializers.sampling_events.devices.ListSerializer,
-            add_device=serializers.sampling_events.devices.CreateSerializer,
-        ))
+    serializer_mapping = utils.SerializerMapping.from_module(
+        serializers.sampling_events.sampling_events
+    ).extend(
+        items=serializers.items.items.ListSerializer,
+        devices=serializers.sampling_events.devices.ListSerializer,
+        add_device=serializers.sampling_events.devices.CreateSerializer,
+    )
 
-    permission_mapping = utils.PermissionMapping({
-        utils.Actions.UPDATE: [
-            IsAuthenticated,
-            (
-                permissions.IsCreator |
-                permissions.HasChangePermissions |
-                IsAdmin
-            )
-        ],
-        utils.Actions.RETRIEVE: [
-            IsAuthenticated,
-            (
-                permissions.IsCreator |
-                permissions.HasViewPermissions |
-                permissions.IsCollectionAdmin |
-                permissions.IsCollectionTypeAdmin |
-                IsSpecialUser
-            )
-        ],
-        utils.Actions.DESTROY: [
-            IsAuthenticated,
-            (
-                permissions.IsCreator |
-                IsAdmin
-            )
-        ],
-        utils.Actions.LIST: [
-            IsAuthenticated,
-        ],
-        'items': [
-            IsAuthenticated,
-            (
-                permissions.IsCreator |
-                permissions.HasViewItemsPermissions |
-                permissions.IsCollectionAdmin |
-                permissions.IsCollectionTypeAdmin |
-                IsAdmin
-            )
-        ],
-    })
+    permission_mapping = utils.PermissionMapping(
+        {
+            utils.Actions.UPDATE: [
+                IsAuthenticated,
+                (permissions.IsCreator | permissions.HasChangePermissions | IsAdmin),
+            ],
+            utils.Actions.RETRIEVE: [
+                IsAuthenticated,
+                (
+                    permissions.IsCreator
+                    | permissions.HasViewPermissions
+                    | permissions.IsCollectionAdmin
+                    | permissions.IsCollectionTypeAdmin
+                    | IsSpecialUser
+                ),
+            ],
+            utils.Actions.DESTROY: [IsAuthenticated, (permissions.IsCreator | IsAdmin)],
+            utils.Actions.LIST: [
+                IsAuthenticated,
+            ],
+            "items": [
+                IsAuthenticated,
+                (
+                    permissions.IsCreator
+                    | permissions.HasViewItemsPermissions
+                    | permissions.IsCollectionAdmin
+                    | permissions.IsCollectionTypeAdmin
+                    | IsAdmin
+                ),
+            ],
+        }
+    )
 
     def get_object(self):
-        sampling_event_pk = self.kwargs['pk']
-        sampling_event = get_object_or_404(
-            models.SamplingEvent,
-            pk=sampling_event_pk)
+        sampling_event_pk = self.kwargs["pk"]
+        sampling_event = get_object_or_404(models.SamplingEvent, pk=sampling_event_pk)
 
         self.check_object_permissions(self.request, sampling_event)
         return sampling_event
@@ -95,26 +86,30 @@ class SamplingEventViewSet(mixins.UpdateModelMixin,
         except (KeyError, AssertionError, AttributeError):
             sampling_event = None
 
-        context['sampling_event'] = sampling_event
+        context["sampling_event"] = sampling_event
         return context
 
     def get_queryset(self):
-        if self.action == 'devices':
-            object_id = self.kwargs['pk']
-            return models.SamplingEventDevice.objects.filter(sampling_event=object_id)  # pylint: disable=E1101
+        if self.action == "devices":
+            object_id = self.kwargs["pk"]
+            return models.SamplingEventDevice.objects.filter(
+                sampling_event=object_id
+            )  # pylint: disable=E1101
 
-        if self.action == 'items' or self.action == 'item_locations':
-            object_id = self.kwargs['pk']
+        if self.action == "items" or self.action == "item_locations":
+            object_id = self.kwargs["pk"]
             return models.Item.objects.filter(  # pylint: disable=E1101
-                sampling_event_device__sampling_event=object_id)
+                sampling_event_device__sampling_event=object_id
+            )
 
         return super().get_queryset()
 
     @action(
         detail=True,
-        methods=['GET'],
+        methods=["GET"],
         filterset_class=filters.sampling_event_devices.Filter,
-        search_fields=filters.sampling_event_devices.search_fields)
+        search_fields=filters.sampling_event_devices.search_fields,
+    )
     def devices(self, request, pk=None):
         return self.list_related_object_view()
 
@@ -124,33 +119,32 @@ class SamplingEventViewSet(mixins.UpdateModelMixin,
 
     @action(
         detail=True,
-        methods=['GET'],
+        methods=["GET"],
         filterset_class=filters.items.Filter,
-        search_fields=filters.items.search_fields)
+        search_fields=filters.items.search_fields,
+    )
     def items(self, request, pk=None):
         return self.list_related_object_view()
 
-    @action(
-        detail=True,
-        methods=['GET'])
+    @action(detail=True, methods=["GET"])
     def location(self, request, pk=None):
         sampling_event = self.get_object()
         serializer = serializers.sites.SamplingEventLocationSerializer(
-            [sampling_event],
-            many=True)
+            [sampling_event], many=True
+        )
 
         return Response(serializer.data)
 
     @action(
         detail=True,
-        methods=['GET'],
+        methods=["GET"],
         filterset_class=filters.items.Filter,
-        search_fields=filters.items.search_fields)
+        search_fields=filters.items.search_fields,
+    )
     def item_locations(self, request, pk=None):
         queryset = self.filter_queryset(self.get_queryset())
 
         serializer = serializers.sites.ItemLocationSerializer(
-            queryset,
-            many=True,
-            read_only=True)
+            queryset, many=True, read_only=True
+        )
         return Response(serializer.data)

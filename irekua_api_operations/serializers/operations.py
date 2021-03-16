@@ -8,11 +8,11 @@ class OperationSerializer(IrekuaModelSerializer):
         model = Operation
 
         fields = (
-            'url',
-            'id',
-            'name',
-            'description',
-            'created_on',
+            "url",
+            "id",
+            "name",
+            "description",
+            "created_on",
         )
 
 
@@ -20,5 +20,5 @@ class OperationDetailSerializer(IrekuaModelSerializer):
     class Meta(OperationSerializer.Meta):
         fields = (
             *OperationSerializer.Meta.fields,
-            'modified_on',
+            "modified_on",
         )

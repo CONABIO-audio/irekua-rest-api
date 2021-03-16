@@ -19,43 +19,40 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
     sampling_event_type = serializers.PrimaryKeyRelatedField(
-        many=False,
-        read_only=True,
-        source='samplingeventtype')
+        many=False, read_only=True, source="samplingeventtype"
+    )
 
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
-            'sampling_event_type',
+            "url",
+            "id",
+            "sampling_event_type",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     sampling_event_type = sampling_events.types.SelectSerializer(
-        many=False,
-        read_only=True,
-        source='samplingeventtype')
+        many=False, read_only=True, source="samplingeventtype"
+    )
     collection_type = types.SelectSerializer(
-        many=False,
-        read_only=True,
-        source='collectiontype')
+        many=False, read_only=True, source="collectiontype"
+    )
 
     class Meta:
         model = MODEL
         fields = (
-            'url',
-            'id',
-            'collection_type',
-            'sampling_event_type',
+            "url",
+            "id",
+            "collection_type",
+            "sampling_event_type",
         )
 
 
@@ -64,15 +61,14 @@ class CreateSerializer(IrekuaModelSerializer):
         many=False,
         read_only=False,
         queryset=SamplingEventType.objects.all(),  # pylint: disable=E1101
-        source='samplingeventtype')
+        source="samplingeventtype",
+    )
 
     class Meta:
         model = MODEL
-        fields = (
-            'sampling_event_type',
-        )
+        fields = ("sampling_event_type",)
 
     def create(self, validated_data):
-        collection_type = self.context['collection_type']
-        validated_data['collectiontype'] = collection_type
+        collection_type = self.context["collection_type"]
+        validated_data["collectiontype"] = collection_type
         return super().create(validated_data)

@@ -10,12 +10,12 @@ from .generic import IsSpecialUser
 
 
 __all__ = [
-    'IsUnauthenticated',
-    'IsDeveloper',
-    'IsModel',
-    'IsCurator',
-    'IsAdmin',
-    'IsSpecialUser',
-    'IsAuthenticated',
-    'ReadOnly',
+    "IsUnauthenticated",
+    "IsDeveloper",
+    "IsModel",
+    "IsCurator",
+    "IsAdmin",
+    "IsSpecialUser",
+    "IsAuthenticated",
+    "ReadOnly",
 ]

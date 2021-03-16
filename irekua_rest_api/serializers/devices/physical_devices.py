@@ -15,31 +15,25 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = PhysicalDevice
         fields = (
-            'url',
-            'id',
+            "url",
+            "id",
         )
 
 
 class ListSerializer(IrekuaModelSerializer):
-    type = serializers.CharField(
-        read_only=True,
-        source='device.device_type.name')
-    brand = serializers.CharField(
-        read_only=True,
-        source='device.brand.name')
-    model = serializers.CharField(
-        read_only=True,
-        source='device.model')
+    type = serializers.CharField(read_only=True, source="device.device_type.name")
+    brand = serializers.CharField(read_only=True, source="device.brand.name")
+    model = serializers.CharField(read_only=True, source="device.model")
 
     class Meta:
         model = PhysicalDevice
         fields = (
-            'url',
-            'id',
-            'serial_number',
-            'type',
-            'brand',
-            'model',
+            "url",
+            "id",
+            "serial_number",
+            "type",
+            "brand",
+            "model",
         )
 
 
@@ -50,14 +44,14 @@ class DetailSerializer(IrekuaHyperlinkedModelSerializer):
     class Meta:
         model = PhysicalDevice
         fields = (
-            'url',
-            'serial_number',
-            'owner',
-            'metadata',
-            'bundle',
-            'device',
-            'created_on',
-            'modified_on',
+            "url",
+            "serial_number",
+            "owner",
+            "metadata",
+            "bundle",
+            "device",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -65,15 +59,15 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = PhysicalDevice
         fields = (
-            'serial_number',
-            'device',
-            'metadata',
-            'bundle',
+            "serial_number",
+            "device",
+            "metadata",
+            "bundle",
         )
 
     def create(self, validated_data):
-        user = self.context['request'].user
-        validated_data['owner'] = user
+        user = self.context["request"].user
+        validated_data["owner"] = user
         return super().create(validated_data)
 
 
@@ -81,6 +75,6 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = PhysicalDevice
         fields = (
-            'serial_number',
-            'metadata',
+            "serial_number",
+            "metadata",
         )

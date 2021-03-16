@@ -9,18 +9,13 @@ from irekua_rest_api.serializers.terms import terms
 class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = Model
-        fields = ('url', 'id', 'name')
+        fields = ("url", "id", "name")
 
 
 class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = Model
-        fields = (
-            'url',
-            'id',
-            'name',
-            'description'
-        )
+        fields = ("url", "id", "name", "description")
 
 
 class DetailSerializer(IrekuaModelSerializer):
@@ -30,13 +25,13 @@ class DetailSerializer(IrekuaModelSerializer):
     class Meta:
         model = Model
         fields = (
-            'url',
-            'id',
-            'name',
-            'description',
-            'repository',
-            'annotation_type',
-            'terms',
+            "url",
+            "id",
+            "name",
+            "description",
+            "repository",
+            "annotation_type",
+            "terms",
         )
 
 
@@ -44,23 +39,23 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Model
         fields = (
-            'name',
-            'description',
-            'repository',
-            'annotation_type',
-            'terms',
-            'event_types',
-            'item_types',
+            "name",
+            "description",
+            "repository",
+            "annotation_type",
+            "terms",
+            "event_types",
+            "item_types",
         )
 
         extra_kwargs = {
-            'terms': {'style': {'base_template': 'input.html'}},
+            "terms": {"style": {"base_template": "input.html"}},
         }
 
     def create(self, validated_data):
-        user = self.context['request'].user
-        validated_data['created_by'] = user
-        validated_data['modified_by'] = user
+        user = self.context["request"].user
+        validated_data["created_by"] = user
+        validated_data["modified_by"] = user
         return super().create(validated_data)
 
 
@@ -68,20 +63,20 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = Model
         fields = (
-            'name',
-            'description',
-            'repository',
-            'annotation_type',
-            'terms',
-            'event_types',
-            'item_types',
+            "name",
+            "description",
+            "repository",
+            "annotation_type",
+            "terms",
+            "event_types",
+            "item_types",
         )
 
         extra_kwargs = {
-            'terms': {'style': {'base_template': 'input.html'}},
+            "terms": {"style": {"base_template": "input.html"}},
         }
 
     def update(self, validated_data):
-        user = self.context['request'].user
-        validated_data['modified_by'] = user
+        user = self.context["request"].user
+        validated_data["modified_by"] = user
         return super().create(validated_data)

@@ -12,15 +12,15 @@ from . import mime_types
 
 
 __all__ = [
-    'annotations',
-    'devices',
-    'entailments',
-    'events',
-    'items',
-    'licences',
-    'sites',
-    'terms',
-    'data_collections',
-    'sampling_events',
-    'mime_types',
+    "annotations",
+    "devices",
+    "entailments",
+    "events",
+    "items",
+    "licences",
+    "sites",
+    "terms",
+    "data_collections",
+    "sampling_events",
+    "mime_types",
 ]

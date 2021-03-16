@@ -4,4 +4,4 @@ from . import views
 
 
 router = IrekuaAPIRouter()
-router.register(r'schemas', views.SchemaViewSet)
+router.register(r"schemas", views.SchemaViewSet)

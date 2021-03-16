@@ -6,9 +6,9 @@ from . import terms
 
 
 __all__ = [
-    'entailments',
-    'synonym_suggestions',
-    'synonyms',
-    'suggestions',
-    'terms',
+    "entailments",
+    "synonym_suggestions",
+    "synonyms",
+    "suggestions",
+    "terms",
 ]

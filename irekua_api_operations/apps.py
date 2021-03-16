@@ -5,4 +5,4 @@ from django.apps import AppConfig
 
 
 class IrekuaAPIOperationsConfig(AppConfig):
-    name = 'irekua_api_operations'
+    name = "irekua_api_operations"

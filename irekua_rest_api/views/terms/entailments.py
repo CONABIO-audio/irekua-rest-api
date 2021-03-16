@@ -13,15 +13,17 @@ from irekua_rest_api.permissions import IsCurator
 from irekua_rest_api.permissions import ReadOnly
 
 
-class EntailmentViewSet(mixins.UpdateModelMixin,
-                        mixins.RetrieveModelMixin,
-                        mixins.DestroyModelMixin,
-                        utils.CustomViewSetMixin,
-                        GenericViewSet):
+class EntailmentViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.Entailment.objects.all()  # pylint: disable=E1101
 
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.terms.entailments)
+        serializers.terms.entailments
+    )
 
-    permission_mapping = utils.PermissionMapping(
-        default=IsAdmin | IsCurator | ReadOnly)
+    permission_mapping = utils.PermissionMapping(default=IsAdmin | IsCurator | ReadOnly)

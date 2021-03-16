@@ -9,13 +9,16 @@ from irekua_rest_api import serializers
 from irekua_rest_api import utils
 
 
-class SamplingEventTypeDeviceTypeViewSet(mixins.RetrieveModelMixin,
-                                         mixins.DestroyModelMixin,
-                                         utils.CustomViewSetMixin,
-                                         GenericViewSet):
+class SamplingEventTypeDeviceTypeViewSet(
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.SamplingEventTypeDeviceType.objects.all()  # pylint: disable=E1101
 
     serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.object_types.sampling_events.devices)
+        serializers.object_types.sampling_events.devices
+    )
 
     permission_mapping = utils.PermissionMapping()

@@ -22,9 +22,7 @@ class ModelVersionViewSet(IrekuaModelViewSet):
 
     serializer_class = serializers.ModelVersionDetailSerializer
 
-    serializer_action_classes = {
-        "create": serializers.ModelVersionCreateSerializer
-    }
+    serializer_action_classes = {"create": serializers.ModelVersionCreateSerializer}
 
     filterset_class = filters.model_versions.Filter
 

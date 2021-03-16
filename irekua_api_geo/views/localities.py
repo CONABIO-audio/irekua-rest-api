@@ -10,9 +10,7 @@ class LocalityViewSet(IrekuaReadOnlyViewSet):
 
     serializer_class = serializers.LocalitySerializer
 
-    serializer_action_classes = {
-        'retrieve': serializers.LocalityDetailSerializer
-    }
+    serializer_action_classes = {"retrieve": serializers.LocalityDetailSerializer}
 
     filterset_class = filters.localities.Filter
 

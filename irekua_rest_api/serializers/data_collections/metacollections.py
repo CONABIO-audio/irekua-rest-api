@@ -11,8 +11,8 @@ class SelectSerializer(IrekuaModelSerializer):
     class Meta:
         model = MetaCollection
         fields = (
-            'url',
-            'name',
+            "url",
+            "name",
         )
 
 
@@ -20,26 +20,24 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = MetaCollection
         fields = (
-            'url',
-            'name',
-            'description',
+            "url",
+            "name",
+            "description",
         )
 
 
 class DetailSerializer(IrekuaModelSerializer):
-    created_by = users.SelectSerializer(
-        many=False,
-        read_only=True)
+    created_by = users.SelectSerializer(many=False, read_only=True)
 
     class Meta:
         model = MetaCollection
         fields = (
-            'url',
-            'name',
-            'description',
-            'created_by',
-            'created_on',
-            'modified_on',
+            "url",
+            "name",
+            "description",
+            "created_by",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -47,19 +45,17 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = MetaCollection
         fields = (
-            'name',
-            'description',
+            "name",
+            "description",
         )
 
     def create(self, validated_data):
-        user = self.context['request'].user
-        validated_data['created_by'] = user
+        user = self.context["request"].user
+        validated_data["created_by"] = user
         return super().create(validated_data)
 
 
 class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = MetaCollection
-        fields = (
-            'description',
-        )
+        fields = ("description",)

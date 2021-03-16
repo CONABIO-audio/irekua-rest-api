@@ -4,6 +4,6 @@ from . import views
 
 
 router = IrekuaAPIRouter()
-router.register(r'term_types', views.TermTypeViewSet)
-router.register(r'terms', views.TermViewSet)
-router.register(r'entailments', views.EntailmentViewSet)
+router.register(r"term_types", views.TermTypeViewSet)
+router.register(r"terms", views.TermViewSet)
+router.register(r"entailments", views.EntailmentViewSet)

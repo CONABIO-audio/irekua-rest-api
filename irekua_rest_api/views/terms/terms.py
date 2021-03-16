@@ -13,15 +13,17 @@ from irekua_rest_api.permissions import IsDeveloper
 from irekua_rest_api.permissions import ReadOnly
 
 
-class TermViewSet(mixins.UpdateModelMixin,
-                  mixins.RetrieveModelMixin,
-                  mixins.DestroyModelMixin,
-                  utils.CustomViewSetMixin,
-                  GenericViewSet):
+class TermViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    utils.CustomViewSetMixin,
+    GenericViewSet,
+):
     queryset = models.Term.objects.all()  # pylint: disable=E1101
 
-    serializer_mapping = utils.SerializerMapping.from_module(
-        serializers.terms.terms)
+    serializer_mapping = utils.SerializerMapping.from_module(serializers.terms.terms)
 
     permission_mapping = utils.PermissionMapping(
-        default=IsDeveloper | IsAdmin | ReadOnly)
+        default=IsDeveloper | IsAdmin | ReadOnly
+    )

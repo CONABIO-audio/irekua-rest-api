@@ -19,20 +19,20 @@ class SerializerMapping(object):
     def from_module(cls, module):
         serializer_mapping = {}
 
-        if hasattr(module, 'ListSerializer'):
+        if hasattr(module, "ListSerializer"):
             serializer_mapping[Actions.LIST] = module.ListSerializer
 
-        if hasattr(module, 'CreateSerializer'):
+        if hasattr(module, "CreateSerializer"):
             serializer_mapping[Actions.CREATE] = module.CreateSerializer
 
-        if hasattr(module, 'DetailSerializer'):
+        if hasattr(module, "DetailSerializer"):
             serializer_mapping[Actions.RETRIEVE] = module.DetailSerializer
 
-        if hasattr(module, 'UpdateSerializer'):
+        if hasattr(module, "UpdateSerializer"):
             serializer_mapping[Actions.UPDATE] = module.UpdateSerializer
             serializer_mapping[Actions.PARTIAL_UPDATE] = module.UpdateSerializer
 
-        if hasattr(module, 'MetadataSerializer'):
+        if hasattr(module, "MetadataSerializer"):
             serializer_mapping[Actions.METADATA] = module.MetadataSerializer
 
         return cls(serializer_mapping)

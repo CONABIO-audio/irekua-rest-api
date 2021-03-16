@@ -12,16 +12,15 @@ from . import terms
 
 class SelectSerializer(IrekuaModelSerializer):
     name = serializers.PrimaryKeyRelatedField(
-        many=False,
-        read_only=False,
-        queryset=EventType.objects.all())
+        many=False, read_only=False, queryset=EventType.objects.all()
+    )
 
     class Meta:
         model = EventType
         fields = (
-            'url',
-            'name',
-            'id',
+            "url",
+            "name",
+            "id",
         )
 
 
@@ -29,8 +28,8 @@ class DescriptionSerializer(IrekuaModelSerializer):
     class Meta:
         model = EventType
         fields = (
-            'name',
-            'description',
+            "name",
+            "description",
         )
 
 
@@ -38,30 +37,28 @@ class ListSerializer(IrekuaModelSerializer):
     class Meta:
         model = EventType
         fields = (
-            'url',
-            'id',
-            'name',
-            'description',
-            'icon',
+            "url",
+            "id",
+            "name",
+            "description",
+            "icon",
         )
 
 
 class DetailSerializer(IrekuaHyperlinkedModelSerializer):
-    term_types = terms.SelectSerializer(
-        many=True,
-        read_only=True)
+    term_types = terms.SelectSerializer(many=True, read_only=True)
 
     class Meta:
         model = EventType
         fields = (
-            'url',
-            'id',
-            'name',
-            'description',
-            'icon',
-            'term_types',
-            'created_on',
-            'modified_on'
+            "url",
+            "id",
+            "name",
+            "description",
+            "icon",
+            "term_types",
+            "created_on",
+            "modified_on",
         )
 
 
@@ -69,9 +66,9 @@ class CreateSerializer(IrekuaModelSerializer):
     class Meta:
         model = EventType
         fields = (
-            'name',
-            'description',
-            'icon',
+            "name",
+            "description",
+            "icon",
         )
 
 
@@ -79,6 +76,6 @@ class UpdateSerializer(IrekuaModelSerializer):
     class Meta:
         model = EventType
         fields = (
-            'description',
-            'icon',
+            "description",
+            "icon",
         )

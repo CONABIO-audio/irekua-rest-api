@@ -7,12 +7,12 @@ class SiteDescriptorTypeSerializer(IrekuaModelSerializer):
         model = SiteDescriptorType
 
         fields = (
-            'url',
-            'id',
-            'name',
-            'description',
-            'icon',
-            'created_on',
+            "url",
+            "id",
+            "name",
+            "description",
+            "icon",
+            "created_on",
         )
 
 
@@ -20,7 +20,7 @@ class SiteDescriptorTypeDetailSerializer(IrekuaModelSerializer):
     class Meta(SiteDescriptorTypeSerializer.Meta):
         fields = (
             *SiteDescriptorTypeSerializer.Meta.fields,
-            'metadata',
-            'source',
-            'modified_on',
+            "metadata",
+            "source",
+            "modified_on",
         )
