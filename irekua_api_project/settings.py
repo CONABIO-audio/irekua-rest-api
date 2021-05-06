@@ -18,6 +18,8 @@ from irekua_annotators.settings import *
 from irekua_visualizers.settings import *
 from irekua_thumbnails.settings import *
 
+from corsheaders.defaults import default_headers
+
 
 MIGRATE = False
 
@@ -77,6 +79,8 @@ MIDDLEWARE = [
 ]
 
 
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = list(default_headers) + ["x-csrftoken", "x-requested-with"]
 CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "irekua_api_project.urls"
