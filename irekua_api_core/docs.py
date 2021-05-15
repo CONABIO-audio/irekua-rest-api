@@ -15,7 +15,7 @@ def generate_docs(router, app, title, description, version):
             name=f"{app}-doc",
         ),
         path(
-            "schema/",
+            r"schema/",
             get_schema_view(
                 title=title,
                 description=description,

@@ -1,11 +1,11 @@
 from irekua_models.models import ModelRun
-from irekua_api_core.views import IrekuaModelViewSet
+from irekua_models import filters
 
+from irekua_api_core.views import IrekuaModelViewSet
 from irekua_api_core.permissions import IsAuthenticated
 from irekua_api_core.permissions import IsSuperuser
 from irekua_api_core.permissions import IsDeveloper
 from irekua_api_models import serializers
-from irekua_models import filters
 
 
 class ModelRunViewSet(IrekuaModelViewSet):
