@@ -10,7 +10,9 @@ class SiteDescriptorViewSet(IrekuaReadOnlyViewSet):
 
     serializer_class = serializers.SiteDescriptorSerializer
 
-    serializer_action_classes = {"retrieve": serializers.SiteDescriptorDetailSerializer}
+    serializer_action_classes = {
+        "retrieve": serializers.SiteDescriptorDetailSerializer,
+    }
 
     filterset_class = filters.site_descriptors.Filter
 

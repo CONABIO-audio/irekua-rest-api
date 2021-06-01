@@ -4,6 +4,18 @@ from .site_descriptor_types import SiteDescriptorTypeSerializer
 from .site_descriptor_types import SiteDescriptorTypeDetailSerializer
 
 
+class SimpleSiteTypeSerializer(IrekuaModelSerializer):
+    class Meta:
+        model = SiteType
+
+        fields = (
+            "url",
+            "id",
+            "name",
+            "description",
+        )
+
+
 class SiteTypeSerializer(IrekuaModelSerializer):
     site_descriptor_types = SiteDescriptorTypeSerializer(read_only=True, many=True)
 
