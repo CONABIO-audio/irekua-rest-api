@@ -4,11 +4,21 @@ from .base import IrekuaModelSerializer
 from .institutions import InstitutionSerializer
 
 
-class UserSerializer(IrekuaModelSerializer):
+class SimpleUserSerializer(IrekuaModelSerializer):
     class Meta:
         model = User
+
         fields = (
+            "url",
+            "id",
             "username",
+        )
+
+
+class UserSerializer(SimpleUserSerializer):
+    class Meta(SimpleUserSerializer.Meta):
+        fields = (
+            *SimpleUserSerializer.Meta.fields,
             "first_name",
             "last_name",
             "email",
@@ -18,8 +28,6 @@ class UserSerializer(IrekuaModelSerializer):
 class UserListSerializer(IrekuaModelSerializer):
     class Meta(UserSerializer.Meta):
         fields = (
-            "url",
-            "id",
             *UserSerializer.Meta.fields,
             "is_developer",
             "is_curator",

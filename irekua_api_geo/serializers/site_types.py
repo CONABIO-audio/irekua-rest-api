@@ -12,7 +12,6 @@ class SimpleSiteTypeSerializer(IrekuaModelSerializer):
             "url",
             "id",
             "name",
-            "description",
         )
 
 

@@ -10,9 +10,8 @@ from irekua_api_core.serializers import IrekuaUserModelSerializer
 from .localities import LocalitySerializer
 
 
-class SiteSerializer(IrekuaModelSerializer):
+class SimpleSiteSerializer(IrekuaUserModelSerializer):
     geometry = serializers.SerializerMethodField("get_geometry")
-    localities = LocalitySerializer(read_only=True, many=True)
 
     class Meta:
         model = Site
@@ -21,7 +20,6 @@ class SiteSerializer(IrekuaModelSerializer):
             "url",
             "id",
             "name",
-            "localities",
             "geometry",
         )
 
@@ -30,6 +28,16 @@ class SiteSerializer(IrekuaModelSerializer):
             return json.loads(obj.geom().geojson)
         except ValueError:
             return None
+
+
+class SiteSerializer(SimpleSiteSerializer):
+    localities = LocalitySerializer(read_only=True, many=True)
+
+    class Meta(SimpleSiteSerializer.Meta):
+        fields = (
+            *SimpleSiteSerializer.Meta.fields,
+            "localities",
+        )
 
 
 class SiteGeometryField(GeometryField):

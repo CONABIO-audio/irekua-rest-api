@@ -48,7 +48,6 @@ class PermissionMapping(object):
 class PermissionMappingMixin(object):
     @property
     def permission_mapping(self):
-        print(self.__name__)
         raise NotImplementedError
 
     def get_permissions(self):

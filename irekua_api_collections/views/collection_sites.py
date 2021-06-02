@@ -10,7 +10,26 @@ from irekua_api_collections import serializers
 class CollectionSiteViewSet(IrekuaReadOnlyViewSet):
     permission_classes = [IsSpecial | IsOwner]
 
-    queryset = CollectionSite.objects.all()
+    queryset = (
+        CollectionSite.objects.all()
+        .prefetch_related(
+            "site_descriptors__descriptor_type",
+            "parent_site__site_type",
+            "parent_site__parent_site__site_type",
+        )
+        .select_related(
+            "collection",
+            "site_type",
+            "site",
+            "site__linestringsite",
+            "site__multilinestringsite",
+            "site__multipointsite",
+            "site__multipolygonsite",
+            "site__pointsite",
+            "site__polygonsite",
+            "created_by",
+        )
+    )
 
     serializer_class = serializers.CollectionSiteSerializer
 
