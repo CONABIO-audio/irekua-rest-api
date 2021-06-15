@@ -11,6 +11,8 @@ from .sampling_event_types import SamplingEventTypeDetailSerializer
 from .sampling_event_types import SamplingEventTypeSerializer
 from .sampling_events import SamplingEventSerializer
 from .deployments import DeploymentSerializer
+from .collection_annotations import CollectionAnnotationSerializer
+from .collection_annotations import CollectionAnnotationDetailSerializer
 
 
 __all__ = [
@@ -27,4 +29,6 @@ __all__ = [
     "SamplingEventSerializer",
     "SamplingEventTypeDetailSerializer",
     "SamplingEventTypeSerializer",
+    "CollectionAnnotationSerializer",
+    "CollectionAnnotationDetailSerializer",
 ]

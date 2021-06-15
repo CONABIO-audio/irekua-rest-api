@@ -1,11 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from rest_framework.permissions import BasePermission
 
 from irekua_api_core.views import IrekuaModelViewSet
 from irekua_api_core.permissions import IsAuthenticated
-from irekua_api_core.permissions import IsSpecial
-from irekua_api_core.permissions import IsOwner
 
 from irekua_collections.models import CollectionItem
 from irekua_collections import filters

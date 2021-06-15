@@ -43,3 +43,7 @@ router.register(
     r"deployments",
     views.DeploymentViewSet,
 )
+router.register(
+    r"collection_annotations",
+    views.CollectionAnnotationViewSet,
+)

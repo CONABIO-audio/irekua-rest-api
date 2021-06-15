@@ -1,4 +1,5 @@
 from .collection_devices import CollectionDeviceViewSet
+from .collection_annotations import CollectionAnnotationViewSet
 from .collection_items import CollectionItemViewSet
 from .collection_licences import CollectionLicenceViewSet
 from .collection_sites import CollectionSiteViewSet
@@ -11,6 +12,7 @@ from .deployments import DeploymentViewSet
 
 __all__ = [
     "CollectionDeviceViewSet",
+    "CollectionAnnotationViewSet",
     "CollectionItemViewSet",
     "CollectionLicenceViewSet",
     "CollectionSiteViewSet",
