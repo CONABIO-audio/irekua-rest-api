@@ -81,5 +81,9 @@ urlpatterns = [
         "api/models/",
         include("irekua_api_models.urls"),
     ),
+    url(
+        "api/visualizers/",
+        include("irekua_api_visualizers.urls"),
+    ),
     url(r"^admin/", admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
