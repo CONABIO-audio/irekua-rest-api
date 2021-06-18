@@ -4,6 +4,7 @@ from .collection_items import CollectionItemUpdateSerializer
 from .collection_items import CollectionItemValidationSerializer
 from .collection_licences import CollectionLicenceSerializer
 from .collection_sites import CollectionSiteSerializer
+from .collection_sites import CollectionSiteDetailSerializer
 from .data_collections import CollectionSerializer
 from .deployment_types import DeploymentTypeDetailSerializer
 from .deployment_types import DeploymentTypeSerializer
@@ -23,6 +24,7 @@ __all__ = [
     "CollectionLicenceSerializer",
     "CollectionSerializer",
     "CollectionSiteSerializer",
+    "CollectionSiteDetailSerializer",
     "DeploymentSerializer",
     "DeploymentTypeDetailSerializer",
     "DeploymentTypeSerializer",

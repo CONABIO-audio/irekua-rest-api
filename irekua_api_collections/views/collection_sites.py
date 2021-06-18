@@ -1,5 +1,7 @@
 from django.db.models import Q
 from rest_framework.permissions import AllowAny
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from irekua_api_core.views import IrekuaReadOnlyViewSet
 from irekua_api_core.permissions import IsSpecial
@@ -64,3 +66,26 @@ class CollectionSiteViewSet(IrekuaReadOnlyViewSet):
         is_own = Q(created_by=user)
 
         return queryset.filter(is_open | is_manager | is_admin | is_user | is_own)
+    
+    def retrieve(self, request, pk=None):
+        queryset = self.get_queryset().filter(pk=pk);
+
+        serializer = serializers.CollectionSiteDetailSerializer(queryset, many=True, context={'request': request})
+
+        return Response(serializer.data, status=200)
+
+    
+    @action(detail=True, methods=["get"])
+    def associated_users(self, request, pk=None):
+        queryset = self.get_queryset().filter(pk=pk);
+
+        serializer = serializers.CollectionSiteDetailSerializer(queryset, many=True, context={'request': request})
+
+        response_data = {
+            'id': serializer.data[0]['id'],
+            'associated_users': serializer.data[0]['associated_users']
+        }
+
+        return Response(response_data, status=200)
+
+    

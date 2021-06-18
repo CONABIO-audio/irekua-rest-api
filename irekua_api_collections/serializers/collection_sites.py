@@ -65,3 +65,31 @@ class CollectionSiteSerializer(SimpleCollectionSiteSerializer):
             "created_on",
             "created_by",
         )
+
+class CollectionSiteDetailSerializer(SimpleCollectionSiteSerializer):
+    site = SimpleSiteSerializer(read_only=True)
+
+    collection = SimpleCollectionSerializer(read_only=True)
+
+    site_descriptors = SimpleSiteDescriptorSerializer(
+        many=True,
+        read_only=True,
+    )
+
+    associated_users = SimpleUserSerializer(many=True, read_only=True)
+
+    site_type = SimpleSiteTypeSerializer(read_only=True)
+
+    created_by = SimpleUserSerializer(read_only=True)
+
+    class Meta(SimpleCollectionSiteSerializer.Meta):
+        fields = (
+            *SimpleCollectionSiteSerializer.Meta.fields,
+            "collection",
+            "site",
+            "site_descriptors",
+            "collection_metadata",
+            "associated_users",
+            "created_on",
+            "created_by",
+        )
