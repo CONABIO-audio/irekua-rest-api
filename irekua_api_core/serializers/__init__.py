@@ -1,6 +1,7 @@
 from .base import IrekuaModelSerializer
 from .base import IrekuaUserModelSerializer
 from .institutions import InstitutionSerializer
+from .roles import SimpleRoleSerializer
 from .roles import RoleSerializer
 from .users import SimpleUserSerializer
 from .users import UserDetailSerializer
@@ -12,6 +13,7 @@ __all__ = [
     "InstitutionSerializer",
     "IrekuaModelSerializer",
     "IrekuaUserModelSerializer",
+    "SimpleRoleSerializer",
     "RoleSerializer",
     "SimpleUserSerializer",
     "UserDetailSerializer",

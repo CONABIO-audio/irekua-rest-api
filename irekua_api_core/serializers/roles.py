@@ -4,12 +4,7 @@ from irekua_database.models import Role
 from .base import IrekuaModelSerializer
 
 
-class RoleSerializer(IrekuaModelSerializer):
-    permissions = serializers.SlugRelatedField(
-        slug_field="codename",
-        many=True,
-        read_only=True,
-    )
+class SimpleRoleSerializer(IrekuaModelSerializer):
 
     class Meta:
         model = Role
@@ -17,6 +12,18 @@ class RoleSerializer(IrekuaModelSerializer):
             "id",
             "name",
             "description",
+        )
+
+class RoleSerializer(SimpleRoleSerializer):
+    permissions = serializers.SlugRelatedField(
+        slug_field="codename",
+        many=True,
+        read_only=True,
+    )
+
+    class Meta(SimpleRoleSerializer.Meta):
+        fields = (
+            *SimpleRoleSerializer.Meta.fields,
             "icon",
             "permissions",
         )
