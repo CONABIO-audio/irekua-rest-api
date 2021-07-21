@@ -1,4 +1,5 @@
 from .localities import LocalityDetailSerializer
+from .localities import LocalityCreateSerializer
 from .localities import LocalitySerializer
 from .locality_types import LocalityTypeDetailSerializer
 from .locality_types import LocalityTypeSerializer
@@ -17,6 +18,7 @@ from .sites import SiteSerializer
 
 __all__ = [
     "LocalityDetailSerializer",
+    "LocalityCreateSerializer",
     "LocalitySerializer",
     "LocalityTypeDetailSerializer",
     "LocalityTypeSerializer",

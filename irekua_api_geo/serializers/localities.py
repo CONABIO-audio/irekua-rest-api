@@ -22,7 +22,7 @@ class LocalitySerializer(IrekuaModelSerializer):
 
 
 class LocalityDetailSerializer(IrekuaModelSerializer):
-    locality_type = LocalityTypeDetailSerializer(read_only=True)
+    locality_type = LocalityTypeDetailSerializer(many=True,read_only=True)
 
     is_part_of = LocalitySerializer(read_only=True, many=True)
 
@@ -34,3 +34,15 @@ class LocalityDetailSerializer(IrekuaModelSerializer):
             "modified_on",
             "is_part_of",
         )
+
+class LocalityCreateSerializer(IrekuaModelSerializer):
+
+    class Meta:
+        model = Locality
+        fields = (
+            "name",
+            "description",
+            "locality_type",
+            "geometry",
+        )
+
